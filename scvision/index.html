@@ -27,6 +27,7 @@
     <div class="nav-links">
       <a href="#idea">Idea</a>
       <a href="#method">Method</a>
+      <a href="#explore">Explore</a>
       <a href="#results">Results</a>
       <a href="#abstract">Abstract</a>
       <a href="#cite">Cite</a>
@@ -132,6 +133,48 @@
         <div class="idx">3</div>
         <h3>Frozen, zero-shot transfer</h3>
         <p>The encoder is used exactly as trained — <b>frozen, no fine-tuning</b> — to annotate cell types, integrate studies, read gene programs from attention, probe perturbations and trace disease axes on held-out data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPLORE (interactive) ===================== -->
+<section id="explore" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Explore &middot; interactive</div>
+    <h2>See a cell become an image.</h2>
+    <p class="lead" style="max-width:66ch">Choose a cell type to render its transcriptome onto the shared gene lattice as an <b>scImage</b>, hide most of the patches, and watch a masked-autoencoder&#8209;style reconstruction fill it back in &mdash; the three steps scVision&#39;s pretraining is built on, running live in your browser.</p>
+
+    <div class="demo">
+      <div class="demo-stages">
+        <span class="dstage">Expression</span><i>&#8594;</i>
+        <span class="dstage">Gene cartography</span><i>&#8594;</i>
+        <span class="dstage">scImage</span><i>&#8594;</i>
+        <span class="dstage">Mask</span><i>&#8594;</i>
+        <span class="dstage">Reconstruct</span>
+      </div>
+      <div class="demo-grid">
+        <div class="demo-controls">
+          <div class="dc-label">Cell type <span class="dc-illus">illustrative</span></div>
+          <div class="celltypes" id="cellTypes">
+            <button class="ct active" data-t="0">T cell</button>
+            <button class="ct" data-t="1">Neuron</button>
+            <button class="ct" data-t="2">Hepatocyte</button>
+            <button class="ct" data-t="3">Epithelial</button>
+          </div>
+          <div class="dc-label" style="margin-top:22px">Masking ratio <span class="dc-val" id="maskPct">75%</span></div>
+          <input id="maskSlider" class="drange" type="range" min="0" max="90" step="5" value="75" aria-label="Masking ratio">
+          <div class="dbtns">
+            <button class="dbtn" id="remask">Re-mask</button>
+            <button class="dbtn primary" id="cycle">Cycle cell types &#9654;</button>
+          </div>
+          <p class="dc-note">A schematic scImage is generated in your browser from a fixed gene layout: co-regulated &ldquo;programs&rdquo; form local blobs, so different cell types look different. Illustrative &mdash; not real model output.</p>
+        </div>
+        <div class="demo-canvases">
+          <figure class="dcv"><canvas id="cvFull" width="104" height="104"></canvas><figcaption>scImage <span>104&#215;104</span></figcaption></figure>
+          <figure class="dcv"><canvas id="cvMask" width="104" height="104"></canvas><figcaption>Masked input <span id="capMask">75% hidden</span></figcaption></figure>
+          <figure class="dcv"><canvas id="cvRecon" width="104" height="104"></canvas><figcaption>Reconstruction <span>illustrative</span></figcaption></figure>
+        </div>
       </div>
     </div>
   </div>
@@ -257,6 +300,95 @@
       setTimeout(function(){ b.textContent = 'Copy'; }, 1600);
     });
   });
+</script>
+
+<!-- interactive method demo -->
+<script>
+(function(){
+  var cvFull=document.getElementById('cvFull'); if(!cvFull) return;
+  var cvMask=document.getElementById('cvMask'), cvRecon=document.getElementById('cvRecon');
+  var LAT=104, PG=8, PS=LAT/PG; // 13px patches, 8x8 grid
+
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+
+  // fixed gene-program layout (constant seed => genes/programs at fixed positions)
+  var lr=mulberry32(20260714), NPROG=11, centers=[];
+  for(var i=0;i<NPROG;i++) centers.push({x:lr(),y:lr(),s:0.055+0.09*lr()});
+  // fixed low-frequency texture, shared across cell types
+  var tr=mulberry32(4242), texC=[];
+  for(var j=0;j<5;j++) texC.push({fx:tr()*4-2,fy:tr()*4-2,ph:tr()*6.2832,a:0.06*tr()});
+  function texAt(nx,ny){var s=0;for(var j=0;j<texC.length;j++){var c=texC[j];s+=c.a*Math.sin(6.2832*(c.fx*nx+c.fy*ny)+c.ph);}return s;}
+  // per-cell-type program weights (each activates a distinct subset)
+  var CT=[];
+  for(var c=0;c<4;c++){var r=mulberry32(1000+c*777),w=[];for(var k=0;k<NPROG;k++){var v=r();w.push(v>0.55?(0.55+0.65*r()):0.03*r());}CT.push(w);}
+
+  function field(w){
+    var f=new Float32Array(LAT*LAT),mn=1e9,mx=-1e9;
+    for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){
+      var nx=(x+0.5)/LAT,ny=(y+0.5)/LAT,v=0.12;
+      for(var k=0;k<NPROG;k++){var dx=nx-centers[k].x,dy=ny-centers[k].y,s=centers[k].s;v+=w[k]*Math.exp(-(dx*dx+dy*dy)/(2*s*s));}
+      v+=texAt(nx,ny);var idx=y*LAT+x;f[idx]=v;if(v<mn)mn=v;if(v>mx)mx=v;
+    }
+    var inv=1/(mx-mn+1e-9);for(var q=0;q<f.length;q++)f[q]=(f[q]-mn)*inv;return f;
+  }
+
+  var VIR=[[68,1,84],[59,82,139],[33,145,140],[94,201,98],[253,231,37]];
+  function vir(t){t=t<0?0:t>1?1:t;var x=t*4,i=x|0,fr=x-i,a=VIR[i],b=VIR[i+1<5?i+1:4];return[(a[0]+(b[0]-a[0])*fr)|0,(a[1]+(b[1]-a[1])*fr)|0,(a[2]+(b[2]-a[2])*fr)|0];}
+
+  var maskSeed=777;
+  function buildMask(ratio){
+    var a=[];for(var p=0;p<PG*PG;p++)a.push(p);
+    var r=mulberry32(maskSeed);
+    for(var i=a.length-1;i>0;i--){var jj=(r()*(i+1))|0,t=a[i];a[i]=a[jj];a[jj]=t;}
+    var n=Math.round(ratio*PG*PG),set={};for(var i2=0;i2<n;i2++)set[a[i2]]=1;return set;
+  }
+  function reconField(f,set){
+    var means=new Float32Array(PG*PG),cnt=new Float32Array(PG*PG);
+    for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){var p=((y/PS)|0)*PG+((x/PS)|0);means[p]+=f[y*LAT+x];cnt[p]++;}
+    var vis=[];for(var p=0;p<PG*PG;p++){means[p]/=cnt[p];if(set[p]!==1)vis.push({cx:((p%PG)+0.5)/PG,cy:(((p/PG)|0)+0.5)/PG,m:means[p]});}
+    var out=Float32Array.from(f);
+    for(var p2=0;p2<PG*PG;p2++){if(set[p2]!==1)continue;var pr=(p2/PG)|0,pc=p2%PG;
+      for(var y2=pr*PS;y2<(pr+1)*PS;y2++)for(var x2=pc*PS;x2<(pc+1)*PS;x2++){
+        var nx=(x2+0.5)/LAT,ny=(y2+0.5)/LAT,num=0,den=0;
+        for(var v=0;v<vis.length;v++){var dx=nx-vis[v].cx,dy=ny-vis[v].cy,ww=1/(dx*dx+dy*dy+2e-3);num+=ww*vis[v].m;den+=ww;}
+        out[y2*LAT+x2]=den>0?num/den:0.5;
+      }
+    }
+    return out;
+  }
+  function paint(cv,f,set,masked){
+    var ctx=cv.getContext('2d'),im=ctx.createImageData(LAT,LAT),d=im.data;
+    for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){
+      var idx=y*LAT+x,pi=idx*4,rgb;
+      if(masked&&set[((y/PS)|0)*PG+((x/PS)|0)]===1)rgb=[214,210,202];else rgb=vir(f[idx]);
+      d[pi]=rgb[0];d[pi+1]=rgb[1];d[pi+2]=rgb[2];d[pi+3]=255;
+    }
+    ctx.putImageData(im,0,0);
+  }
+
+  var curType=0,curRatio=0.75,curF=field(CT[0]);
+  var maskPct=document.getElementById('maskPct'),capMask=document.getElementById('capMask');
+  function renderAll(){
+    var set=buildMask(curRatio);
+    paint(cvFull,curF,set,false);
+    paint(cvMask,curF,set,true);
+    paint(cvRecon,reconField(curF,set),set,false);
+    var pct=Math.round(curRatio*100)+'%';maskPct.textContent=pct;capMask.textContent=pct+' hidden';
+  }
+
+  var pills=document.querySelectorAll('#cellTypes .ct');
+  function setType(t){curType=t;curF=field(CT[t]);for(var i=0;i<pills.length;i++)pills[i].classList.toggle('active',(+pills[i].getAttribute('data-t'))===t);renderAll();}
+  for(var pi2=0;pi2<pills.length;pi2++){(function(el){el.addEventListener('click',function(){setType(+el.getAttribute('data-t'));});})(pills[pi2]);}
+  document.getElementById('maskSlider').addEventListener('input',function(e){curRatio=(+e.target.value)/100;renderAll();});
+  document.getElementById('remask').addEventListener('click',function(){maskSeed=(Math.random()*1e9)|0;renderAll();});
+  var cycling=false;
+  document.getElementById('cycle').addEventListener('click',function(){
+    if(cycling)return;cycling=true;var seq=[1,2,3,0],k=0;
+    var iv=setInterval(function(){setType(seq[k]);k++;if(k>=seq.length){clearInterval(iv);cycling=false;}},650);
+  });
+
+  renderAll();
+})();
 </script>
 </body>
 </html>
