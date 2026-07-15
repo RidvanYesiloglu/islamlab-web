@@ -29,6 +29,8 @@
       <a href="#method">Method</a>
       <a href="#explore">Explore</a>
       <a href="#results">Results</a>
+      <a href="#benchmarks">Benchmarks</a>
+      <a href="#gallery">Gallery</a>
       <a href="#abstract">Abstract</a>
       <a href="#cite">Cite</a>
       <a class="nav-cta" href="#paper">Read the paper</a>
@@ -214,6 +216,61 @@
   </div>
 </section>
 
+<!-- ===================== BENCHMARKS (interactive) ===================== -->
+<section id="benchmarks">
+  <div class="wrap">
+    <div class="eyebrow">Benchmarks &middot; interactive</div>
+    <h2>Explore the numbers.</h2>
+    <p class="lead" style="max-width:64ch">Every value here is read straight from the paper&#39;s evaluation files. Switch views to compare scVision with token foundation models and classical baselines.</p>
+    <div class="rex">
+      <div class="rex-tabs" id="rexTabs">
+        <button class="rtab active" data-v="robust">Robustness</button>
+        <button class="rtab" data-v="eff">Efficiency</button>
+        <button class="rtab" data-v="integ">Integration</button>
+        <button class="rtab" data-v="ssl">Pretraining ablation</button>
+      </div>
+      <div class="rex-body">
+        <div class="rex-head">
+          <div class="rex-title" id="rexTitle">&nbsp;</div>
+          <div class="rex-sub" id="rexSub"></div>
+        </div>
+        <div class="rex-controls" id="rexControls"></div>
+        <div class="rex-chart" id="rexChart"></div>
+        <div class="rex-legend" id="rexLegend"></div>
+        <p class="rex-note" id="rexNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY (real scImages) ===================== -->
+<section id="gallery" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Gallery &middot; real cells</div>
+    <h2>Real cells, real images.</h2>
+    <p class="lead" style="max-width:70ch">These are actual scImages rendered from held-out cells. Every cell shares the same gene layout, so all scImages look broadly similar &mdash; the finer differences in local texture are what distinguish cell types, and what scVision learns to read. Select any cell to mask and reconstruct it.</p>
+    <div class="galwrap">
+      <div class="gal-viewer">
+        <div class="gal-meta">
+          <div><span class="gal-k">Cell type</span><span class="gal-v" id="galLabel">&mdash;</span></div>
+          <div><span class="gal-k">Tissue</span><span class="gal-v" id="galTissue">&mdash;</span></div>
+        </div>
+        <div class="demo-canvases">
+          <figure class="dcv"><canvas id="galFull" width="104" height="104"></canvas><figcaption>scImage <span>real</span></figcaption></figure>
+          <figure class="dcv"><canvas id="galMask" width="104" height="104"></canvas><figcaption>Masked <span id="galCapMask">75% hidden</span></figcaption></figure>
+          <figure class="dcv"><canvas id="galRecon" width="104" height="104"></canvas><figcaption>Reconstruction <span>illustrative</span></figcaption></figure>
+        </div>
+        <div class="gal-ctl">
+          <div class="dc-label" style="margin:0">Masking ratio <span class="dc-val" id="galPct">75%</span></div>
+          <input id="galSlider" class="drange" type="range" min="0" max="90" step="5" value="75" aria-label="Masking ratio">
+          <button class="dbtn" id="galRemask">Re-mask</button>
+        </div>
+      </div>
+      <div class="gal-grid" id="galGrid"><p class="rex-note">Loading real scImages&hellip;</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== ABSTRACT ===================== -->
 <section id="abstract">
   <div class="wrap prose abstract">
@@ -390,5 +447,6 @@
   renderAll();
 })();
 </script>
+<script src="interactive.js"></script>
 </body>
 </html>
