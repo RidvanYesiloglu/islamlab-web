@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scVision — A vision foundation model for single-cell biology</title>
+<meta name="description" content="scVision renders each cell as a continuous image via spatial gene cartography and learns one frozen representation by masked-image modelling — the most accurate zero-shot annotator on every held-out human atlas tested. Islam Lab, Stanford University.">
+<meta name="author" content="Ridvan Yesiloglu, Sakib Mostafa, James Zou, Ash Alizadeh, Jiajun Wu, Lei Xing, Ehsan Adeli, Md Tauhidul Islam">
+<meta property="og:type" content="website">
+<meta property="og:title" content="scVision — A vision foundation model for single-cell biology via spatial gene cartography">
+<meta property="og:description" content="Each cell as a continuous image. One frozen encoder. The most accurate zero-shot annotator on every held-out human atlas.">
+<meta property="og:image" content="https://islamlab.org/scvision/assets/fig1.png">
+<meta property="og:url" content="https://islamlab.org/scvision">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c2436'/><circle cx='10' cy='11' r='2.4' fill='%23f2c94c'/><circle cx='21' cy='14' r='2.4' fill='%23e07a5f'/><circle cx='14' cy='21.5' r='2' fill='%234f7290'/><circle cx='23' cy='23' r='1.8' fill='%237f9d6a'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="glyph"></span>sc<b>Vision</b></a>
+    <div class="nav-links">
+      <a href="#idea">Idea</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#cite">Cite</a>
+      <a class="nav-cta" href="#paper">Read the paper</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">Stanford University · <b>Islam Lab</b> · Foundation models for single-cell biology</div>
+    <h1>A vision foundation model for single-cell biology via spatial gene cartography</h1>
+    <p class="tagline">scVision renders each cell as a <b>continuous image</b> and learns one <b>frozen</b> representation by masked-image modelling — the most accurate zero-shot annotator on <b>every</b> held-out human atlas we tested.</p>
+
+    <p class="authors">
+      <span class="au">Ridvan Yesiloglu<sup>1</sup></span>,
+      <span class="au">Sakib Mostafa<sup>2</sup></span>,
+      <span class="au">James Zou<sup>1,3,4</sup></span>,
+      <span class="au">Ash Alizadeh<sup>5</sup></span>,
+      <span class="au">Jiajun Wu<sup>4</sup></span>,
+      <span class="au">Lei Xing<sup>1,2,6</sup></span>,
+      <span class="au corr">Ehsan Adeli<sup>3,4,7,&#9993;</sup></span>,
+      <span class="au corr">Md&nbsp;Tauhidul&nbsp;Islam<sup>2,&#9993;</sup></span>
+    </p>
+    <p class="affils">
+      <sup>1</sup>Electrical Engineering ·
+      <sup>2</sup>Radiation Oncology ·
+      <sup>3</sup>Biomedical Data Science ·
+      <sup>4</sup>Computer Science ·
+      <sup>5</sup>Medicine (Oncology) ·
+      <sup>6</sup>Institute for Computational &amp; Mathematical Engineering ·
+      <sup>7</sup>Psychiatry &amp; Behavioral Sciences — Stanford University
+      <span class="corr-note">&#9993; Correspondence:
+        <a href="mailto:tauhid@stanford.edu">tauhid@stanford.edu</a> ·
+        <a href="mailto:eadeli@stanford.edu">eadeli@stanford.edu</a>
+      </span>
+    </p>
+
+    <div class="btns" id="paper">
+      <a class="btn primary" href="PAPER_PDF_URL">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3v5h5M8 13h8M8 17h8M8 9h2"/><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+        Read the paper
+      </a>
+      <a class="btn" href="ARXIV_URL">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        arXiv <span class="soon">(soon)</span>
+      </a>
+      <a class="btn ghost" href="GITHUB_URL">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.2-3.37-1.2-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.72 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+        Code
+      </a>
+      <a class="btn ghost" href="#cite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9h4v6H6zM14 9h4v6h-4z"/></svg>
+        BibTeX
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== STATS ===================== -->
+<section style="padding:44px 0;border-top:none">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">6 / 6</div><div class="l">Most accurate zero-shot annotator on every held-out atlas</div></div>
+      <div class="stat"><div class="n ink">72M</div><div class="l">Human cells for masked-image pretraining</div></div>
+      <div class="stat"><div class="n">&gt;50&times;</div><div class="l">Fewer labels than classical baselines</div></div>
+      <div class="stat"><div class="n">37&ndash;300&times;</div><div class="l">Faster than token foundation models</div></div>
+      <div class="stat"><div class="n ink">scVI-tied</div><div class="l">On integration, with no batch labels</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FIGURE ===================== -->
+<section id="figure" style="padding-top:26px">
+  <div class="wrap">
+    <figure class="fig">
+      <div class="frame"><img src="assets/fig1.png" alt="Overview of scVision: cells become continuous images via optimal transport, a vision transformer is pretrained by masked image modelling, and the frozen encoder supports zero-shot annotation, integration, gene-program inference, perturbation and disease axes."></div>
+      <figcaption><b>How scVision works.</b> <b>a,</b> Optimal transport places informative genes at fixed positions on one shared lattice; painting a cell's expression onto it renders the transcriptome as a continuous image (an <em>scImage</em>). <b>b,</b> A ViT-base encoder is trained as a masked autoencoder, reconstructing hidden image patches with no labels. <b>c,</b> The single frozen encoder supports cell-type annotation, multi-study integration, gene-program inference, perturbation response and a disease axis.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== IDEA ===================== -->
+<section id="idea" class="alt">
+  <div class="wrap prose">
+    <div class="eyebrow">The idea</div>
+    <h2>A better representation, not a bigger model.</h2>
+    <p class="lead">Most single-cell foundation models borrow the design of language models, treating a cell as a sequence of gene tokens. That discards the relationships among genes and often the magnitude of their expression — and no amount of extra scale can put that structure back.</p>
+    <p>scVision changes the representation itself. Using optimal transport, it lays roughly eleven thousand informative genes at fixed positions on a single, shared, pan-tissue map, arranged so that genes which tend to act together become spatial neighbours. Projecting any cell's measured expression onto this common map turns its transcriptome into an image, where coordinated gene programs appear as local texture and overall cellular identity as global pattern. Because the layout is shared across every cell and tissue, a cell is always the same fixed-size image — no matter how many genes were measured. This recasts single-cell representation learning as a computer-vision problem, so that mature image models can be brought to biology through a change in how a cell is represented.</p>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section id="method">
+  <div class="wrap">
+    <div class="eyebrow">Method</div>
+    <h2>Three steps, one frozen encoder.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="idx">1</div>
+        <h3>Spatial gene cartography</h3>
+        <p>Optimal transport places the <b>10,816</b> most informative genes at fixed coordinates on a single <b>104&times;104</b> lattice, shared across all cells. Painting a cell's expression onto it renders the transcriptome as a continuous <b>scImage</b>.</p>
+      </div>
+      <div class="step">
+        <div class="idx">2</div>
+        <h3>Masked-image pretraining</h3>
+        <p>A ViT-base encoder (<b>~86M</b> parameters) is trained as a <b>masked autoencoder</b> on 72 million of ~94 million human cells — reconstructing 75% hidden image patches, with no cell-type labels.</p>
+      </div>
+      <div class="step">
+        <div class="idx">3</div>
+        <h3>Frozen, zero-shot transfer</h3>
+        <p>The encoder is used exactly as trained — <b>frozen, no fine-tuning</b> — to annotate cell types, integrate studies, read gene programs from attention, probe perturbations and trace disease axes on held-out data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTS ===================== -->
+<section id="results" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Key findings</div>
+    <h2>What the frozen representation delivers.</h2>
+    <div class="findings">
+      <div class="finding">
+        <h3>Zero-shot annotation <span class="tag">Accuracy</span></h3>
+        <p>The frozen embedding is the most accurate zero-shot annotator on all six held-out human atlases — kidney, ovary, retina, focal cortical dysplasia, Crohn's-disease ileum and a 53-type multi-organ reference — ahead of scGPT, scFoundation, Geneformer and strong classical baselines.</p>
+      </div>
+      <div class="finding">
+        <h3>Label efficiency <span class="tag">Few-shot</span></h3>
+        <p>A single labelled cell per type reaches an accuracy that the best classical method needs roughly fifty labels to match — more than a fifty-fold reduction in the annotation effort that adopting a new dataset usually demands.</p>
+      </div>
+      <div class="finding">
+        <h3>Cross-study integration <span class="tag">Integration</span></h3>
+        <p>Without ever being shown a batch label, scVision matches scVI and scGPT on the combined scIB score while conserving more biological structure than any method tested.</p>
+      </div>
+      <div class="finding">
+        <h3>Robust to missing data <span class="tag">Robustness</span></h3>
+        <p>The spatial layout degrades gracefully. scVision is the only method that stays above its clean-data accuracy even with 70% of genes removed, where gene-based methods collapse.</p>
+      </div>
+      <div class="finding">
+        <h3>Interpretable &amp; controllable <span class="tag">Biology</span></h3>
+        <p>Attention maps read directly as gene programs that recur across organs with no pathway supervision, and spatial masking perturbs a whole neighbourhood of co-regulated genes as a single unit.</p>
+      </div>
+      <div class="finding">
+        <h3>The decisive control <span class="tag">Why it works</span></h3>
+        <p>Permuting the gene-to-position layout — holding the network and data fixed — lowers accuracy several times more than removing the vision transformer entirely. The biologically meaningful arrangement of genes, not the network, carries the signal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section id="abstract">
+  <div class="wrap prose abstract">
+    <div class="eyebrow">Abstract</div>
+    <p class="dropcap">Single-cell transcriptomics has made it possible to measure gene expression in tens of millions of individual cells, revealing cellular diversity that bulk profiling cannot resolve. Foundation models aim to learn general representations from these large datasets that can be reused across many biological tasks. However, most current single-cell foundation models are adapted from language models and represent each cell as a set or sequence of gene tokens. This design has two limitations. It treats genes as largely unordered inputs, even though genes act together in coordinated programs, and it often requires expression values to be discretized or ranked, losing quantitative information about expression magnitude.</p>
+    <p>Here we present scVision, a vision foundation model for single-cell biology. Instead of converting genes into tokens, scVision represents each cell as a continuous gene-expression image. It assigns genes to fixed spatial positions using optimal transport, so that genes with related expression patterns are placed near one another and coordinated gene programs form local image regions. The resulting image preserves both the quantitative expression level of each gene and the biological relationships among genes. We pretrain a vision transformer with masked image modelling on 72 million human cells, creating one of the largest pretrained models for single-cell analysis.</p>
+    <p>In zero-shot evaluations across six independent, held-out studies, frozen scVision representations outperform existing foundation models and classical baselines in cell-type annotation and gene-program discovery, without task-specific retraining. On multi-study integration, scVision matches the strongest token-based foundation model on the combined benchmark score and conserves more biological structure than any method tested. The spatial organization of scVision also improves interpretability: image regions correspond to groups of co-expressed genes, and attention maps can be read as gene-program activity. This structure also enables spatial masking experiments, in which a neighborhood of related genes is perturbed as a single unit, an operation with no direct counterpart in token-based foundation models. By preserving continuous gene-expression values and giving genes biologically meaningful positions, scVision reframes single-cell representation learning as a vision problem. This approach retains more of the original transcriptomic signal while opening a direct path for applying modern computer vision methods to single-cell biology.</p>
+  </div>
+</section>
+
+<!-- ===================== CITATION ===================== -->
+<section id="cite" class="alt">
+  <div class="wrap prose">
+    <div class="eyebrow">Cite this work</div>
+    <h2>BibTeX</h2>
+    <div class="cite-box">
+      <button class="copy" id="copyBtn">Copy</button>
+<pre id="bib"><span class="k">@article</span>{yesiloglu2026scvision,
+  <span class="f">title</span>   = {A vision foundation model for single-cell biology via spatial gene cartography},
+  <span class="f">author</span>  = {Yesiloglu, Ridvan and Mostafa, Sakib and Zou, James and
+             Alizadeh, Ash and Wu, Jiajun and Xing, Lei and
+             Adeli, Ehsan and Islam, Md Tauhidul},
+  <span class="f">year</span>    = {2026},
+  <span class="f">note</span>    = {Preprint},
+  <span class="f">url</span>     = {https://islamlab.org/scvision}
+}</pre>
+    </div>
+    <p class="divider-note">Please update the entry with the arXiv identifier or journal reference once available.</p>
+  </div>
+</section>
+
+<!-- ===================== AUTHORS ===================== -->
+<section id="authors">
+  <div class="wrap">
+    <div class="eyebrow">Authors</div>
+    <h2>Team</h2>
+    <div class="author-grid">
+      <div class="author-row"><span class="name">Ridvan Yesiloglu</span><span class="role">Electrical Engineering · lead author</span></div>
+      <div class="author-row"><span class="name">Sakib Mostafa</span><span class="role">Radiation Oncology</span></div>
+      <div class="author-row"><span class="name">James Zou</span><span class="role">Biomedical Data Science · CS</span></div>
+      <div class="author-row"><span class="name">Ash Alizadeh</span><span class="role">Medicine, Oncology</span></div>
+      <div class="author-row"><span class="name">Jiajun Wu</span><span class="role">Computer Science</span></div>
+      <div class="author-row"><span class="name">Lei Xing</span><span class="role">Radiation Oncology · EE · ICME</span></div>
+      <div class="author-row pi"><span class="name">Ehsan Adeli <span class="star">&#9993;</span></span><span class="role">Psychiatry &amp; Behavioral Sciences · CS — corresponding</span></div>
+      <div class="author-row pi"><span class="name">Md Tauhidul Islam <span class="star">&#9993;</span></span><span class="role">Radiation Oncology · corresponding · Islam Lab</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="lab">
+      <div class="brand2">Islam <b>Lab</b></div>
+      <p>Department of Radiation Oncology, Stanford University School of Medicine. We build machine-learning methods that turn high-dimensional biological measurements into interpretable, transferable representations.</p>
+      <p><a href="https://islamlab.org">islamlab.org</a></p>
+    </div>
+    <div class="col">
+      <h4>Paper</h4>
+      <a href="PAPER_PDF_URL">Read the PDF</a>
+      <a href="ARXIV_URL">arXiv (soon)</a>
+      <a href="#cite">BibTeX</a>
+    </div>
+    <div class="col">
+      <h4>Code &amp; data</h4>
+      <a href="GITHUB_URL">GitHub</a>
+      <a href="https://cellxgene.cziscience.com/">CZ CELLxGENE Census</a>
+    </div>
+    <div class="col">
+      <h4>Contact</h4>
+      <a href="mailto:tauhid@stanford.edu">tauhid@stanford.edu</a>
+      <a href="mailto:eadeli@stanford.edu">eadeli@stanford.edu</a>
+    </div>
+    <div class="fine">
+      <span>&copy; 2026 Islam Lab, Stanford University. All rights reserved.</span>
+      <span>scVision · A vision foundation model for single-cell biology</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var txt = document.getElementById('bib').innerText;
+    navigator.clipboard.writeText(txt).then(function(){
+      var b = document.getElementById('copyBtn'); b.textContent = 'Copied';
+      setTimeout(function(){ b.textContent = 'Copy'; }, 1600);
+    });
+  });
+</script>
+</body>
+</html>
