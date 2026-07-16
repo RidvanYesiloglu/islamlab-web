@@ -504,7 +504,7 @@
       var f=e.dataTransfer&&e.dataTransfer.files[0]; if(f) send(f); });
     if(exBtn) exBtn.addEventListener("click",function(){
       status("loading","Fetching an example cell — a real held-out immune cell&hellip;");
-      fetch("assets/example_cell.csv").then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.blob(); })
+      fetch("/scvision/assets/example_cell.csv").then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.blob(); })
         .then(function(b){ send(new File([b],"example_cell.csv",{type:"text/csv"}),"the example cell"); })
         .catch(function(e){ status("err","Could not load the example ("+esc(e.message)+")."); });
     });
