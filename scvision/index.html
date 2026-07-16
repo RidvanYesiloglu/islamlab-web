@@ -243,7 +243,7 @@
   <div class="wrap">
     <div class="eyebrow">Gallery &middot; real cells</div>
     <h2>Real cells, real images.</h2>
-    <p class="lead" style="max-width:70ch">These are actual scImages rendered from held-out cells. Every cell shares the same gene layout, so all scImages look broadly similar &mdash; the finer differences in local texture are what distinguish cell types, and what scVision learns to read. Select any cell to mask and reconstruct it.</p>
+    <p class="lead" style="max-width:70ch">These are actual scImages rendered from held-out cells. Every cell shares the same gene layout, so all scImages look broadly similar &mdash; the finer differences in local texture are what distinguish cell types, and what scVision learns to read. Select any cell to mask and reconstruct it &mdash; then <b>run the real scVision model on it live</b> and watch its annotation hold, or break, as you hide more of the cell.</p>
     <div class="galwrap">
       <div class="gal-viewer">
         <div class="gal-meta">
@@ -259,7 +259,9 @@
           <div class="dc-label" style="margin:0">Masking ratio <span class="dc-val" id="galPct">75%</span></div>
           <input id="galSlider" class="drange" type="range" min="0" max="90" step="5" value="75" aria-label="Masking ratio">
           <button class="dbtn" id="galRemask">Re-mask</button>
+          <button class="dbtn primary" id="galRun">Run scVision live &#9654;</button>
         </div>
+        <div class="gal-live" id="galLive" hidden></div>
       </div>
       <div class="gal-grid" id="galGrid"><p class="rex-note">Loading real scImages&hellip;</p></div>
     </div>
@@ -441,6 +443,8 @@
   renderAll();
 })();
 </script>
+<!-- Live inference endpoint (real scVision model on GCP); empty hides the "Run scVision live" button. -->
+<script>window.SCVISION_API="https://api.islamlab.org";</script>
 <script src="interactive.js"></script>
 </body>
 </html>

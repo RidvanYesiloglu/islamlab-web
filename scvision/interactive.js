@@ -292,5 +292,34 @@
     if(slider) slider.addEventListener("input", function(e){ ratio=(+e.target.value)/100; renderSelected(); });
     var rm=document.getElementById("galRemask");
     if(rm) rm.addEventListener("click", function(){ maskSeed=(Math.random()*1e9)|0; renderSelected(); });
+
+    /* ---- live inference: run the REAL scVision model (GCP backend) ---- */
+    var API=(window.SCVISION_API||"").replace(/\/+$/,"");
+    var runBtn=document.getElementById("galRun"), liveOut=document.getElementById("galLive");
+    function maskedPatchList(){ var s=buildMask(ratio); return Object.keys(s).map(Number); }
+    function showLive(cls, html){ liveOut.hidden=false; liveOut.className="gal-live "+cls; liveOut.innerHTML=html; }
+    if(runBtn && !API){ runBtn.style.display="none"; }
+    if(runBtn && API){
+      runBtn.addEventListener("click", function(){
+        runBtn.disabled=true;
+        showLive("loading", "Running the real scVision model on this cell…");
+        fetch(API+"/annotate", {method:"POST", headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({cell:cur, mask_patches:maskedPatchList()})})
+          .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+          .then(function(d){
+            var conf=Math.round((d.confidence||0)*100), shift=(d.embedding_shift_cos!=null?d.embedding_shift_cos:1);
+            var nbrs=(d.neighbors||[]).slice(0,5).map(function(n){
+              return '<li><span>'+esc(n.label)+'</span><i>'+Number(n.sim).toFixed(2)+'</i></li>'; }).join("");
+            showLive(d.correct?"good":"bad",
+              '<div class="gl-head"><span class="gl-tag">'+(d.correct?"✓ correct":"✗ mis-annotated")+'</span>'+
+                '<span class="gl-conf">'+conf+'% of '+((d.neighbors||[]).length||"k")+' neighbours</span></div>'+
+              '<div class="gl-pred">predicted <b>'+esc(d.pred)+'</b> &middot; true <b>'+esc(d.true)+'</b></div>'+
+              '<div class="gl-meta">'+(d.n_masked_patches||0)+' patches hidden &middot; embedding vs. clean = <b>'+Number(shift).toFixed(2)+'</b> cosine</div>'+
+              '<div class="gl-nbrs">nearest reference cells<ul>'+nbrs+'</ul></div>');
+          })
+          .catch(function(e){ showLive("err","Could not reach the model ("+esc(e.message)+"). It may be waking up — try again in a few seconds."); })
+          .then(function(){ runBtn.disabled=false; });
+      });
+    }
   })();
 })();
