@@ -313,9 +313,20 @@
             showLive(d.correct?"good":"bad",
               '<div class="gl-head"><span class="gl-tag">'+(d.correct?"✓ correct":"✗ mis-annotated")+'</span>'+
                 '<span class="gl-conf">'+conf+'% of '+((d.neighbors||[]).length||"k")+' neighbours</span></div>'+
-              '<div class="gl-pred">predicted <b>'+esc(d.pred)+'</b> &middot; true <b>'+esc(d.true)+'</b></div>'+
-              '<div class="gl-meta">'+(d.n_masked_patches||0)+' patches hidden &middot; embedding vs. clean = <b>'+Number(shift).toFixed(2)+'</b> cosine</div>'+
-              '<div class="gl-nbrs">nearest reference cells<ul>'+nbrs+'</ul></div>');
+              '<div class="gl-body">'+
+                '<figure class="gl-attn-wrap"><canvas class="gl-attn" width="13" height="13"></canvas><figcaption>gene-program<br>attention</figcaption></figure>'+
+                '<div class="gl-info">'+
+                  '<div class="gl-pred">predicted <b>'+esc(d.pred)+'</b> &middot; true <b>'+esc(d.true)+'</b></div>'+
+                  '<div class="gl-meta">'+(d.n_masked_patches||0)+' patches hidden &middot; embedding vs. clean = <b>'+Number(shift).toFixed(2)+'</b> cosine</div>'+
+                  '<div class="gl-nbrs">nearest reference cells<ul>'+nbrs+'</ul></div>'+
+                '</div>'+
+              '</div>');
+            var ac=liveOut.querySelector(".gl-attn");
+            if(ac && d.attention){
+              var g=d.attention_grid||13, ic=ac.getContext("2d"), im=ic.createImageData(g,g), pd=im.data;
+              for(var p=0;p<g*g;p++){ var rgb=vir(d.attention[p]); pd[p*4]=rgb[0];pd[p*4+1]=rgb[1];pd[p*4+2]=rgb[2];pd[p*4+3]=255; }
+              ic.putImageData(im,0,0);
+            }
           })
           .catch(function(e){ showLive("err","Could not reach the model ("+esc(e.message)+"). It may be waking up — try again in a few seconds."); })
           .then(function(){ runBtn.disabled=false; });

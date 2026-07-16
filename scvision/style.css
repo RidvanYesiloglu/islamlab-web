@@ -314,3 +314,9 @@ footer .fine{ width:100%; border-top:1px solid rgba(255,255,255,.1); margin-top:
 .gl-nbrs li{ display:inline-flex; align-items:baseline; gap:6px; background:var(--paper-2);
   border:1px solid var(--line-soft); border-radius:999px; padding:3px 10px; color:var(--ink-soft); }
 .gl-nbrs li i{ font-style:normal; color:var(--faint); font-variant-numeric:tabular-nums; }
+.gl-body{ display:flex; gap:16px; align-items:flex-start; }
+.gl-attn-wrap{ margin:0; flex:none; text-align:center; }
+.gl-attn{ width:88px; height:88px; border-radius:8px; border:1px solid var(--line); image-rendering:pixelated; display:block; background:#2a1a3a; }
+.gl-attn-wrap figcaption{ font-family:var(--sans); font-size:.68rem; color:var(--muted); margin-top:6px; line-height:1.25; }
+.gl-info{ flex:1; min-width:0; }
+@media(max-width:520px){ .gl-body{ flex-direction:column; } .gl-attn{ width:104px; height:104px; } }
