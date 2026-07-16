@@ -374,6 +374,10 @@ footer .fine{ width:100%; border-top:1px solid rgba(255,255,255,.1); margin-top:
 .page-hero{ padding:52px 0 42px; }
 .page-hero h1{ max-width:20ch; }
 
+.up-signin{ display:inline-block; margin-left:6px; background:var(--coral); color:#fff !important;
+  text-decoration:none; font-weight:600; font-size:.8rem; padding:5px 13px; border-radius:999px; }
+.up-signin:hover{ background:#b0472f; }
+
 /* ---------- Explore (real cells, real masking) ---------- */
 .dc-real{ font-weight:500; letter-spacing:.02em; text-transform:none; color:#5a7d46;
   background:#f2f7ee; border:1px solid #cfe0c2; border-radius:999px; padding:2px 8px; font-size:.66rem; }

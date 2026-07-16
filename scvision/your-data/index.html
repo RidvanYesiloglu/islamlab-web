@@ -4,149 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Run scVision on your own cells &middot; scVision</title>
-<meta name="description" content="Upload a cell's raw counts and watch scVision render it into an scImage on the shared gene lattice, then annotate it live against a real reference atlas — the exact frozen encoder from the paper. Islam Lab, Stanford University.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Run scVision on your own cells">
-<meta property="og:description" content="Upload raw counts — the real frozen scVision encoder renders your cell as an scImage and annotates it live.">
-<meta property="og:image" content="https://islamlab.org/scvision/assets/og-card.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://islamlab.org/scvision/assets/og-card.png">
-<meta property="og:url" content="https://islamlab.org/scvision/your-data/">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://islamlab.org/scvision/your-data/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c2436'/><circle cx='10' cy='11' r='2.4' fill='%23f2c94c'/><circle cx='21' cy='14' r='2.4' fill='%23e07a5f'/><circle cx='14' cy='21.5' r='2' fill='%234f7290'/><circle cx='23' cy='23' r='1.8' fill='%237f9d6a'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://app.islamlab.org/scvision/">
+<meta http-equiv="refresh" content="0; url=https://app.islamlab.org/scvision/">
+<script>location.replace("https://app.islamlab.org/scvision/");</script>
+<style>
+  body{ margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    font-family:'Inter',-apple-system,'Segoe UI',sans-serif; background:#faf8f4; color:#1b1e20; padding:28px; }
+  .c{ text-align:center; max-width:30rem; }
+  h1{ font-family:Georgia,serif; font-size:1.4rem; font-weight:600; margin:0 0 .5em; }
+  p{ color:#71777d; font-size:.92rem; line-height:1.6; margin:0 0 1.4em; }
+  a{ display:inline-block; background:#c8543f; color:#fff; text-decoration:none; font-weight:600;
+    font-size:.9rem; padding:11px 22px; border-radius:999px; }
+</style>
 </head>
 <body>
-
-<!-- ===================== NAV ===================== -->
-<nav class="nav">
-  <div class="wrap">
-    <a class="brand" href="../"><span class="glyph"></span>sc<b>Vision</b></a>
-    <div class="nav-links">
-      <a href="../#idea">Idea</a>
-      <a href="../#method">Method</a>
-      <a href="../#explore">Explore</a>
-      <a href="../#benchmarks">Benchmarks</a>
-      <a href="../#integration">Integration</a>
-      <a href="../#gallery">Gallery</a>
-      <a class="here" href="./">Your data</a>
-      <a href="../#cite">Cite</a>
-    </div>
+  <div class="c">
+    <h1>The live scVision service has moved</h1>
+    <p>Running the model on your own cells now needs a free account, so the lab's compute isn't open to the whole internet. Redirecting you&hellip;</p>
+    <a href="https://app.islamlab.org/scvision/">Open the live service &#8594;</a>
   </div>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<header class="hero page-hero" id="top">
-  <div class="wrap">
-    <div class="kicker">Stanford University &middot; <b>Islam Lab</b> &middot; Live inference</div>
-    <h1>Run scVision on your own cells.</h1>
-    <p class="tagline">Upload raw counts &mdash; the exact <b>frozen encoder</b> from the paper renders your cell as an <b>scImage</b> and annotates it, live.</p>
-    <div class="btns">
-      <a class="btn ghost" href="../">&#8592;&nbsp; Back to scVision</a>
-    </div>
-  </div>
-</header>
-
-<!-- ===================== UPLOAD ===================== -->
-<section id="upload">
-  <div class="wrap">
-    <div class="eyebrow">Bring your own data &middot; live</div>
-    <h2>Upload a cell.</h2>
-    <p class="lead" style="max-width:72ch">Your genes are matched to the model&#39;s 10,816 by symbol or Ensembl ID, painted onto the shared gene lattice, and read by the real frozen encoder &mdash; then annotated against a real reference atlas. The file is processed in memory for this one request and <b>never stored</b>.</p>
-
-    <div class="up">
-      <div class="up-drop" id="upDrop" role="button" tabindex="0" aria-label="Upload a cell file">
-        <input type="file" id="upFile" accept=".csv,.tsv,.txt,.h5ad" hidden>
-        <svg class="up-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M4 15v4a1 1 0 001 1h14a1 1 0 001-1v-4"/></svg>
-        <div class="up-t"><b>Drop a file here</b> or <span class="up-browse">browse</span></div>
-        <div class="up-sub">CSV/TSV (gene symbol, count) or a Scanpy <code>.h5ad</code> &middot; up to 25 cells</div>
-      </div>
-      <div class="up-side">
-        <div class="up-fmt">
-          <div class="up-fmt-h">Expected format &mdash; raw counts</div>
-<pre class="up-eg">gene,count
-CD3D,42
-MS4A1,7
-LYZ,0
-&hellip;</pre>
-          <p class="up-note">Rows are genes (HGNC symbol or Ensembl ID); one column per cell holds <b>raw integer UMI counts</b>. For <code>.h5ad</code>: cells&times;genes with counts in <code>X</code> or <code>layers['counts']</code>, and <code>cell_type</code> in <code>obs</code> if you have it.</p>
-        </div>
-        <button class="dbtn primary" id="upExample">Try an example cell &#9654;</button>
-      </div>
-    </div>
-
-    <div class="up-out" id="upOut" hidden></div>
-    <p class="rex-note">The scImage render is verified to reproduce scVision&#39;s pretraining genomaps exactly (Pearson&nbsp;r&nbsp;=&nbsp;1.00). Annotation is a cosine <em>k</em>-nearest-neighbour vote over a reference atlas of ~7,000 real annotated cells spanning 110 cell types, in the frozen 768-dimensional space &mdash; the same probe used in the paper. Undetected genes are treated as zero, exactly as in pretraining. Your cell is never in the reference.</p>
-  </div>
-</section>
-
-<!-- ===================== HOW IT WORKS ===================== -->
-<section class="alt">
-  <div class="wrap">
-    <div class="eyebrow">What happens to your cell</div>
-    <h2>Four steps, no training.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="idx">1</div>
-        <h3>Gene matching</h3>
-        <p>Your gene labels are matched to the <b>10,816</b> genes of the shared lattice by HGNC symbol, or by Ensembl ID if that fits better. Genes you did not measure are treated as zero &mdash; exactly as undetected genes were treated in pretraining.</p>
-      </div>
-      <div class="step">
-        <div class="idx">2</div>
-        <h3>Spatial gene cartography</h3>
-        <p>Your raw counts are z-scored with the pretraining statistics and projected through the optimal-transport layout onto a <b>104&times;104</b> lattice &mdash; the same arithmetic used to render all 72M pretraining cells, verified to reproduce them at <b>r&nbsp;=&nbsp;1.00</b>.</p>
-      </div>
-      <div class="step">
-        <div class="idx">3</div>
-        <h3>Frozen encoding</h3>
-        <p>The scImage is read by the <b>frozen ViT-base encoder</b> from the paper &mdash; no fine-tuning, no task head &mdash; producing one 768-dimensional embedding, plus the attention map that reads as gene-program focus.</p>
-      </div>
-      <div class="step">
-        <div class="idx">4</div>
-        <h3>Annotation</h3>
-        <p>A cosine <em>k</em>-nearest-neighbour vote over a reference atlas of real annotated cells returns the predicted type, its confidence, and the nearest reference cells. Your cell is never part of that reference.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="wrap">
-    <div class="lab">
-      <div class="brand2">Islam <b>Lab</b></div>
-      <p>Department of Radiation Oncology, Stanford University School of Medicine. We build machine-learning methods that turn high-dimensional biological measurements into interpretable, transferable representations.</p>
-      <p><a href="https://islamlab.org">islamlab.org</a></p>
-    </div>
-    <div class="col">
-      <h4>scVision</h4>
-      <a href="../">Overview</a>
-      <a href="../#gallery">Gallery</a>
-      <a href="../#cite">BibTeX</a>
-    </div>
-    <div class="col">
-      <h4>Data</h4>
-      <a href="https://cellxgene.cziscience.com/">CZ CELLxGENE Census</a>
-    </div>
-    <div class="col">
-      <h4>Contact</h4>
-      <a href="mailto:tauhid@stanford.edu">tauhid@stanford.edu</a>
-      <a href="mailto:eadeli@stanford.edu">eadeli@stanford.edu</a>
-    </div>
-    <div class="fine">
-      <span>&copy; 2026 Islam Lab, Stanford University. All rights reserved.</span>
-      <span>scVision &middot; A vision foundation model for single-cell biology</span>
-    </div>
-  </div>
-</footer>
-
-<!-- Live inference endpoint (real scVision model on GCP). -->
-<script>window.SCVISION_API="https://api.islamlab.org";</script>
-<script src="../interactive.js"></script>
 </body>
 </html>

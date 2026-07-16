@@ -489,10 +489,28 @@
       if(file.size>200*1024*1024){ status("err","That file is larger than 200&nbsp;MB. Please upload a smaller subset (up to 25 cells)."); return; }
       status("loading","Rendering "+esc(label||file.name)+" into an scImage and running scVision live&hellip;");
       var fd=new FormData(); fd.append("file",file,file.name||"cell.csv");
-      fetch(API+"/upload",{method:"POST",body:fd})
-        .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.detail||("HTTP "+r.status)); return j; }); })
+      // credentials:"include" carries the islamlab session cookie to api.islamlab.org
+      // (same site, different origin) — running the model requires a signed-in account.
+      fetch(API+"/upload",{method:"POST",body:fd,credentials:"include"})
+        .then(function(r){
+          return r.json().catch(function(){ return {}; }).then(function(j){
+            if(r.ok) return j;
+            var e=new Error(j.detail||("HTTP "+r.status));
+            if(r.status===401) e.kind="auth";
+            else if(r.status===429) e.kind="quota";
+            throw e;
+          });
+        })
         .then(function(d){ DATA=d; sel=0; render(); })
-        .catch(function(e){ status("err","Could not process this file — "+esc(e.message)+"."); });
+        .catch(function(e){
+          if(e.kind==="auth"){
+            status("err", esc(e.message)+' <a class="up-signin" href="https://app.islamlab.org/scvision/">Sign in to run it &#8594;</a>');
+          } else if(e.kind==="quota"){
+            status("err", esc(e.message));
+          } else {
+            status("err","Could not process this file — "+esc(e.message)+".");
+          }
+        });
     }
 
     drop.addEventListener("click",function(){ fileInput.click(); });
