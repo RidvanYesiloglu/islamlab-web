@@ -392,4 +392,25 @@
       host.innerHTML=svg(s, vw, vh);
     }).catch(function(){ host.innerHTML='<p class="rex-err">Could not load disease-axis data.</p>'; });
   })();
+
+  /* ======================================================================
+     SCROLL-SPY  (highlight the current section in the nav)
+     ====================================================================== */
+  (function scrollspy(){
+    var links=Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if(!links.length || !("IntersectionObserver" in window)) return;
+    var map={}; links.forEach(function(a){ var id=a.getAttribute("href").slice(1); if(id) map[id]=a; });
+    var secs=Object.keys(map).map(function(id){return document.getElementById(id);}).filter(Boolean);
+    var cur=null;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && e.target.id!==cur){
+          cur=e.target.id;
+          links.forEach(function(a){ a.classList.remove("here"); });
+          if(map[cur]) map[cur].classList.add("here");
+        }
+      });
+    }, {rootMargin:"-45% 0px -50% 0px", threshold:0});
+    secs.forEach(function(s){ obs.observe(s); });
+  })();
 })();

@@ -72,6 +72,7 @@ p{ margin:0 0 1.05em; }
 .nav-links{ display:flex; gap:20px; margin-left:auto; align-items:center; font-family:var(--sans); font-size:.9rem; }
 .nav-links a{ color:var(--ink-soft); }
 .nav-links a:hover{ color:var(--coral); text-decoration:none; }
+.nav-links a.here{ color:var(--coral); }
 .nav-cta{ padding:7px 15px; border:1px solid var(--ink); border-radius:999px; color:var(--ink)!important; font-weight:500; }
 .nav-cta:hover{ background:var(--ink); color:#fff!important; }
 @media(max-width:720px){ .nav-links a:not(.nav-cta){ display:none; } }
