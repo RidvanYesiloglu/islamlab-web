@@ -9,7 +9,10 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="scVision — A vision foundation model for single-cell biology via spatial gene cartography">
 <meta property="og:description" content="Each cell as a continuous image. One frozen encoder. The most accurate zero-shot annotator on every held-out human atlas.">
-<meta property="og:image" content="https://islamlab.org/scvision/assets/fig1.png">
+<meta property="og:image" content="https://islamlab.org/scvision/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://islamlab.org/scvision/assets/og-card.png">
 <meta property="og:url" content="https://islamlab.org/scvision">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c2436'/><circle cx='10' cy='11' r='2.4' fill='%23f2c94c'/><circle cx='21' cy='14' r='2.4' fill='%23e07a5f'/><circle cx='14' cy='21.5' r='2' fill='%234f7290'/><circle cx='23' cy='23' r='1.8' fill='%237f9d6a'/></svg>">
@@ -30,6 +33,7 @@
       <a href="#explore">Explore</a>
       <a href="#results">Results</a>
       <a href="#benchmarks">Benchmarks</a>
+      <a href="#integration">Integration</a>
       <a href="#gallery">Gallery</a>
       <a href="#disease">Disease</a>
       <a href="#abstract">Abstract</a>
@@ -235,6 +239,24 @@
         <div class="rex-legend" id="rexLegend"></div>
         <p class="rex-note" id="rexNote"></p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INTEGRATION (interactive scatter) ===================== -->
+<section id="integration">
+  <div class="wrap">
+    <div class="eyebrow">Integration</div>
+    <h2>One space, many studies.</h2>
+    <p class="lead" style="max-width:64ch">Without ever seeing a batch label, scVision embeds cells from dozens of independent studies into a single space where cell types cluster and studies intermingle. Colour by <b>cell type</b> to see the biology; colour by <b>study</b> to watch the batches mix.</p>
+    <div class="dcard" style="margin-top:24px">
+      <div class="rex-controls" id="integControls">
+        <button class="rseg on" data-c="type">Colour by cell type</button>
+        <button class="rseg" data-c="study">Colour by study</button>
+      </div>
+      <div id="integChart" class="rex-chart"></div>
+      <div id="integLegend" class="rex-legend"></div>
+      <p class="rex-note">2D PCA of scVision's frozen embedding &mdash; venous blood, 82 independent studies, 8 major immune cell types. The full scIB integration scores are in the <a href="#benchmarks">Benchmarks</a> tab.</p>
     </div>
   </div>
 </section>

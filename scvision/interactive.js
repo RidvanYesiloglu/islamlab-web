@@ -303,8 +303,9 @@
       runBtn.addEventListener("click", function(){
         runBtn.disabled=true;
         showLive("loading", "Running the real scVision model on this cell…");
+        var backendCell=(man.cells[cur]&&man.cells[cur].bi!=null)?man.cells[cur].bi:cur;
         fetch(API+"/annotate", {method:"POST", headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({cell:cur, mask_patches:maskedPatchList()})})
+          body:JSON.stringify({cell:backendCell, mask_patches:maskedPatchList()})})
           .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
           .then(function(d){
             var conf=Math.round((d.confidence||0)*100), shift=(d.embedding_shift_cos!=null?d.embedding_shift_cos:1);
@@ -332,6 +333,34 @@
           .then(function(){ runBtn.disabled=false; });
       });
     }
+  })();
+
+  /* ======================================================================
+     INTEGRATION  (interactive PCA scatter)
+     ====================================================================== */
+  (function integration(){
+    var host=document.getElementById("integChart"); if(!host) return;
+    var leg=document.getElementById("integLegend");
+    var PAL=["#c8543f","#4f7290","#6f9159","#8e6f96","#b08636","#e07a5f","#3f8a86","#9c6b8a"];
+    var DATA=null, mode="type";
+    function studyColor(b){ return "hsl("+((b*47)%360)+",42%,56%)"; }
+    function render(){
+      if(!DATA) return;
+      var vw=680, vh=430, pad=16, s="";
+      DATA.points.forEach(function(p){
+        var x=pad+p[0]/1000*(vw-2*pad), y=pad+p[1]/1000*(vh-2*pad);
+        var col=(mode==="type")?PAL[p[2]%PAL.length]:studyColor(p[3]);
+        s+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="2.6" fill="'+col+'" opacity="0.72"/>';
+      });
+      host.innerHTML=svg(s, vw, vh);
+      if(mode==="type") leg.innerHTML=DATA.types.map(function(t,i){return '<span class="rl"><i style="background:'+PAL[i%PAL.length]+'"></i>'+esc(t)+'</span>';}).join("");
+      else leg.innerHTML='<span class="rl" style="color:'+MUTED+'">'+DATA.n_batches+' independent studies &mdash; colours cycle; note how they intermingle rather than forming separate per-study clusters.</span>';
+      Array.prototype.forEach.call(document.querySelectorAll("#integControls .rseg"), function(b){ b.classList.toggle("on", b.getAttribute("data-c")===mode); });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll("#integControls .rseg"), function(b){
+      b.addEventListener("click", function(){ mode=b.getAttribute("data-c"); render(); }); });
+    fetch("assets/integration.json").then(function(r){return r.json();}).then(function(d){ DATA=d; render(); })
+      .catch(function(){ host.innerHTML='<p class="rex-err">Could not load integration data.</p>'; });
   })();
 
   /* ======================================================================
