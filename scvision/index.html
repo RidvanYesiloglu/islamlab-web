@@ -35,6 +35,7 @@
       <a href="#benchmarks">Benchmarks</a>
       <a href="#integration">Integration</a>
       <a href="#gallery">Gallery</a>
+      <a href="#upload">Your data</a>
       <a href="#disease">Disease</a>
       <a href="#abstract">Abstract</a>
       <a href="#cite">Cite</a>
@@ -288,6 +289,39 @@
       </div>
       <div class="gal-grid" id="galGrid"><p class="rex-note">Loading real scImages&hellip;</p></div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== UPLOAD (bring your own cell) ===================== -->
+<section id="upload">
+  <div class="wrap">
+    <div class="eyebrow">Bring your own data &middot; live</div>
+    <h2>Run scVision on your own cells.</h2>
+    <p class="lead" style="max-width:72ch">Upload a cell&#39;s raw counts and watch scVision render it into an <b>scImage</b> on the shared gene lattice, then annotate it against a real reference atlas &mdash; the exact frozen encoder from the paper, running live. Your genes are matched to the model&#39;s 10,816 by symbol or Ensembl ID; the file is processed in memory for this one request and never stored.</p>
+
+    <div class="up">
+      <div class="up-drop" id="upDrop" role="button" tabindex="0" aria-label="Upload a cell file">
+        <input type="file" id="upFile" accept=".csv,.tsv,.txt,.h5ad" hidden>
+        <svg class="up-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M4 15v4a1 1 0 001 1h14a1 1 0 001-1v-4"/></svg>
+        <div class="up-t"><b>Drop a file here</b> or <span class="up-browse">browse</span></div>
+        <div class="up-sub">CSV/TSV (gene symbol, count) or a Scanpy <code>.h5ad</code> &middot; up to 25 cells</div>
+      </div>
+      <div class="up-side">
+        <div class="up-fmt">
+          <div class="up-fmt-h">Expected format &mdash; raw counts</div>
+<pre class="up-eg">gene,count
+CD3D,42
+MS4A1,7
+LYZ,0
+&hellip;</pre>
+          <p class="up-note">Rows are genes (HGNC symbol or Ensembl ID); one column per cell holds <b>raw integer UMI counts</b>. For <code>.h5ad</code>: cells&times;genes with counts in <code>X</code> or <code>layers['counts']</code>, and <code>cell_type</code> in <code>obs</code> if you have it.</p>
+        </div>
+        <button class="dbtn primary" id="upExample">Try an example cell &#9654;</button>
+      </div>
+    </div>
+
+    <div class="up-out" id="upOut" hidden></div>
+    <p class="rex-note">The scImage render is verified to reproduce scVision&#39;s pretraining genomaps exactly (Pearson&nbsp;r&nbsp;=&nbsp;1.00). Annotation is a cosine <em>k</em>-nearest-neighbour vote over a reference atlas of ~7,000 real annotated cells spanning 110 cell types, in the frozen 768-dimensional space &mdash; the same probe used in the paper. Undetected genes are treated as zero, exactly as in pretraining. Your cell is never in the reference.</p>
   </div>
 </section>
 

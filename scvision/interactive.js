@@ -336,6 +336,101 @@
   })();
 
   /* ======================================================================
+     UPLOAD — bring your own cell (real scVision model, GCP backend)
+     ====================================================================== */
+  (function upload(){
+    var drop=document.getElementById("upDrop"); if(!drop) return;
+    var API=(window.SCVISION_API||"").replace(/\/+$/,"");
+    var sec=document.getElementById("upload");
+    if(!API){ if(sec) sec.style.display="none"; return; }
+    var fileInput=document.getElementById("upFile"), out=document.getElementById("upOut"),
+        exBtn=document.getElementById("upExample");
+    var VIR=[[68,1,84],[59,82,139],[33,145,140],[94,201,98],[253,231,37]];
+    function vir(t){t=t<0?0:t>1?1:t;var x=t*4,i=x|0,fr=x-i,a=VIR[i],b=VIR[i+1<5?i+1:4];
+      return[(a[0]+(b[0]-a[0])*fr)|0,(a[1]+(b[1]-a[1])*fr)|0,(a[2]+(b[2]-a[2])*fr)|0];}
+    function paintGrid(cv,arr,grid,is255){
+      if(!cv||!arr) return;
+      var ctx=cv.getContext("2d"),im=ctx.createImageData(grid,grid),d=im.data;
+      for(var p=0;p<grid*grid;p++){var v=is255?arr[p]/255:arr[p],rgb=vir(v);
+        d[p*4]=rgb[0];d[p*4+1]=rgb[1];d[p*4+2]=rgb[2];d[p*4+3]=255;}
+      ctx.putImageData(im,0,0);}
+    function realLabel(s){
+      if(s==null) return null; var t=String(s).trim();
+      if(!t||/^(count|counts|value|values|expr|expression|cell[\s_-]?\d*|col\d*|sample\d*|unnamed.*|\d+(\.\d+)?)$/i.test(t)) return null;
+      return t;}
+    function lc(s){ return String(s).toLowerCase(); }
+
+    var DATA=null, sel=0;
+    function status(cls,html){ out.hidden=false; out.className="up-out "+cls; out.innerHTML=html; }
+
+    function render(){
+      var d=DATA, c=d.cells[sel];
+      var warn=d.warn_normalized
+        ? '<div class="up-warn">&#9888; These values look normalized (max '+d.input_max+'), not raw counts. scVision renders <b>raw integer counts</b> — the result below may be unreliable; re-upload raw counts for a faithful render.</div>' : '';
+      var head='<div class="up-summary">'+
+        '<span class="up-chip"><b>'+d.matched_genes.toLocaleString()+'</b>&#8201;/&#8201;'+d.total_genes.toLocaleString()+' genes matched <i>by '+esc(d.match_mode)+'</i></span>'+
+        '<span class="up-chip"><b>'+d.n_cells+'</b> cell'+(d.n_cells>1?'s':'')+' rendered &amp; encoded</span>'+
+        '<span class="up-chip">reference &middot; <b>'+d.ref_types+'</b> cell types</span>'+
+        '</div>';
+      var strip="";
+      if(d.n_cells>1){
+        strip='<div class="up-cells">'+d.cells.map(function(cc,i){
+          return '<button class="up-cell'+(i===sel?" on":"")+'" data-i="'+i+'" title="'+esc(cc.pred)+'">'+
+            '<canvas class="up-cv" width="52" height="52" data-thumb="'+i+'"></canvas>'+
+            '<span class="up-cl">'+esc(cc.pred)+'</span>'+
+            '<span class="up-cc">'+Math.round(cc.confidence*100)+'%</span></button>';
+        }).join("")+'</div>';
+      }
+      var rl=realLabel(c.given_label), consistent=rl&&(lc(rl).indexOf(lc(c.pred))>=0||lc(c.pred).indexOf(lc(rl))>=0);
+      var given=rl?'<div class="up-given">your label: <b>'+esc(rl)+'</b>'+
+        (consistent?' <span class="up-ok">&#10003; consistent</span>':'')+'</div>':'';
+      var nbrs=(c.neighbors||[]).slice(0,6).map(function(n){
+        return '<li><span>'+esc(n.label)+'</span><i>'+Number(n.sim).toFixed(2)+'</i></li>';}).join("");
+      var detail='<div class="up-detail">'+
+        '<figure class="up-fig"><canvas class="up-big" width="52" height="52"></canvas><figcaption>your cell &rarr; scImage</figcaption></figure>'+
+        '<figure class="up-fig"><canvas class="up-attn" width="13" height="13"></canvas><figcaption>gene-program attention</figcaption></figure>'+
+        '<div class="up-info">'+
+          '<div class="up-pred">scVision predicts <b>'+esc(c.pred)+'</b></div>'+
+          '<div class="up-conf"><span class="up-bar"><i style="width:'+Math.round(c.confidence*100)+'%"></i></span>'+
+            Math.round(c.confidence*100)+'% of '+((c.neighbors||[]).length||'k')+' nearest reference cells</div>'+
+          given+
+          '<div class="up-nbrs">nearest reference cells<ul>'+nbrs+'</ul></div>'+
+        '</div></div>';
+      status("done", warn+head+strip+detail);
+      Array.prototype.forEach.call(out.querySelectorAll(".up-cv"),function(cv){
+        var i=+cv.getAttribute("data-thumb"); paintGrid(cv,d.cells[i].thumb,d.cells[i].thumb_grid||52,true);});
+      paintGrid(out.querySelector(".up-big"),c.thumb,c.thumb_grid||52,true);
+      paintGrid(out.querySelector(".up-attn"),c.attention,c.attention_grid||13,false);
+      Array.prototype.forEach.call(out.querySelectorAll(".up-cell"),function(b){
+        b.addEventListener("click",function(){ sel=+b.getAttribute("data-i"); render(); });});
+    }
+
+    function send(file,label){
+      if(file.size>200*1024*1024){ status("err","That file is larger than 200&nbsp;MB. Please upload a smaller subset (up to 25 cells)."); return; }
+      status("loading","Rendering "+esc(label||file.name)+" into an scImage and running scVision live&hellip;");
+      var fd=new FormData(); fd.append("file",file,file.name||"cell.csv");
+      fetch(API+"/upload",{method:"POST",body:fd})
+        .then(function(r){ return r.json().then(function(j){ if(!r.ok) throw new Error(j.detail||("HTTP "+r.status)); return j; }); })
+        .then(function(d){ DATA=d; sel=0; render(); })
+        .catch(function(e){ status("err","Could not process this file — "+esc(e.message)+"."); });
+    }
+
+    drop.addEventListener("click",function(){ fileInput.click(); });
+    drop.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fileInput.click(); }});
+    fileInput.addEventListener("change",function(){ if(fileInput.files[0]) send(fileInput.files[0]); });
+    ["dragenter","dragover"].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add("drag"); }); });
+    drop.addEventListener("dragleave",function(e){ e.preventDefault(); if(!drop.contains(e.relatedTarget)) drop.classList.remove("drag"); });
+    drop.addEventListener("drop",function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove("drag");
+      var f=e.dataTransfer&&e.dataTransfer.files[0]; if(f) send(f); });
+    if(exBtn) exBtn.addEventListener("click",function(){
+      status("loading","Fetching an example cell — a real held-out immune cell&hellip;");
+      fetch("assets/example_cell.csv").then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.blob(); })
+        .then(function(b){ send(new File([b],"example_cell.csv",{type:"text/csv"}),"the example cell"); })
+        .catch(function(e){ status("err","Could not load the example ("+esc(e.message)+")."); });
+    });
+  })();
+
+  /* ======================================================================
      INTEGRATION  (interactive PCA scatter)
      ====================================================================== */
   (function integration(){
