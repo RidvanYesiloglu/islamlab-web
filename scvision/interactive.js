@@ -1,9 +1,12 @@
 /* ============================================================================
-   scVision project page — interactive results explorer (#benchmarks) and
-   real-scImage gallery (#gallery). All numbers are loaded from results.json
-   (machine-extracted from the paper's evaluation files); all gallery images
-   are real rendered scImages from fig1_real_genomaps.npz. No fabricated data.
-   Vanilla JS, no dependencies.
+   scVision project page — #explore, #benchmarks, #integration, #gallery,
+   #upload and #disease. All numbers are loaded from results.json (machine-
+   extracted from the paper's evaluation files); every scImage is a real
+   rendered genomap from fig1_real_genomaps.npz; annotation, attention and
+   masking effects come from the real frozen encoder over the live API.
+   Nothing here is simulated — the released backbone ships the encoder only
+   (no decoder), so masking shows the encoder's real response, not a
+   reconstruction. Vanilla JS, no dependencies.
    ========================================================================== */
 (function () {
   "use strict";
@@ -206,6 +209,94 @@
   })();
 
   /* ======================================================================
+     EXPLORE — a REAL cell -> scImage -> mask -> what the frozen encoder reads.
+     No synthetic fields, no reconstruction: the released backbone ships the
+     encoder only, so we show the real effect of masking instead.
+     ====================================================================== */
+  (function explore(){
+    var cvFull=document.getElementById("cvFull"); if(!cvFull) return;
+    var cvMask=document.getElementById("cvMask"), host=document.getElementById("cellTypes"),
+        elPct=document.getElementById("maskPct"), elCap=document.getElementById("capMask"),
+        slider=document.getElementById("maskSlider"), rmBtn=document.getElementById("remask"),
+        runBtn=document.getElementById("exRun"), live=document.getElementById("exLive");
+    var LAT=104, PG=8, PS=LAT/PG;
+    var API=(window.SCVISION_API||"").replace(/\/+$/,"");
+    var VIR=[[68,1,84],[59,82,139],[33,145,140],[94,201,98],[253,231,37]];
+    function vir(t){t=t<0?0:t>1?1:t;var x=t*4,i=x|0,fr=x-i,a=VIR[i],b=VIR[i+1<5?i+1:4];
+      return[(a[0]+(b[0]-a[0])*fr)|0,(a[1]+(b[1]-a[1])*fr)|0,(a[2]+(b[2]-a[2])*fr)|0];}
+    function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+    var maskSeed=99;
+    function buildMask(ratio){var a=[];for(var p=0;p<PG*PG;p++)a.push(p);var r=mulberry32(maskSeed);
+      for(var i=a.length-1;i>0;i--){var j=(r()*(i+1))|0,t=a[i];a[i]=a[j];a[j]=t;}
+      var n=Math.round(ratio*PG*PG),set={};for(var k=0;k<n;k++)set[a[k]]=1;return set;}
+    function paint(cv,f,set,masked){
+      var ctx=cv.getContext("2d"),im=ctx.createImageData(LAT,LAT),d=im.data;
+      for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){var idx=y*LAT+x,pi=idx*4,rgb;
+        if(masked&&set[((y/PS)|0)*PG+((x/PS)|0)]===1)rgb=[214,210,202];else rgb=vir(f[idx]);
+        d[pi]=rgb[0];d[pi+1]=rgb[1];d[pi+2]=rgb[2];d[pi+3]=255;}
+      ctx.putImageData(im,0,0);}
+
+    var reps=[], fields={}, cur=0, ratio=0.25;
+    function render(){
+      if(!reps.length) return;
+      var c=reps[cur], set=buildMask(ratio);
+      paint(cvFull,fields[c.i],set,false); paint(cvMask,fields[c.i],set,true);
+      var pct=Math.round(ratio*100)+"%"; elPct.textContent=pct; elCap.textContent=pct+" hidden";
+      Array.prototype.forEach.call(host.querySelectorAll(".ct"),function(b){
+        b.classList.toggle("active",(+b.getAttribute("data-i"))===cur); });
+      if(live) live.hidden=true;
+    }
+
+    Promise.all([
+      fetch("assets/scimages.json").then(function(r){return r.json();}),
+      new Promise(function(res,rej){var im=new Image();im.onload=function(){res(im);};im.onerror=rej;im.src="assets/scimages.png";})
+    ]).then(function(out){
+      var man=out[0], img=out[1];
+      var off=document.createElement("canvas"); off.width=img.width; off.height=img.height;
+      var octx=off.getContext("2d"); octx.drawImage(img,0,0);
+      var big=octx.getImageData(0,0,img.width,img.height).data, W=img.width;
+      var seen={};
+      man.cells.forEach(function(c){ if(seen[c.label]) return; seen[c.label]=1; reps.push(c); });
+      reps.forEach(function(c){
+        var f=new Float32Array(LAT*LAT), ox=c.col*LAT, oy=c.row*LAT;
+        for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++) f[y*LAT+x]=big[((oy+y)*W+(ox+x))*4]/255;
+        fields[c.i]=f;
+      });
+      host.innerHTML=reps.map(function(c,i){
+        return '<button class="ct'+(i===0?" active":"")+'" data-i="'+i+'" title="'+esc(c.tissue)+'">'+esc(c.label)+'</button>';
+      }).join("");
+      Array.prototype.forEach.call(host.querySelectorAll(".ct"),function(b){
+        b.addEventListener("click",function(){ cur=+b.getAttribute("data-i"); render(); }); });
+      render();
+    }).catch(function(){ host.innerHTML='<span class="rex-err">Could not load real scImages.</span>'; });
+
+    if(slider) slider.addEventListener("input",function(e){ ratio=(+e.target.value)/100; render(); });
+    if(rmBtn) rmBtn.addEventListener("click",function(){ maskSeed=(Math.random()*1e9)|0; render(); });
+    if(runBtn && !API) runBtn.style.display="none";
+    if(runBtn && API){
+      runBtn.addEventListener("click",function(){
+        if(!reps.length) return;
+        var c=reps[cur], masked=Object.keys(buildMask(ratio)).map(Number);
+        runBtn.disabled=true; live.hidden=false; live.className="ex-live loading";
+        live.innerHTML="Running the real scVision encoder on this masked cell&hellip;";
+        fetch(API+"/annotate",{method:"POST",headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({cell:(c.bi!=null?c.bi:c.i), mask_patches:masked})})
+          .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+          .then(function(d){
+            var conf=Math.round((d.confidence||0)*100), shift=(d.embedding_shift_cos!=null?d.embedding_shift_cos:1);
+            live.className="ex-live "+(d.correct?"good":"bad");
+            live.innerHTML='<span class="ex-tag">'+(d.correct?"&#10003; still reads it right":"&#10007; annotation breaks")+'</span>'+
+              '<span class="ex-txt">with <b>'+masked.length+'/'+(PG*PG)+'</b> patches hidden, the frozen encoder calls this '+
+              '<b>'+esc(d.pred)+'</b> ('+conf+'% of neighbours) &middot; true <b>'+esc(d.true)+'</b> &middot; '+
+              'embedding vs. clean <b>'+Number(shift).toFixed(2)+'</b> cosine</span>';
+          })
+          .catch(function(e){ live.className="ex-live err"; live.innerHTML="Could not reach the model ("+esc(e.message)+")."; })
+          .then(function(){ runBtn.disabled=false; });
+      });
+    }
+  })();
+
+  /* ======================================================================
      #3  REAL scIMAGE GALLERY + masking
      ====================================================================== */
   (function gallery(){
@@ -220,17 +311,6 @@
     function buildMask(ratio){var a=[];for(var p=0;p<PG*PG;p++)a.push(p);var r=mulberry32(maskSeed);
       for(var i=a.length-1;i>0;i--){var j=(r()*(i+1))|0,t=a[i];a[i]=a[j];a[j]=t;}
       var n=Math.round(ratio*PG*PG),set={};for(var k=0;k<n;k++)set[a[k]]=1;return set;}
-    function reconField(f,set){
-      var means=new Float32Array(PG*PG),cnt=new Float32Array(PG*PG);
-      for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){var p=((y/PS)|0)*PG+((x/PS)|0);means[p]+=f[y*LAT+x];cnt[p]++;}
-      var vis=[];for(var p=0;p<PG*PG;p++){means[p]/=cnt[p];if(set[p]!==1)vis.push({cx:((p%PG)+0.5)/PG,cy:(((p/PG)|0)+0.5)/PG,m:means[p]});}
-      var out=Float32Array.from(f);
-      for(var q=0;q<PG*PG;q++){if(set[q]!==1)continue;var pr=(q/PG)|0,pc=q%PG;
-        for(var y2=pr*PS;y2<(pr+1)*PS;y2++)for(var x2=pc*PS;x2<(pc+1)*PS;x2++){
-          var nx=(x2+0.5)/LAT,ny=(y2+0.5)/LAT,num=0,den=0;
-          for(var v=0;v<vis.length;v++){var dx=nx-vis[v].cx,dy=ny-vis[v].cy,w=1/(dx*dx+dy*dy+2e-3);num+=w*vis[v].m;den+=w;}
-          out[y2*LAT+x2]=den>0?num/den:0.5;}}
-      return out;}
     function paint(cv,f,set,masked){
       var ctx=cv.getContext("2d"),im=ctx.createImageData(LAT,LAT),d=im.data;
       for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){var idx=y*LAT+x,pi=idx*4,rgb;
@@ -240,13 +320,13 @@
 
     var man=null, fields=[], cur=0, ratio=0.75;
     var cvFull=document.getElementById("galFull"), cvMask=document.getElementById("galMask"),
-        cvRecon=document.getElementById("galRecon"), elLabel=document.getElementById("galLabel"),
+        elLabel=document.getElementById("galLabel"),
         elTissue=document.getElementById("galTissue"), elPct=document.getElementById("galPct"),
         elCapMask=document.getElementById("galCapMask"), slider=document.getElementById("galSlider");
 
     function renderSelected(){
       var f=fields[cur], set=buildMask(ratio);
-      paint(cvFull,f,set,false); paint(cvMask,f,set,true); paint(cvRecon,reconField(f,set),set,false);
+      paint(cvFull,f,set,false); paint(cvMask,f,set,true);
       var pct=Math.round(ratio*100)+"%"; elPct.textContent=pct; elCapMask.textContent=pct+" hidden";
       elLabel.textContent=man.cells[cur].label; elTissue.textContent=man.cells[cur].tissue;
       Array.prototype.forEach.call(host.querySelectorAll(".gthumb"), function(t){
