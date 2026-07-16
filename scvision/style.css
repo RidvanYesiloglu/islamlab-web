@@ -320,3 +320,21 @@ footer .fine{ width:100%; border-top:1px solid rgba(255,255,255,.1); margin-top:
 .gl-attn-wrap figcaption{ font-family:var(--sans); font-size:.68rem; color:var(--muted); margin-top:6px; line-height:1.25; }
 .gl-info{ flex:1; min-width:0; }
 @media(max-width:520px){ .gl-body{ flex-direction:column; } .gl-attn{ width:104px; height:104px; } }
+
+/* ---------- Disease axis ---------- */
+.disease-grid{ display:grid; grid-template-columns:1fr; gap:22px; margin-top:26px; }
+@media(min-width:860px){ .disease-grid{ grid-template-columns:1.15fr 1fr; align-items:start; } }
+.dcard{ border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); box-shadow:var(--shadow); padding:22px 24px; }
+.dcard-h{ font-family:var(--sans); font-size:.82rem; font-weight:600; color:var(--ink); margin-bottom:12px; display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
+.dcard-h span{ font-weight:500; color:var(--muted); font-size:.76rem; }
+.dstat-row{ display:flex; gap:22px; margin-top:14px; border-top:1px solid var(--line-soft); padding-top:15px; }
+.dstat .dn{ font-family:var(--serif); font-size:1.65rem; font-weight:600; line-height:1; color:var(--coral); }
+.dstat .dn.faint{ color:var(--faint); }
+.dstat .dn.ink{ color:var(--ink); }
+.dstat .dl{ font-family:var(--sans); font-size:.71rem; color:var(--muted); margin-top:7px; line-height:1.35; }
+.dig{ margin:0; }
+.dig img{ width:100%; max-width:200px; border-radius:8px; border:1px solid var(--line); }
+.dig figcaption{ font-family:var(--sans); font-size:.76rem; color:var(--muted); margin-top:8px; }
+.dig .pos{ color:var(--coral); font-weight:600; } .dig .neg{ color:var(--blue); font-weight:600; }
+.dgenes{ font-family:var(--sans); font-size:.8rem; color:var(--muted); margin-top:16px; line-height:1.7; }
+.dgenes span{ font-family:var(--mono); font-size:.76rem; color:var(--ink-soft); }

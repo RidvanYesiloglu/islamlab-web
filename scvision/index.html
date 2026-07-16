@@ -31,6 +31,7 @@
       <a href="#results">Results</a>
       <a href="#benchmarks">Benchmarks</a>
       <a href="#gallery">Gallery</a>
+      <a href="#disease">Disease</a>
       <a href="#abstract">Abstract</a>
       <a href="#cite">Cite</a>
     </div>
@@ -265,6 +266,33 @@
       </div>
       <div class="gal-grid" id="galGrid"><p class="rex-note">Loading real scImages&hellip;</p></div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== DISEASE AXIS ===================== -->
+<section id="disease">
+  <div class="wrap">
+    <div class="eyebrow">Disease axis</div>
+    <h2>A frozen embedding that tracks disease.</h2>
+    <p class="lead" style="max-width:66ch">From scVision's frozen embedding of dilated-cardiomyopathy hearts, a single linear <b>disease axis</b> separates diseased from healthy cells &mdash; and it transfers to a <em>different</em> disease it never saw, hypertrophic cardiomyopathy, scoring diseased cells higher than healthy ones better than raw expression does. No disease labels were used to train the encoder.</p>
+    <div class="disease-grid">
+      <div class="dcard">
+        <div class="dcard-h">Axis score &mdash; diseased vs. healthy <span>hypertrophic cardiomyopathy &middot; cross-assay</span></div>
+        <div id="diseaseChart" class="rex-chart"></div>
+        <div class="dstat-row">
+          <div class="dstat"><div class="dn">0.60</div><div class="dl">scVision AUROC<br>(cross-assay)</div></div>
+          <div class="dstat"><div class="dn faint">0.48</div><div class="dl">raw expression<br>(cross-assay)</div></div>
+          <div class="dstat"><div class="dn ink">0.95</div><div class="dl">in-domain<br>(dilated CM)</div></div>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-h">What drives the axis <span>integrated gradients on the scImage</span></div>
+        <figure class="dig"><img src="assets/disease_ig.png" alt="Integrated-gradients attribution over the gene lattice: which regions of the scImage push a cell along the cardiomyopathy axis.">
+          <figcaption><span class="pos">coral</span> pushes toward disease &middot; <span class="neg">blue</span> away</figcaption></figure>
+        <div class="dgenes">Top axis genes: <span id="diseaseGenes">&mdash;</span></div>
+      </div>
+    </div>
+    <p class="rex-note">The axis is a single linear direction in the frozen 768-dimensional space. In-domain (dilated cardiomyopathy) detection reaches AUROC&nbsp;0.95; transferred to a different cardiomyopathy it stays above chance (0.60) and ahead of raw expression (0.48).</p>
   </div>
 </section>
 

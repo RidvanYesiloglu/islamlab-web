@@ -333,4 +333,34 @@
       });
     }
   })();
+
+  /* ======================================================================
+     DISEASE AXIS  (precomputed viz)
+     ====================================================================== */
+  (function disease(){
+    var host=document.getElementById("diseaseChart");
+    if(!host) return;
+    fetch("assets/disease.json").then(function(r){return r.json();}).then(function(d){
+      var g=document.getElementById("diseaseGenes");
+      if(g) g.innerHTML=(d.top_genes||[]).map(function(x){return "<span>"+esc(x)+"</span>";}).join(", ");
+      var vw=680, vh=280, L=44, R=14, T=16, B=42, pw=vw-L-R, ph=vh-T-B;
+      var xc=d.bin_centers, hcm=d.hcm, nor=d.normal, n=xc.length;
+      var xmin=xc[0], xmax=xc[n-1], ymax=Math.max(Math.max.apply(null,hcm),Math.max.apply(null,nor))*1.08;
+      var bw=pw/n*0.9;
+      var X=function(v){return L+(v-xmin)/(xmax-xmin)*pw;}, Y=function(v){return T+ph-(v/ymax)*ph;};
+      var s="";
+      for(var gi=0;gi<=4;gi++){ var y=Y(ymax*gi/4); s+='<line x1="'+L+'" y1="'+y+'" x2="'+(L+pw)+'" y2="'+y+'" stroke="'+LINE+'" stroke-width="1"/>'; }
+      for(var i=0;i<n;i++){ var x=X(xc[i])-bw/2;
+        s+='<rect x="'+x+'" y="'+Y(nor[i])+'" width="'+bw+'" height="'+(T+ph-Y(nor[i]))+'" fill="#4f7290" opacity="0.42"/>';
+        s+='<rect x="'+x+'" y="'+Y(hcm[i])+'" width="'+bw+'" height="'+(T+ph-Y(hcm[i]))+'" fill="#c8543f" opacity="0.55"/>';
+      }
+      s+='<line x1="'+X(d.mean_normal)+'" y1="'+T+'" x2="'+X(d.mean_normal)+'" y2="'+(T+ph)+'" stroke="#4f7290" stroke-width="1.5" stroke-dasharray="4 3"/>';
+      s+='<line x1="'+X(d.mean_hcm)+'" y1="'+T+'" x2="'+X(d.mean_hcm)+'" y2="'+(T+ph)+'" stroke="#c8543f" stroke-width="1.5" stroke-dasharray="4 3"/>';
+      s+='<text x="'+(L+pw/2)+'" y="'+(vh-6)+'" text-anchor="middle" font-size="12" fill="'+MUTED+'">disease-axis score  (higher = more diseased)</text>';
+      s+='<text transform="translate(13,'+(T+ph/2)+') rotate(-90)" text-anchor="middle" font-size="12" fill="'+MUTED+'">cells</text>';
+      s+='<rect x="'+(L+pw-148)+'" y="'+T+'" width="11" height="11" fill="#c8543f" opacity="0.55"/><text x="'+(L+pw-132)+'" y="'+(T+10)+'" font-size="12" fill="'+INK+'">diseased ('+d.n_hcm+')</text>';
+      s+='<rect x="'+(L+pw-148)+'" y="'+(T+18)+'" width="11" height="11" fill="#4f7290" opacity="0.42"/><text x="'+(L+pw-132)+'" y="'+(T+28)+'" font-size="12" fill="'+INK+'">healthy ('+d.n_normal+')</text>';
+      host.innerHTML=svg(s, vw, vh);
+    }).catch(function(){ host.innerHTML='<p class="rex-err">Could not load disease-axis data.</p>'; });
+  })();
 })();
