@@ -392,7 +392,7 @@
         '<div class="up-info">'+
           '<div class="up-pred">scVision predicts <b>'+esc(c.pred)+'</b></div>'+
           '<div class="up-conf"><span class="up-bar"><i style="width:'+Math.round(c.confidence*100)+'%"></i></span>'+
-            Math.round(c.confidence*100)+'% of '+((c.neighbors||[]).length||'k')+' nearest reference cells</div>'+
+            Math.round(c.confidence*100)+'% of the '+(d.k||9)+' nearest reference cells agree</div>'+
           given+
           '<div class="up-nbrs">nearest reference cells<ul>'+nbrs+'</ul></div>'+
         '</div></div>';
