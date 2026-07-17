@@ -13,15 +13,15 @@
 
   /* ---------- shared ---------- */
   var COL = {
-    scVision: "#c8543f", scGPT: "#4f7290", scFoundation: "#6f9159",
-    Geneformer: "#8e6f96", "HVG-kNN": "#9aa0a6", scVI: "#b08636",
-    Harmony: "#b0a89a", PCA: "#c9c2b6"
+    scVision: "#8c1515", scGPT: "#35618f", scFoundation: "#3f6b3f",
+    Geneformer: "#5f4b7a", "HVG-kNN": "#8a8a8a", scVI: "#8a6d1f",
+    Harmony: "#a08c6a", PCA: "#bdbdbd"
   };
-  var INK = "#1b1e20", MUTED = "#71777d", LINE = "#e9e5de", FAINT = "#9aa0a6";
+  var INK = "#111111", MUTED = "#565656", LINE = "#d8d8d8", FAINT = "#767676";
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
   function svg(inner, vw, vh){
     return '<svg viewBox="0 0 '+vw+' '+vh+'" width="100%" preserveAspectRatio="xMidYMid meet" '+
-           'font-family="Inter,-apple-system,sans-serif" role="img">'+inner+'</svg>';
+           'font-family="\'Source Sans 3\',-apple-system,sans-serif" role="img">'+inner+'</svg>';
   }
 
   /* ======================================================================
@@ -46,10 +46,10 @@
         return opt.log ? (Math.log10(v+1)/Math.log10(max+1))*barMaxW : (v/max)*barMaxW; }
       var s="";
       items.forEach(function(d,i){
-        var cy=top+i*rowH+rowH/2, bw=w(d.value), h=d.hl?24:20, col=d.color||"#c9c2b6";
+        var cy=top+i*rowH+rowH/2, bw=w(d.value), h=d.hl?24:20, col=d.color||"#bdbdbd";
         s+='<text x="'+(x0-12)+'" y="'+(cy+4)+'" text-anchor="end" font-size="13.5" '+
-             'font-weight="'+(d.hl?600:500)+'" fill="'+(d.hl?INK:"#3a4045")+'">'+esc(d.label)+'</text>';
-        s+='<rect x="'+x0+'" y="'+(cy-h/2)+'" width="'+Math.max(bw,1.5)+'" height="'+h+'" rx="4" '+
+             'font-weight="'+(d.hl?600:500)+'" fill="'+(d.hl?INK:"#2e2e2e")+'">'+esc(d.label)+'</text>';
+        s+='<rect x="'+x0+'" y="'+(cy-h/2)+'" width="'+Math.max(bw,1.5)+'" height="'+h+'" rx="0" '+
              'fill="'+col+'" opacity="'+(d.hl?1:.82)+'"/>';
         s+='<text x="'+(x0+bw+8)+'" y="'+(cy+4)+'" font-size="12.5" font-weight="'+(d.hl?600:500)+'" '+
              'fill="'+(d.hl?d.color:MUTED)+'">'+esc(d.vlabel!=null?d.vlabel:d.value)+'</text>';
@@ -232,7 +232,7 @@
     function paint(cv,f,set,masked){
       var ctx=cv.getContext("2d"),im=ctx.createImageData(LAT,LAT),d=im.data;
       for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){var idx=y*LAT+x,pi=idx*4,rgb;
-        if(masked&&set[((y/PS)|0)*PG+((x/PS)|0)]===1)rgb=[214,210,202];else rgb=vir(f[idx]);
+        if(masked&&set[((y/PS)|0)*PG+((x/PS)|0)]===1)rgb=[226,226,226];else rgb=vir(f[idx]);
         d[pi]=rgb[0];d[pi+1]=rgb[1];d[pi+2]=rgb[2];d[pi+3]=255;}
       ctx.putImageData(im,0,0);}
 
@@ -314,7 +314,7 @@
     function paint(cv,f,set,masked){
       var ctx=cv.getContext("2d"),im=ctx.createImageData(LAT,LAT),d=im.data;
       for(var y=0;y<LAT;y++)for(var x=0;x<LAT;x++){var idx=y*LAT+x,pi=idx*4,rgb;
-        if(masked&&set[((y/PS)|0)*PG+((x/PS)|0)]===1)rgb=[214,210,202];else rgb=vir(f[idx]);
+        if(masked&&set[((y/PS)|0)*PG+((x/PS)|0)]===1)rgb=[226,226,226];else rgb=vir(f[idx]);
         d[pi]=rgb[0];d[pi+1]=rgb[1];d[pi+2]=rgb[2];d[pi+3]=255;}
       ctx.putImageData(im,0,0);}
 
@@ -534,9 +534,9 @@
   (function integration(){
     var host=document.getElementById("integChart"); if(!host) return;
     var leg=document.getElementById("integLegend");
-    var PAL=["#c8543f","#4f7290","#6f9159","#8e6f96","#b08636","#e07a5f","#3f8a86","#9c6b8a"];
+    var PAL=["#8c1515","#35618f","#3f6b3f","#5f4b7a","#8a6d1f","#b83a3a","#2f7068","#7a4a63"];
     var DATA=null, mode="type";
-    function studyColor(b){ return "hsl("+((b*47)%360)+",42%,56%)"; }
+    function studyColor(b){ return "hsl("+((b*47)%360)+",28%,52%)"; }
     function render(){
       if(!DATA) return;
       var vw=680, vh=430, pad=16, s="";
@@ -573,15 +573,15 @@
       var s="";
       for(var gi=0;gi<=4;gi++){ var y=Y(ymax*gi/4); s+='<line x1="'+L+'" y1="'+y+'" x2="'+(L+pw)+'" y2="'+y+'" stroke="'+LINE+'" stroke-width="1"/>'; }
       for(var i=0;i<n;i++){ var x=X(xc[i])-bw/2;
-        s+='<rect x="'+x+'" y="'+Y(nor[i])+'" width="'+bw+'" height="'+(T+ph-Y(nor[i]))+'" fill="#4f7290" opacity="0.42"/>';
-        s+='<rect x="'+x+'" y="'+Y(hcm[i])+'" width="'+bw+'" height="'+(T+ph-Y(hcm[i]))+'" fill="#c8543f" opacity="0.55"/>';
+        s+='<rect x="'+x+'" y="'+Y(nor[i])+'" width="'+bw+'" height="'+(T+ph-Y(nor[i]))+'" fill="#35618f" opacity="0.45"/>';
+        s+='<rect x="'+x+'" y="'+Y(hcm[i])+'" width="'+bw+'" height="'+(T+ph-Y(hcm[i]))+'" fill="#8c1515" opacity="0.55"/>';
       }
-      s+='<line x1="'+X(d.mean_normal)+'" y1="'+T+'" x2="'+X(d.mean_normal)+'" y2="'+(T+ph)+'" stroke="#4f7290" stroke-width="1.5" stroke-dasharray="4 3"/>';
-      s+='<line x1="'+X(d.mean_hcm)+'" y1="'+T+'" x2="'+X(d.mean_hcm)+'" y2="'+(T+ph)+'" stroke="#c8543f" stroke-width="1.5" stroke-dasharray="4 3"/>';
+      s+='<line x1="'+X(d.mean_normal)+'" y1="'+T+'" x2="'+X(d.mean_normal)+'" y2="'+(T+ph)+'" stroke="#35618f" stroke-width="1.5" stroke-dasharray="4 3"/>';
+      s+='<line x1="'+X(d.mean_hcm)+'" y1="'+T+'" x2="'+X(d.mean_hcm)+'" y2="'+(T+ph)+'" stroke="#8c1515" stroke-width="1.5" stroke-dasharray="4 3"/>';
       s+='<text x="'+(L+pw/2)+'" y="'+(vh-6)+'" text-anchor="middle" font-size="12" fill="'+MUTED+'">disease-axis score  (higher = more diseased)</text>';
       s+='<text transform="translate(13,'+(T+ph/2)+') rotate(-90)" text-anchor="middle" font-size="12" fill="'+MUTED+'">cells</text>';
-      s+='<rect x="'+(L+pw-148)+'" y="'+T+'" width="11" height="11" fill="#c8543f" opacity="0.55"/><text x="'+(L+pw-132)+'" y="'+(T+10)+'" font-size="12" fill="'+INK+'">diseased ('+d.n_hcm+')</text>';
-      s+='<rect x="'+(L+pw-148)+'" y="'+(T+18)+'" width="11" height="11" fill="#4f7290" opacity="0.42"/><text x="'+(L+pw-132)+'" y="'+(T+28)+'" font-size="12" fill="'+INK+'">healthy ('+d.n_normal+')</text>';
+      s+='<rect x="'+(L+pw-148)+'" y="'+T+'" width="11" height="11" fill="#8c1515" opacity="0.55"/><text x="'+(L+pw-132)+'" y="'+(T+10)+'" font-size="12" fill="'+INK+'">diseased ('+d.n_hcm+')</text>';
+      s+='<rect x="'+(L+pw-148)+'" y="'+(T+18)+'" width="11" height="11" fill="#35618f" opacity="0.45"/><text x="'+(L+pw-132)+'" y="'+(T+28)+'" font-size="12" fill="'+INK+'">healthy ('+d.n_normal+')</text>';
       host.innerHTML=svg(s, vw, vh);
     }).catch(function(){ host.innerHTML='<p class="rex-err">Could not load disease-axis data.</p>'; });
   })();

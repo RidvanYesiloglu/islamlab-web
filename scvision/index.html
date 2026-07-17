@@ -18,7 +18,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231c2436'/><circle cx='10' cy='11' r='2.4' fill='%23f2c94c'/><circle cx='21' cy='14' r='2.4' fill='%23e07a5f'/><circle cx='14' cy='21.5' r='2' fill='%234f7290'/><circle cx='23' cy='23' r='1.8' fill='%237f9d6a'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <meta name="citation_title" content="A vision foundation model for single-cell biology via spatial gene cartography">
 <meta name="citation_arxiv_id" content="2607.14163">
 <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2607.14163">
@@ -82,7 +82,7 @@
     </p>
 
     <div class="btns" id="paper">
-      <a class="btn coral" href="https://arxiv.org/abs/2607.14163" target="_blank" rel="noopener">
+      <a class="btn accent" href="https://arxiv.org/abs/2607.14163" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
         arXiv:2607.14163
       </a>
@@ -136,7 +136,7 @@
           Your browser cannot play this video &mdash; <a href="assets/scvision_demo.mp4">download it</a>.
         </video>
       </div>
-      <figcaption><b>scVision in 60 seconds.</b> A cell&#39;s raw counts, the optimal-transport map that gives every gene a fixed home, the frozen encoder reading the resulting <em>scImage</em>, and a real held-out cell annotated live. Every frame is driven by real data &mdash; real rendered genomaps, the real gene&#8209;to&#8209;lattice layout, and real model output from the live service. Nothing is simulated. <span style="color:var(--faint)">60&nbsp;s &middot; no sound.</span></figcaption>
+      <figcaption><b class="fignum">Video 1</b> <b>scVision in 60 seconds.</b> A cell&#39;s raw counts, the optimal-transport map that gives every gene a fixed home, the frozen encoder reading the resulting <em>scImage</em>, and a real held-out cell annotated live. Every frame is driven by real data &mdash; real rendered genomaps, the real gene&#8209;to&#8209;lattice layout, and real model output from the live service. Nothing is simulated. <span style="color:var(--faint)">60&nbsp;s &middot; no sound.</span></figcaption>
     </figure>
   </div>
 </section>
@@ -146,7 +146,7 @@
   <div class="wrap">
     <figure class="fig">
       <div class="frame"><img src="assets/fig1.png" alt="Overview of scVision: cells become continuous images via optimal transport, a vision transformer is pretrained by masked image modelling, and the frozen encoder supports zero-shot annotation, integration, gene-program inference, perturbation and disease axes."></div>
-      <figcaption><b>How scVision works.</b> <b>a,</b> Optimal transport places informative genes at fixed positions on one shared lattice; painting a cell's expression onto it renders the transcriptome as a continuous image (an <em>scImage</em>). <b>b,</b> A ViT-base encoder is trained as a masked autoencoder, reconstructing hidden image patches with no labels. <b>c,</b> The single frozen encoder supports cell-type annotation, multi-study integration, gene-program inference, perturbation response and a disease axis.</figcaption>
+      <figcaption><b class="fignum">Figure 1</b> <b>How scVision works.</b> <b>a,</b> Optimal transport places informative genes at fixed positions on one shared lattice; painting a cell's expression onto it renders the transcriptome as a continuous image (an <em>scImage</em>). <b>b,</b> A ViT-base encoder is trained as a masked autoencoder, reconstructing hidden image patches with no labels. <b>c,</b> The single frozen encoder supports cell-type annotation, multi-study integration, gene-program inference, perturbation response and a disease axis.</figcaption>
     </figure>
   </div>
 </section>
