@@ -440,6 +440,26 @@
       return t;}
     function lc(s){ return String(s).toLowerCase(); }
 
+    // gene-under-cursor: the OT layout maps every scImage pixel to exactly one gene.
+    var GENELAYOUT=null;
+    fetch("/scvision/assets/gene_layout.json").then(function(r){ return r.ok?r.json():null; })
+      .then(function(j){ GENELAYOUT=j; }).catch(function(){});
+    function wireGeneHover(cv, grid){
+      var out=document.getElementById("upGene");
+      if(!cv||!out) return;
+      cv.style.cursor="crosshair";
+      cv.onmousemove=function(e){
+        if(!GENELAYOUT || grid!==GENELAYOUT.grid){ return; }
+        var b=cv.getBoundingClientRect();
+        var col=Math.floor((e.clientX-b.left)/b.width*grid);
+        var row=Math.floor((e.clientY-b.top)/b.height*grid);
+        if(row<0||col<0||row>=grid||col>=grid){ out.textContent="hover for gene"; return; }
+        var g=GENELAYOUT.genes[row*grid+col];
+        out.innerHTML = g?('&middot; <b>'+esc(g)+'</b>'):"hover for gene";
+      };
+      cv.onmouseleave=function(){ out.textContent="hover for gene"; };
+    }
+
     var DATA=null, sel=0;
     function status(cls,html){ out.hidden=false; out.className="up-out "+cls; out.innerHTML=html; }
 
@@ -467,7 +487,7 @@
       var nbrs=(c.neighbors||[]).slice(0,6).map(function(n){
         return '<li><span>'+esc(n.label)+'</span><i>'+Number(n.sim).toFixed(2)+'</i></li>';}).join("");
       var detail='<div class="up-detail">'+
-        '<figure class="up-fig"><canvas class="up-big" width="52" height="52"></canvas><figcaption>your cell &rarr; scImage</figcaption></figure>'+
+        '<figure class="up-fig"><canvas class="up-big" width="104" height="104"></canvas><figcaption>your cell &rarr; scImage <span class="up-gene" id="upGene">hover for gene</span></figcaption></figure>'+
         '<figure class="up-fig"><canvas class="up-attn" width="13" height="13"></canvas><figcaption>gene-program attention</figcaption></figure>'+
         '<div class="up-info">'+
           '<div class="up-pred">scVision predicts <b>'+esc(c.pred)+'</b></div>'+
@@ -479,7 +499,10 @@
       status("done", warn+head+strip+detail);
       Array.prototype.forEach.call(out.querySelectorAll(".up-cv"),function(cv){
         var i=+cv.getAttribute("data-thumb"); paintGrid(cv,d.cells[i].thumb,d.cells[i].thumb_grid||52,true);});
-      paintGrid(out.querySelector(".up-big"),c.thumb,c.thumb_grid||52,true);
+      var big=out.querySelector(".up-big");
+      var bigGrid=c.scimage?(c.scimage_grid||104):(c.thumb_grid||52);
+      paintGrid(big,c.scimage||c.thumb,bigGrid,true);
+      wireGeneHover(big,bigGrid);
       paintGrid(out.querySelector(".up-attn"),c.attention,c.attention_grid||13,false);
       Array.prototype.forEach.call(out.querySelectorAll(".up-cell"),function(b){
         b.addEventListener("click",function(){ sel=+b.getAttribute("data-i"); render(); });});
