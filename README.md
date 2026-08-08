@@ -7,6 +7,7 @@ Source for the **Islam Lab** website — a projects hub for the lab's open resea
 ## Live
 
 - **Home** — https://islamlab.org
+- **Dynomap** — https://islamlab.org/dynomap · task-adaptive spatial representations for biomedical tabular data
 - **scVision** — https://islamlab.org/scvision · a vision foundation model for single-cell biology
 
 ## Structure
@@ -17,6 +18,11 @@ scvision/           # scVision project page
   index.html
   style.css
   assets/fig1.png
+dynomap/            # Dynomap project page
+  index.html
+  style.css
+  interactive.js
+  assets/
 CNAME               # Custom domain: islamlab.org
 .nojekyll           # Serve files as-is (no Jekyll)
 ```

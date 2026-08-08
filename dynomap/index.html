@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dynomap · Learned spatial representations for biomedical tables</title>
+<meta name="description" content="Dynomap learns a task-specific spatial organization for biomedical tabular data, enabling vision-based prediction and feature-level interpretation.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dynomap · Islam Lab">
+<meta property="og:description" content="Transform biomedical tables into task-optimized feature maps, retrain on your data, and inspect predictive performance and feature attribution.">
+<meta property="og:url" content="https://islamlab.org/dynomap/">
+<meta property="og:image" content="https://islamlab.org/dynomap/assets/og.png">
+<meta property="og:image:width" content="1729">
+<meta property="og:image:height" content="910">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://islamlab.org/dynomap/assets/og.png">
+<link rel="canonical" href="https://islamlab.org/dynomap/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="glyph"></span>Islam<b>Lab</b></a>
+    <div class="nav-links">
+      <a href="#method">Method</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#interpret">Interpretability</a>
+      <a href="#analyze">Analyze your data</a>
+      <a class="back" href="/">Lab home&nbsp;&#8599;</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Dynamic feature mapping · Biomedical tabular learning</div>
+      <h1>Let the prediction task organize the table.</h1>
+      <p>Dynomap assigns every feature a learnable coordinate, renders each sample as a continuous two-dimensional map, and optimizes that spatial organization jointly with prediction.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://app.islamlab.org/dynomap/">Analyze your data</a>
+        <a class="button ghost" href="#method">See how it works</a>
+      </div>
+      <p class="beta-note">Research beta · labelled CSV data · no protected health information</p>
+    </div>
+    <figure class="hero-figure">
+      <img src="assets/rareseq-maps.png" alt="Dynomap representations from cancer and healthy plasma cell-free RNA samples.">
+      <figcaption>Every sample uses one learned feature topology; local image structure changes with its measured values.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<section class="numbers">
+  <div class="wrap number-grid">
+    <div><strong>0.835–0.982</strong><span>pooled out-of-fold AUROC across ten donor-disjoint liquid-biopsy tasks</span></div>
+    <div><strong>93%</strong><span>cancer-versus-control accuracy in the RARE-Seq cfRNA cohort</span></div>
+    <div><strong>92%</strong><span>five-class cancer-subtype accuracy using the curated 622-gene panel</span></div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="eyebrow">The method</div>
+    <h2>A differentiable map between the table and the model.</h2>
+    <p class="lead">Ordinary tabular models receive features as an unordered vector. Dynomap makes feature organization an explicit, trainable part of the predictive model.</p>
+    <div class="steps">
+      <article><span>01</span><h3>Gate predictive signal</h3><p>A learned feature gate modulates each measurement while preserving its identity and direct contribution to the classifier.</p></article>
+      <article><span>02</span><h3>Learn the topology</h3><p>Every feature receives a continuous two-dimensional coordinate. Nearby measurements interact through differentiable Gaussian rendering.</p></article>
+      <article><span>03</span><h3>Read local structure</h3><p>A convolutional model reads the rendered map together with the gated feature vector, and both prediction and layout are optimized end to end.</p></article>
+    </div>
+    <div class="pipeline" aria-label="Dynomap workflow">
+      <div><b>Tabular sample</b><small>features × values</small></div><i>→</i>
+      <div><b>Learned coordinates</b><small>task-specific topology</small></div><i>→</i>
+      <div><b>Differentiable map</b><small>continuous 2D rendering</small></div><i>→</i>
+      <div><b>Prediction + attribution</b><small>class and feature evidence</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="evidence" class="alt">
+  <div class="wrap evidence-grid">
+    <div class="evidence-copy">
+      <div class="eyebrow">Cross-cohort evidence</div>
+      <h2>Retrained successfully across RNA carriers and cohorts.</h2>
+      <p>We independently retrained Dynomap for ten donor-disjoint cancer-versus-control tasks spanning plasma cell-free RNA, extracellular-vesicle RNA, and tumor-educated platelet RNA.</p>
+      <p>Pooled out-of-fold AUROCs ranged from <b>0.835 to 0.982</b>. Each cohort, carrier, disease contrast, feature-selection step, and cross-validation fold was evaluated independently.</p>
+      <div class="pill-row"><span>Plasma cfRNA</span><span>EV RNA</span><span>Platelet RNA</span><span>Lung cancer</span><span>Colorectal cancer</span></div>
+    </div>
+    <figure class="validation-figure">
+      <div class="crop"><img src="assets/liquid-biopsy-validation.png" alt="AUROC across lung- and colorectal-cancer liquid-biopsy cohorts for Dynomap, logistic regression, and a quality-control-only model."></div>
+      <figcaption>Mean fold AUROC and standard deviation. Orange: Dynomap; gray: matched highly-variable-gene logistic regression; blue: quality-control-only model.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="interpret">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Interpretability</div><h2>Inspect where the model places—and uses—each feature.</h2></div>
+      <p>Dynomap retains an explicit feature topology. Attribution can therefore be examined at the feature level and in the spatial neighborhoods formed during training.</p>
+    </div>
+    <div class="interpret-grid">
+      <article class="map-card">
+        <div class="mini-map" id="miniMap" aria-label="Illustrative learned feature layout"></div>
+        <h3>Learned feature map</h3><p>Explore every selected feature by coordinate, attribution magnitude, and class-specific direction.</p>
+      </article>
+      <article class="attr-card">
+        <div class="mini-bars" id="miniBars"></div>
+        <h3>Per-sample attribution</h3><p>The paper uses Integrated Gradients; the web analysis also provides a Gradient SHAP approximation for representative validation samples.</p>
+      </article>
+      <article class="metric-card">
+        <div class="mini-metrics"><span><b>.91</b>AUROC</span><span><b>.86</b>Macro F1</span><span><b>.84</b>Balanced accuracy</span></div>
+        <h3>Leakage-aware validation</h3><p>Feature selection and standardization are fitted within each training fold, with group-disjoint splitting when donor IDs are supplied.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="analyze" class="cta-section">
+  <div class="wrap cta-grid">
+    <div>
+      <div class="eyebrow light">Analyze your data</div>
+      <h2>Bring a labelled table. Receive an auditable model report.</h2>
+      <p>The private beta accepts CSV files in which rows are samples and columns are numeric features. Choose the outcome column and, if applicable, a donor or subject column.</p>
+      <a class="button light-button" href="https://app.islamlab.org/dynomap/">Open the analysis workspace&nbsp;→</a>
+    </div>
+    <div class="report-preview">
+      <div class="preview-top"><span>dynomap-results</span><i>illustrative report</i></div>
+      <div class="preview-metrics"><div><b>0.914</b><small>AUROC</small></div><div><b>0.862</b><small>Macro F1</small></div><div><b>5</b><small>Folds</small></div></div>
+      <div class="preview-chart"><i style="--h:42%"></i><i style="--h:58%"></i><i style="--h:48%"></i><i style="--h:76%"></i><i style="--h:64%"></i><i style="--h:91%"></i><i style="--h:69%"></i><i style="--h:83%"></i></div>
+      <div class="preview-foot">Example layout—not a validation claim · confusion matrix · ROC · topology · Gradient SHAP</div>
+    </div>
+  </div>
+</section>
+
+<section class="limits">
+  <div class="wrap limits-grid">
+    <div><div class="eyebrow">Use responsibly</div><h2>A research analysis—not a clinical test.</h2></div>
+    <div><p>Cross-validation estimates performance within the uploaded dataset. It does not establish transportability to another institution, assay, population, or clinical setting.</p><p>Feature attribution describes the fitted model and does not establish biological causality. Do not upload protected health information or direct identifiers.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div><div class="footer-brand">Islam <b>Lab</b></div><p>Department of Radiation Oncology, Stanford University School of Medicine.</p></div>
+    <div class="footer-links"><a href="/">Lab home</a><a href="/scvision/">scVision</a><a href="mailto:tauhid@stanford.edu">Contact</a></div>
+    <div class="fine">© 2026 Islam Lab, Stanford University.</div>
+  </div>
+</footer>
+
+<script src="interactive.js"></script>
+</body>
+</html>
