@@ -50,7 +50,7 @@
       if(gateP>.05&&index<4){context.strokeStyle=feature.color;context.lineWidth=1.5;context.strokeRect(34,y-19,235,27);}
       feature.gated=gated;
     });
-    label(gateP<.5?"Columns have values, but no geometry.":"The gate learns which measurements matter.",42,490,"#465262",13,600);
+    label(gateP<.5?"Values without geometry":"Signal is gated",42,490,"#465262",13,600);
     arrow(282,279,307,279,clamp((time-3)/2,0,1));
     var mapX=742,mapY=105,mapW=217,mapH=352;
     if(mapP>.01){
@@ -68,17 +68,17 @@
       context.beginPath();context.arc(x,y,r,0,Math.PI*2);context.fillStyle=feature.color;context.globalAlpha=.35+.6*feature.gated;context.fill();context.globalAlpha=1;
       if((index<4&&moveP>.58)||(index<2&&moveP<=.58)){label(feature.name,x+9,y-7,"#465262",12,600);}
     });
-    label(moveP<.2?"Features start without task-specific neighborhoods.":moveP<.86?"Prediction loss moves the coordinates.":"High-signal features form local neighborhoods.",338,490,"#465262",13,600);
+    label(moveP<.2?"No task-specific neighborhoods":moveP<.86?"Coordinates move during training":"Local neighborhoods emerge",338,490,"#465262",13,600);
     arrow(699,279,721,279,clamp((time-12)/2,0,1));
     if(readP>.01){
       var scanX=mapX+readP*(mapW-64);context.strokeStyle="#17202c";context.lineWidth=3;context.strokeRect(scanX,mapY+92,64,64);context.fillStyle="rgba(23,32,44,.05)";context.fillRect(scanX,mapY+92,64,64);
     }
-    label(mapP<.5?"Gaussian kernels paint each value.":readP<.2?"The same topology creates a new map per sample.":"A vision branch reads local patterns.",742,490,"#465262",13,600);
+    label(mapP<.5?"Gaussian rendering":readP<.2?"A map for each sample":"Vision reads local patterns",742,490,"#465262",13,600);
     arrow(976,279,994,279,clamp((time-18)/2,0,1));
     roundRect(1020,91,136,82,4,"#f5f3ee","#d9d6ce");label("Cancer",1040,119,"#465262",13,600);label((50+46*readP).toFixed(0)+"%",1040,153,"#a83f35",30,700);
     label("Top attribution",1020,213,"#707a86",12,700);
     features.slice(0,4).forEach(function(feature,index){var y=243+index*44;context.globalAlpha=.18+.82*readP;context.fillStyle=feature.color;context.fillRect(1020,y-13,102*feature.gate*readP,9);label(feature.name,1020,y-19,"#465262",11,600);context.globalAlpha=1;});
-    label(readP<.55?"Prediction emerges as local structure is read.":"Attribution returns to named source features.",1020,490,"#465262",12,600);
+    label(readP<.55?"Prediction":"Feature attribution",1020,490,"#465262",12,600);
     var current=stages[stages.length-1];for(var i=0;i<stages.length;i++){if(time>=stages[i].start&&time<stages[i].end){current=stages[i];break;}}
     stageOutput.textContent=current.label;progress.style.width=(100*time/total)+"%";canvas.setAttribute("aria-label",current.label+" in the animated Dynomap pipeline.");
   }
