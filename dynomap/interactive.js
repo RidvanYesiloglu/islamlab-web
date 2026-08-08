@@ -77,4 +77,79 @@
       });
     });
   }
+
+  var attributionCanvas = document.getElementById("attributionCanvas");
+  var attributionButtons = Array.prototype.slice.call(document.querySelectorAll(".attribution-tab"));
+  var attributionPayload = null;
+  var attributionTask = "general_cancer";
+  var attributionHits = [];
+
+  function drawAttribution(taskName) {
+    if (!attributionCanvas || !attributionPayload || !attributionPayload.tasks[taskName]) return;
+    var task = attributionPayload.tasks[taskName];
+    var points = task.points;
+    var context = attributionCanvas.getContext("2d");
+    var width = attributionCanvas.width, height = attributionCanvas.height, padding = 58;
+    var xs = points.map(function (point) { return point.x; });
+    var ys = points.map(function (point) { return point.y; });
+    var minX = Math.min.apply(null, xs), maxX = Math.max.apply(null, xs);
+    var minY = Math.min.apply(null, ys), maxY = Math.max.apply(null, ys);
+    var maxIg = Math.max.apply(null, points.map(function (point) { return point.ig; })) || 1;
+    var ranked = points.slice().sort(function (a,b) { return b.ig - a.ig; });
+    var labelSet = {};
+    ranked.slice(0,8).forEach(function (point) { labelSet[point.gene] = true; });
+    function px(point) { return padding + (point.x-minX)/(maxX-minX || 1)*(width-2*padding); }
+    function py(point) { return height-padding-(point.y-minY)/(maxY-minY || 1)*(height-2*padding); }
+    context.clearRect(0,0,width,height);
+    context.fillStyle = "#fbfaf7"; context.fillRect(0,0,width,height);
+    context.strokeStyle = "#e5e1d8"; context.lineWidth = 1;
+    for (var grid=1; grid<6; grid+=1) {
+      var gx = padding + grid*(width-2*padding)/6, gy = padding + grid*(height-2*padding)/6;
+      context.beginPath(); context.moveTo(gx,padding); context.lineTo(gx,height-padding); context.stroke();
+      context.beginPath(); context.moveTo(padding,gy); context.lineTo(width-padding,gy); context.stroke();
+    }
+    attributionHits = [];
+    points.forEach(function (point) {
+      var x=px(point), y=py(point), magnitude=point.ig/maxIg, radius=4+11*Math.sqrt(magnitude);
+      context.beginPath(); context.arc(x,y,radius,0,Math.PI*2);
+      context.fillStyle = point.direction >= 0 ? "rgba(168,63,53,"+(.28+.68*magnitude)+")" : "rgba(71,109,137,"+(.28+.68*magnitude)+")";
+      context.fill();
+      if (labelSet[point.gene]) {
+        var onRight = x < width*.68, tx = x + (onRight ? 17 : -17), align = onRight ? "left" : "right";
+        context.beginPath(); context.moveTo(x+(onRight?radius:-radius),y); context.lineTo(tx+(onRight?2:-2),y-7); context.strokeStyle="rgba(70,82,98,.55)"; context.stroke();
+        context.textAlign=align; context.font="600 17px Source Sans 3, Arial, sans-serif"; context.fillStyle="#17202c"; context.fillText(point.gene,tx,y-10);
+      }
+      attributionHits.push({x:x,y:y,r:Math.max(13,radius),point:point});
+    });
+    context.textAlign="left"; context.font="600 14px Source Sans 3, Arial, sans-serif"; context.fillStyle="#a83f35"; context.fillText("RARE-Seq learned coordinates",padding,29);
+    context.font="13px Source Sans 3, Arial, sans-serif"; context.fillStyle="#707a86"; context.fillText("larger point = greater mean |Integrated Gradients|",padding,49);
+    document.getElementById("attributionSummary").innerHTML = '<h3>'+escapeHtml(task.title)+'</h3><p>'+escapeHtml(task.summary)+'</p><p><b>'+task.source_donors+' source donors</b> &middot; attribution summarized from '+task.ig_samples+' held-out samples for this class.</p>';
+    document.getElementById("attributionFeatures").innerHTML = ranked.slice(0,8).map(function(point,index){
+      return '<div class="feature-rank"><span>'+String(index+1).padStart(2,"0")+'</span><div><b>'+escapeHtml(point.gene)+'</b><small>'+(point.direction>=0?'positive':'negative')+' source association</small></div><i>|IG| '+point.ig.toFixed(3)+'</i></div>';
+    }).join("");
+    attributionCanvas.setAttribute("aria-label",task.title+" attribution map. Highest-ranked features: "+ranked.slice(0,8).map(function(point){return point.gene;}).join(", ")+".");
+  }
+
+  if (attributionCanvas) {
+    fetch("assets/rareseq-attribution.json").then(function(response){
+      if (!response.ok) throw new Error("Attribution data unavailable");
+      return response.json();
+    }).then(function(payload){ attributionPayload=payload; drawAttribution(attributionTask); }).catch(function(error){
+      document.getElementById("attributionSummary").innerHTML='<h3>Map unavailable</h3><p>'+escapeHtml(error.message)+'</p>';
+    });
+    attributionButtons.forEach(function(button){ button.addEventListener("click",function(){
+      attributionTask=button.getAttribute("data-attribution");
+      attributionButtons.forEach(function(item){ item.classList.toggle("active",item===button); });
+      drawAttribution(attributionTask);
+    }); });
+    attributionCanvas.addEventListener("mousemove",function(event){
+      var rectangle=attributionCanvas.getBoundingClientRect(), x=(event.clientX-rectangle.left)*attributionCanvas.width/rectangle.width, y=(event.clientY-rectangle.top)*attributionCanvas.height/rectangle.height;
+      var hit=attributionHits.find(function(item){return Math.hypot(item.x-x,item.y-y)<=item.r;});
+      var tip=document.getElementById("attributionTip");
+      if(!hit){tip.hidden=true;return;}
+      tip.hidden=false; tip.innerHTML='<b>'+escapeHtml(hit.point.gene)+'</b><br>|IG| '+hit.point.ig.toFixed(4)+'<br>'+(hit.point.direction>=0?'positive':'negative')+' source association';
+      tip.style.left=Math.min(rectangle.width-150,event.clientX-rectangle.left+14)+'px'; tip.style.top=Math.max(8,event.clientY-rectangle.top-15)+'px';
+    });
+    attributionCanvas.addEventListener("mouseleave",function(){document.getElementById("attributionTip").hidden=true;});
+  }
 }());

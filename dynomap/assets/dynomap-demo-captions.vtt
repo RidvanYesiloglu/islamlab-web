@@ -1,0 +1,29 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:14.000
+Biomedical tables contain measurements, but their columns have no meaningful geometry. Reordering columns changes the picture, not the biology.
+
+2
+00:00:14.000 --> 00:00:26.000
+Dynomap learns which measurements to amplify or suppress. Feature identity is preserved.
+
+3
+00:00:26.000 --> 00:00:44.000
+Prediction error moves every feature through a continuous two-dimensional space. Task-relevant neighborhoods emerge during training.
+
+4
+00:00:44.000 --> 00:00:58.000
+Gated values are painted with differentiable Gaussian kernels. One shared topology; a different map for every sample.
+
+5
+00:00:58.000 --> 00:01:12.000
+A vision branch detects local patterns in the rendered map. The image and gated-vector branches are optimized together.
+
+6
+00:01:12.000 --> 00:01:28.000
+The prediction returns to named source features on the learned topology. Integrated Gradients in the manuscript; Gradient SHAP in the web analysis.
+
+7
+00:01:28.000 --> 00:01:46.000
+High discrimination across liquid-biopsy cohorts and RNA carriers. Inspect 59 saved analyses or retrain Dynomap on your table.
