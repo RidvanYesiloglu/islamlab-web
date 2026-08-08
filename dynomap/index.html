@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dynomap · Learned spatial representations for biomedical tables</title>
-<meta name="description" content="Dynomap learns a task-specific spatial organization for biomedical tabular data, enabling vision-based prediction and feature-level interpretation.">
+<title>Dynomap · Vision-based deep learning for biomedical tabular data</title>
+<meta name="description" content="Dynomap learns a task-optimized spatial topology for biomedical tabular data. Explore the paper, real learned layouts, saved analyses, and the web analysis workspace.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dynomap · Islam Lab">
-<meta property="og:description" content="Transform biomedical tables into task-optimized feature maps, retrain on your data, and inspect predictive performance and feature attribution.">
+<meta property="og:description" content="Transform biomedical tables into task-optimized feature maps. Explore the paper, learned layouts, saved analyses, and the web workspace.">
 <meta property="og:url" content="https://islamlab.org/dynomap/">
 <meta property="og:image" content="https://islamlab.org/dynomap/assets/og.png">
 <meta property="og:image:width" content="1729">
@@ -26,9 +26,12 @@
   <div class="wrap nav-inner">
     <a class="brand" href="/"><span class="glyph"></span>Islam<b>Lab</b></a>
     <div class="nav-links">
+      <a href="#watch">Watch</a>
       <a href="#method">Method</a>
       <a href="#evidence">Evidence</a>
-      <a href="#interpret">Interpretability</a>
+      <a href="#datasets">Datasets</a>
+      <a href="#gallery">Layouts</a>
+      <a href="#paper">Paper</a>
       <a href="#analyze">Analyze your data</a>
       <a class="back" href="/">Lab home&nbsp;&#8599;</a>
     </div>
@@ -41,14 +44,16 @@
     <div class="cover-callout">
       <div>
         <div class="eyebrow">Dynamic feature mapping · Biomedical tabular learning</div>
-        <p>Explore the existing results, then use the same framework on your own labelled biomedical table.</p>
+        <p class="paper-title">Vision-Based Deep Learning of Biomedical Tabular Data via Self-Supervised Cartographic Representation</p>
+        <p class="author-line">Sakib Mostafa, Yuming Jiang, James Zou, Tarik F. Massoud, Ash A. Alizadeh, Maximilian Diehn, Lei Xing, and Md Tauhidul Islam</p>
       </div>
       <div class="hero-actions">
         <a class="button primary" href="https://app.islamlab.org/dynomap/#examples">Run an example</a>
         <a class="button ghost" href="https://app.islamlab.org/dynomap/#upload">Analyze your data</a>
-        <a class="button ghost" href="#method">See how it works</a>
+        <a class="button ghost" href="https://arxiv.org/abs/2603.22675">Earlier arXiv version</a>
+        <a class="button ghost" href="assets/Dynomap_Main.pdf">Current PDF</a>
       </div>
-      <p class="beta-note">Research beta · 59 saved analyses · labelled CSV data · no protected health information</p>
+      <p class="beta-note">Current manuscript metadata shown above · arXiv:2603.22675 is an earlier title and author version</p>
     </div>
   </div>
 </header>
@@ -59,6 +64,28 @@
     <div><strong>0.835–0.982</strong><span>pooled out-of-fold AUROC across ten donor-disjoint liquid-biopsy tasks</span></div>
     <div><strong>93%</strong><span>cancer-versus-control accuracy in the RARE-Seq cfRNA cohort</span></div>
     <div><strong>92%</strong><span>five-class cancer-subtype accuracy using the curated 622-gene panel</span></div>
+  </div>
+</section>
+
+<section id="watch" class="watch-section">
+  <div class="wrap">
+    <div class="section-head compact-head">
+      <div><div class="eyebrow">Watch · 57 seconds</div><h2>See a table become a learned map.</h2></div>
+      <p>A silent visual overview using the current manuscript cover, Figure 1, real RARE-Seq Dynomaps, and actual learned-layout figures. Nothing in the video is a randomly generated scientific result.</p>
+    </div>
+    <figure class="paper-figure video-figure">
+      <div class="media-frame"><video controls preload="none" playsinline poster="assets/dynomap-demo-poster.jpg" width="1280" height="720"><source src="assets/dynomap_demo.mp4" type="video/mp4">Your browser cannot play this video. <a href="assets/dynomap_demo.mp4">Download it instead.</a></video></div>
+      <figcaption><b>Video 1 | Dynomap in 57 seconds.</b> Unordered biomedical measurements receive learnable coordinates, are rendered into sample-specific maps, and are read by a vision model. The examples shown are extracted from the current manuscript and supplementary information. No sound.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="figure-one" class="alt figure-one-section">
+  <div class="wrap">
+    <figure class="paper-figure">
+      <div class="media-frame light"><img src="assets/figure-1-framework.png" alt="Figure 1 of the current Dynomap manuscript, showing learnable feature coordinates, Gaussian rendering, sample-specific maps, and downstream prediction."></div>
+      <figcaption><b>Figure 1 | Overview of the Dynomap framework.</b> Features receive learnable coordinates in a continuous two-dimensional space. Coordinates and rendering parameters are updated jointly with the predictive model, producing sample-specific Dynomaps for classification or regression.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -81,6 +108,17 @@
   </div>
 </section>
 
+<section id="datasets" class="dataset-section">
+  <div class="wrap">
+    <div class="carousel-heading">
+      <div><div class="eyebrow">Existing analyses · swipe or use the arrows</div><h2>From liquid biopsy to single-cell and clinical benchmarks.</h2><p class="lead">Each card opens its existing Dynomap result in the analysis workspace. These are stored aggregate evaluations, not fresh retraining.</p></div>
+      <div class="carousel-actions"><button class="carousel-arrow" id="datasetPrev" type="button" aria-label="Previous datasets">←</button><button class="carousel-arrow" id="datasetNext" type="button" aria-label="Next datasets">→</button></div>
+    </div>
+    <div class="dataset-track" id="datasetTrack" tabindex="0" aria-label="Dynomap dataset analyses"><p class="dataset-loading">Loading 59 saved analyses…</p></div>
+    <p class="dataset-position" id="datasetPosition" aria-live="polite"></p>
+  </div>
+</section>
+
 <section id="evidence" class="alt">
   <div class="wrap evidence-grid">
     <div class="evidence-copy">
@@ -97,25 +135,52 @@
   </div>
 </section>
 
-<section id="interpret">
+<section id="gallery" class="alt">
   <div class="wrap">
     <div class="section-head">
-      <div><div class="eyebrow">Interpretability</div><h2>Inspect where the model places—and uses—each feature.</h2></div>
-      <p>Dynomap retains an explicit feature topology. Attribution can therefore be examined at the feature level and in the spatial neighborhoods formed during training.</p>
+      <div><div class="eyebrow">Real layouts from the paper</div><h2>Inspect where predictive signal concentrates.</h2></div>
+      <p>These panels are extracted directly from the current manuscript and supplementary PDF. They show real sample maps, learned feature positions, attribution patterns, and spatial-null comparisons.</p>
     </div>
-    <div class="interpret-grid">
-      <article class="map-card">
-        <div class="mini-map" id="miniMap" aria-label="Illustrative learned feature layout"></div>
-        <h3>Learned feature map</h3><p>Explore every selected feature by coordinate, attribution magnitude, and class-specific direction.</p>
-      </article>
-      <article class="attr-card">
-        <div class="mini-bars" id="miniBars"></div>
-        <h3>Per-sample attribution</h3><p>The paper uses Integrated Gradients; the web analysis also provides a Gradient SHAP approximation for representative validation samples.</p>
-      </article>
-      <article class="metric-card">
-        <div class="mini-metrics"><span><b>.91</b>AUROC</span><span><b>.86</b>Macro F1</span><span><b>.84</b>Balanced accuracy</span></div>
-        <h3>Leakage-aware validation</h3><p>Feature selection and standardization are fitted within each training fold, with group-disjoint splitting when donor IDs are supplied.</p>
-      </article>
+    <div class="figure-gallery">
+      <figure><a href="assets/figure-s2-rareseq-maps.png"><img src="assets/figure-s2-rareseq-maps.png" alt="Representative RARE-Seq Dynomaps for LIHC, LUAD, PAAD, and PRAD samples."></a><figcaption><b>RARE-Seq sample maps.</b> Two real sample-specific Dynomaps per cancer subtype (Supplementary Fig. S2).</figcaption></figure>
+      <figure><a href="assets/figure-2-liquid-biopsy.png"><img src="assets/figure-2-liquid-biopsy.png" alt="Dynomap performance and representative learned maps for liquid-biopsy cancer detection, subtype prediction, and stage prediction."></a><figcaption><b>Liquid-biopsy evaluation.</b> Performance under highly-variable-gene and curated signature-panel regimes, with representative learned maps (Fig. 2).</figcaption></figure>
+      <figure><a href="assets/figure-5-bulk-layouts.png"><img src="assets/figure-5-bulk-layouts.png" alt="Learned GSE68086 gene layouts with class-specific attribution and spatial statistics."></a><figcaption><b>Bulk transcriptomic neighborhoods.</b> Class-associated genes form localized regions in the learned GSE68086 layout (Fig. 5).</figcaption></figure>
+      <figure><a href="assets/figure-6-parkinson-layout.png"><img src="assets/figure-6-parkinson-layout.png" alt="Parkinson voice phenomics layout, attribution patterns, and spatial statistics."></a><figcaption><b>Voice phenomics.</b> Parkinson-associated acoustic descriptors organize into non-random spatial neighborhoods (Fig. 6).</figcaption></figure>
+      <figure><a href="assets/figure-8-single-cell.png"><img src="assets/figure-8-single-cell.png" alt="Tabula Muris classification, spatial organization, precision-recall, and cell-type gene attribution."></a><figcaption><b>Single-cell transcriptomics.</b> Cell-type-associated genes show structured, lineage-specific attribution (Fig. 8).</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="paper" class="paper-section">
+  <div class="wrap">
+    <div class="paper-grid">
+      <div>
+        <div class="eyebrow">Abstract · current manuscript</div>
+        <h2>Vision-based learning for non-spatial biomedical inputs.</h2>
+        <div class="abstract-copy"><p>Tabular data constitute a dominant representation in biomedical science. Unlike images, texts, or time series, tabular representation of a dataset generally lacks structural organization: features are treated as unordered dimensions, and their interrelationships must be inferred implicitly by learning algorithms. This fundamental structural limitation constrains the ability of convolutional neural networks, vision transformers, and other structure-aware vision architectures to exploit local correlations and higher-order interactions that encode underlying biological and clinical signals. Here we introduce Dynamic Feature Mapping (Dynomap), an end-to-end deep learning cartography framework that learns a task-optimized spatial topology of features directly from data. Dynomap discovers inter-feature dependencies and jointly optimizes their spatial arrangement with a predictive objective through a differentiable rendering mechanism, without reliance on heuristics, predefined feature groupings, or external priors.</p><p>By transforming high-dimensional tabular vectors into learned feature maps, Dynomap enables vision-based deep learning architectures to operate effectively on non-spatial biomedical inputs and achieves substantially better predictive performance compared to existing state-of-the-art methods across clinical and biological datasets. When applied to a lung cancer liquid biopsy dataset from Stanford Hospital, Dynomap organizes genes from a curated cancer-associated panel into coherent spatial structures and improves multiclass cancer subtype prediction accuracy by up to 18% relative to classical and state-of-the-art deep learning tabular analysis methods. In a Parkinson’s disease voice dataset, Dynomap spatially clusters disease-associated acoustic descriptors, including tunable Q-factor wavelet energy and entropy measures linked to vocal instability, and yields accuracy gains of up to 8% compared to state-of-the-art techniques. Similar performance improvements were observed when Dynomap was applied to 13 additional public tabular benchmarks spanning molecular and non-biomedical domains. By converting unordered feature spaces into learned spatial representations, Dynomap establishes a general and principled strategy for bridging tabular and vision-based deep learning and enables the discovery of structured, task-relevant patterns from unordered high-dimensional biomedical data.</p></div>
+      </div>
+      <aside class="paper-links">
+        <h3>Read and cite</h3>
+        <a href="assets/Dynomap_Main.pdf">Current manuscript PDF <span>9.6 MB</span></a>
+        <a href="assets/DYNOMAP_Supplementary.pdf">Supplementary PDF <span>42.8 MB</span></a>
+        <a href="https://arxiv.org/abs/2603.22675">Earlier arXiv version <span>2603.22675</span></a>
+        <a href="https://arxiv.org/pdf/2603.22675">Earlier arXiv PDF <span>PDF</span></a>
+        <p>The arXiv record currently has an earlier title and a shorter author list. The title, abstract and authors on this page are taken from the current manuscript PDF supplied for this site.</p>
+      </aside>
+    </div>
+    <div class="citation-grid" id="cite">
+      <div><div class="eyebrow">BibTeX</div><h2>Cite the current manuscript.</h2><button class="button ghost" id="copyBibtex" type="button">Copy BibTeX</button></div>
+      <pre id="bibtexBlock">@article{mostafa2026dynomap,
+  title   = {Vision-Based Deep Learning of Biomedical Tabular Data via Self-Supervised Cartographic Representation},
+  author  = {Mostafa, Sakib and Jiang, Yuming and Zou, James and Massoud, Tarik F. and Alizadeh, Ash A. and Diehn, Maximilian and Xing, Lei and Islam, Md Tauhidul},
+  year    = {2026},
+  note    = {Manuscript; earlier version available as arXiv:2603.22675},
+  url     = {https://arxiv.org/abs/2603.22675}
+}</pre>
+    </div>
+    <div class="authors-section">
+      <div class="eyebrow">Authors · current PDF</div>
+      <div class="author-grid"><span><b>Sakib Mostafa</b>Stanford Radiation Oncology</span><span><b>Yuming Jiang</b>Wake Forest Radiation Oncology</span><span><b>James Zou</b>Stanford Biomedical Data Science</span><span><b>Tarik F. Massoud</b>Stanford Radiology</span><span><b>Ash A. Alizadeh</b>Stanford Medicine</span><span><b>Maximilian Diehn</b>Stanford Radiation Oncology</span><span><b>Lei Xing *</b>Corresponding author</span><span><b>Md Tauhidul Islam *</b>Corresponding author · Islam Lab</span></div>
     </div>
   </div>
 </section>
@@ -125,7 +190,7 @@
     <div>
       <div class="eyebrow light">Analyze your data</div>
       <h2>Bring a labelled table. Receive an auditable model report.</h2>
-      <p>The private beta accepts CSV files in which rows are samples and columns are numeric features. Choose the outcome column and, if applicable, a donor or subject column.</p>
+      <p>The private beta accepts one labelled CSV or separate feature and label CSV files. Rows must correspond in the same order. Choose the outcome column and, if applicable, a donor or subject column.</p>
       <a class="button light-button" href="https://app.islamlab.org/dynomap/">Open the analysis workspace&nbsp;→</a>
     </div>
     <div class="report-preview">
@@ -148,7 +213,7 @@
 <footer>
   <div class="wrap footer-grid">
     <div><div class="footer-brand">Islam <b>Lab</b></div><p>Department of Radiation Oncology, Stanford University School of Medicine.</p></div>
-    <div class="footer-links"><a href="/">Lab home</a><a href="/scvision/">scVision</a><a href="mailto:tauhid@stanford.edu">Contact</a></div>
+    <div class="footer-links"><a href="/">Lab home</a><a href="/scvision/">scVision</a><a href="assets/Dynomap_Main.pdf">Paper PDF</a><a href="#cite">BibTeX</a><a href="mailto:tauhid@stanford.edu">Contact</a></div>
     <div class="fine">© 2026 Islam Lab, Stanford University.</div>
   </div>
 </footer>

@@ -1,0 +1,2284 @@
+{
+  "schema_version": 1,
+  "generated_from": "saved Dynomap workspace results",
+  "privacy": "Aggregate metrics only; no row-level measurements or identifiers",
+  "entries": [
+    {
+      "id": "core-cancerseek-binary",
+      "category": "core",
+      "dataset": "CancerSEEK",
+      "title": "CancerSEEK plasma proteins",
+      "task": "binary",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 2,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8978593272171255,
+          "sd": 0.009325963719863556
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8971667108549655,
+          "sd": 0.00934628664527577
+        },
+        "auroc": {
+          "mean": 0.9567340463098969,
+          "sd": 0.005918707948955131
+        }
+      },
+      "source_url": "https://doi.org/10.1126/science.aar3247",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-cancerseek-stage",
+      "category": "core",
+      "dataset": "CancerSEEK",
+      "title": "CancerSEEK plasma proteins",
+      "task": "stage",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 3,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.5431307550644566,
+          "sd": 0.015792044520354164
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.35369005232073636,
+          "sd": 0.05158725206224986
+        },
+        "auroc": {
+          "mean": 0.5835263066428664,
+          "sd": 0.027792605038080224
+        }
+      },
+      "source_url": "https://doi.org/10.1126/science.aar3247",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-cancerseek-subtype",
+      "category": "core",
+      "dataset": "CancerSEEK",
+      "title": "CancerSEEK plasma proteins",
+      "task": "subtype",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 8,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.6504726826273787,
+          "sd": 0.024635549093173413
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.5493560090465361,
+          "sd": 0.03159640894338971
+        },
+        "auroc": {
+          "mean": 0.8631666880016642,
+          "sd": 0.04247351601437995
+        }
+      },
+      "source_url": "https://doi.org/10.1126/science.aar3247",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-gse68086-binary",
+      "category": "core",
+      "dataset": "GSE68086",
+      "title": "GSE68086 platelet RNA",
+      "task": "binary",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 5000,
+      "n_classes": 2,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9440000000000002,
+          "sd": 0.04335896677735758
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9169596139657162,
+          "sd": 0.0626756667601889
+        },
+        "auroc": {
+          "mean": 0.9668699186991871,
+          "sd": 0.03182744143798451
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE68086",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-gse68086-multiclass",
+      "category": "core",
+      "dataset": "GSE68086",
+      "title": "GSE68086 platelet RNA",
+      "task": "multiclass",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 5000,
+      "n_classes": 7,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.5926829268292683,
+          "sd": 0.0995463012452604
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.5196537869226945,
+          "sd": 0.11074493744599848
+        },
+        "auroc": {
+          "mean": 0.8285075898695119,
+          "sd": 0.06424812871664717
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE68086",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-metabric-binary-aggressive",
+      "category": "core",
+      "dataset": "METABRIC",
+      "title": "METABRIC breast cancer",
+      "task": "binary aggressive",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 2,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9530246987233028,
+          "sd": 0.015108427866866739
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9387406036162117,
+          "sd": 0.01938631734847363
+        },
+        "auroc": {
+          "mean": 0.9825537617766894,
+          "sd": 0.006204076978783079
+        }
+      },
+      "source_url": "https://www.cbioportal.org/study/summary?id=brca_metabric",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-metabric-multiclass-pam50",
+      "category": "core",
+      "dataset": "METABRIC",
+      "title": "METABRIC breast cancer",
+      "task": "multiclass pam50",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 5,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8246835443037973,
+          "sd": 0.008550162079814098
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.7842921908843676,
+          "sd": 0.015149949031266517
+        },
+        "auroc": {
+          "mean": 0.9495182435706562,
+          "sd": 0.011362274700780755
+        }
+      },
+      "source_url": "https://www.cbioportal.org/study/summary?id=brca_metabric",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-parkinson-all",
+      "category": "core",
+      "dataset": "Parkinson",
+      "title": "Parkinson voice phenomics",
+      "task": "binary · all features",
+      "domain": "voice phenomics",
+      "n_samples": 76,
+      "n_features": null,
+      "n_classes": 2,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9210526315789473,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8982142857142856,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9830357142857142,
+          "sd": null
+        }
+      },
+      "source_url": "https://archive.ics.uci.edu/dataset/470/parkinson+s+disease+classification",
+      "source_label": "UCI Parkinson's disease classification",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-parkinson-signature",
+      "category": "core",
+      "dataset": "Parkinson",
+      "title": "Parkinson voice phenomics",
+      "task": "binary · signature features",
+      "domain": "voice phenomics",
+      "n_samples": 76,
+      "n_features": null,
+      "n_classes": 2,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9078947368421053,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8792829589289766,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9857142857142858,
+          "sd": null
+        }
+      },
+      "source_url": "https://archive.ics.uci.edu/dataset/470/parkinson+s+disease+classification",
+      "source_label": "UCI Parkinson's disease classification",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-rareseq-binary-all",
+      "category": "core",
+      "dataset": "RARESeq",
+      "title": "RARE-Seq plasma cfRNA",
+      "task": "binary · all features",
+      "domain": "liquid-biopsy cfRNA",
+      "n_samples": 37,
+      "n_features": null,
+      "n_classes": 2,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.918918918918919,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.9198717948717949,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9125295508274232,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9743589743589742,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-rareseq-binary-signature",
+      "category": "core",
+      "dataset": "RARESeq",
+      "title": "RARE-Seq plasma cfRNA",
+      "task": "binary · signature features",
+      "domain": "liquid-biopsy cfRNA",
+      "n_samples": 37,
+      "n_features": 622,
+      "n_classes": 2,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.918918918918919,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.9198717948717949,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9125295508274232,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9903846153846154,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-rareseq-stage-all",
+      "category": "core",
+      "dataset": "RARESeq",
+      "title": "RARE-Seq plasma cfRNA",
+      "task": "stage · all features",
+      "domain": "liquid-biopsy cfRNA",
+      "n_samples": 24,
+      "n_features": null,
+      "n_classes": 4,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.75,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.25,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.21951219512195122,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.7720240709371143,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-rareseq-stage-signature",
+      "category": "core",
+      "dataset": "RARESeq",
+      "title": "RARE-Seq plasma cfRNA",
+      "task": "stage · signature features",
+      "domain": "liquid-biopsy cfRNA",
+      "n_samples": 24,
+      "n_features": 622,
+      "n_classes": 4,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.75,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.25,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.21428571428571427,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.6399240855762595,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-rareseq-subtype-all",
+      "category": "core",
+      "dataset": "RARESeq",
+      "title": "RARE-Seq plasma cfRNA",
+      "task": "subtype · all features",
+      "domain": "liquid-biopsy cfRNA",
+      "n_samples": 24,
+      "n_features": null,
+      "n_classes": 4,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.875,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.25,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.23333333333333334,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.8466183574879227,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-rareseq-subtype-signature",
+      "category": "core",
+      "dataset": "RARESeq",
+      "title": "RARE-Seq plasma cfRNA",
+      "task": "subtype · signature features",
+      "domain": "liquid-biopsy cfRNA",
+      "n_samples": 24,
+      "n_features": 622,
+      "n_classes": 4,
+      "protocol": "Saved held-out test result from the manuscript 80/10/10 analysis",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8333333333333334,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.23809523809523808,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.22727272727272727,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.7575914423740511,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-tcga-brca-binary",
+      "category": "core",
+      "dataset": "TCGA_BRCA",
+      "title": "TCGA-BRCA transcriptomics",
+      "task": "binary",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 2,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9813953488372092,
+          "sd": 0.012604350807371371
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9725564442713482,
+          "sd": 0.018527615323613217
+        },
+        "auroc": {
+          "mean": 0.9953942552135796,
+          "sd": 0.00298929601527076
+        }
+      },
+      "source_url": "https://portal.gdc.cancer.gov/projects/TCGA-BRCA",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-tcga-brca-subtype",
+      "category": "core",
+      "dataset": "TCGA_BRCA",
+      "title": "TCGA-BRCA transcriptomics",
+      "task": "subtype",
+      "domain": "biomedical molecular data",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 5,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9034883720930231,
+          "sd": 0.022366725653106205
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8963330321852323,
+          "sd": 0.0291083606480101
+        },
+        "auroc": {
+          "mean": 0.9838873019600017,
+          "sd": 0.005648101947362976
+        }
+      },
+      "source_url": "https://portal.gdc.cancer.gov/projects/TCGA-BRCA",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-tabulamuris-celltype",
+      "category": "core",
+      "dataset": "TabulaMuris",
+      "title": "Tabula Muris single-cell RNA",
+      "task": "celltype",
+      "domain": "single-cell RNA",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 55,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9786949731095971,
+          "sd": 0.0011011801852888708
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9329064069160399,
+          "sd": 0.01310870601657931
+        },
+        "auroc": {
+          "mean": 0.9987030871275812,
+          "sd": 0.00032418666316975963
+        }
+      },
+      "source_url": "https://tabula-muris.ds.czbiohub.org/",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "core-zheng68k-celltype",
+      "category": "core",
+      "dataset": "Zheng68k",
+      "title": "Zheng68k PBMC single-cell RNA",
+      "task": "celltype",
+      "domain": "single-cell RNA",
+      "n_samples": null,
+      "n_features": 2000,
+      "n_classes": 18,
+      "protocol": "Saved five-fold cross-validation result from the manuscript pipeline",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.885922684,
+          "sd": 0.0014829028539592535
+        },
+        "balanced_accuracy": {
+          "mean": null,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8816456286,
+          "sd": 0.026506754513479506
+        },
+        "auroc": {
+          "mean": 0.9942756402,
+          "sd": 0.0006186487430543312
+        }
+      },
+      "source_url": "https://www.10xgenomics.com/datasets/fresh-68-k-pbm-cs-donor-a-1-standard-1-1-0",
+      "source_label": "Open source dataset",
+      "result_origin": "Existing Dynomap manuscript experiment"
+    },
+    {
+      "id": "liquid-gse174302-peking-crc-cfrna",
+      "category": "liquid",
+      "dataset": "GSE174302",
+      "title": "GSE174302 Peking CRC cfRNA",
+      "task": "cancer versus control",
+      "domain": "plasma cfRNA",
+      "n_samples": 73,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8356164383561644,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.7012670565302144,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.7348668280871671,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.8352826510721247,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174302",
+      "source_label": "GSE174302",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse174302-peking-cfrna",
+      "category": "liquid",
+      "dataset": "GSE174302",
+      "title": "GSE174302 Peking cfRNA",
+      "task": "cancer versus control",
+      "domain": "plasma cfRNA",
+      "n_samples": 54,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.7222222222222222,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.7135338345864661,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.7051328722242447,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.8390977443609022,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE174302",
+      "source_label": "GSE174302",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse216561-crc-ev",
+      "category": "liquid",
+      "dataset": "GSE216561",
+      "title": "GSE216561 CRC EV",
+      "task": "cancer versus control",
+      "domain": "extracellular-vesicle RNA",
+      "n_samples": 33,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8484848484848485,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.8402255639097744,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8433048433048433,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.8796992481203008,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE216561",
+      "source_label": "GSE216561",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse216561-crc-plasma",
+      "category": "liquid",
+      "dataset": "GSE216561",
+      "title": "GSE216561 CRC plasma",
+      "task": "cancer versus control",
+      "domain": "plasma cfRNA",
+      "n_samples": 42,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9047619047619048,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.9084668192219679,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9045454545454545,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9244851258581237,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE216561",
+      "source_label": "GSE216561",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse216561-ev",
+      "category": "liquid",
+      "dataset": "GSE216561",
+      "title": "GSE216561 EV",
+      "task": "cancer versus control",
+      "domain": "extracellular-vesicle RNA",
+      "n_samples": 33,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.7575757575757576,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.7612781954887218,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.7555555555555555,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9022556390977443,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE216561",
+      "source_label": "GSE216561",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse216561-plasma",
+      "category": "liquid",
+      "dataset": "GSE216561",
+      "title": "GSE216561 plasma",
+      "task": "cancer versus control",
+      "domain": "plasma cfRNA",
+      "n_samples": 38,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8421052631578947,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.8421052631578947,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8416666666666667,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.961218836565097,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE216561",
+      "source_label": "GSE216561",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse68086-crc-platelet",
+      "category": "liquid",
+      "dataset": "GSE68086",
+      "title": "GSE68086 CRC platelet",
+      "task": "cancer versus control",
+      "domain": "platelet RNA",
+      "n_samples": 98,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9285714285714286,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.930976430976431,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.9282051282051282,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9713804713804715,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE68086",
+      "source_label": "GSE68086",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-gse68086-platelet",
+      "category": "liquid",
+      "dataset": "GSE68086",
+      "title": "GSE68086 platelet",
+      "task": "cancer versus control",
+      "domain": "platelet RNA",
+      "n_samples": 113,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8672566371681416,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.8673885750156937,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8670900964478947,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9403640929064658,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE68086",
+      "source_label": "GSE68086",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-rareseq-mgh-cfrna",
+      "category": "liquid",
+      "dataset": "RARESeq",
+      "title": "RARESeq MGH cfRNA",
+      "task": "cancer versus control",
+      "domain": "plasma cfRNA",
+      "n_samples": 102,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9509803921568627,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.9503846153846154,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.950862318142403,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9823076923076923,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "liquid-rareseq-stanford-cfrna",
+      "category": "liquid",
+      "dataset": "RARESeq",
+      "title": "RARESeq Stanford cfRNA",
+      "task": "cancer versus control",
+      "domain": "plasma cfRNA",
+      "n_samples": 165,
+      "n_features": 1000,
+      "n_classes": 2,
+      "protocol": "Saved donor-disjoint pooled out-of-fold result",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8848484848484849,
+          "sd": null
+        },
+        "balanced_accuracy": {
+          "mean": 0.8838383838383839,
+          "sd": null
+        },
+        "macro_f1": {
+          "mean": 0.8809116809116809,
+          "sd": null
+        },
+        "auroc": {
+          "mean": 0.9247015610651974,
+          "sd": null
+        }
+      },
+      "source_url": "https://www.ncbi.nlm.nih.gov/projects/gap/cgi-bin/study.cgi?study_id=phs004091.v1.p1",
+      "source_label": "RARE-Seq dbGaP study record",
+      "result_origin": "Existing Dynomap cross-cohort experiment"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-colon-1145",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Colon_1145",
+      "title": "AP Breast Colon 1145",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 630,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9540000000000001,
+          "sd": 0.015300000000000001
+        },
+        "balanced_accuracy": {
+          "mean": 0.9528,
+          "sd": 0.0144
+        },
+        "macro_f1": {
+          "mean": 0.9534999999999999,
+          "sd": 0.015300000000000001
+        },
+        "auroc": {
+          "mean": 0.9868000000000001,
+          "sd": 0.013600000000000001
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9682999999999999,
+          "sd": 0.0
+        },
+        "auroc": {
+          "mean": 0.9951000000000001,
+          "sd": 0.0067
+        }
+      },
+      "source_url": "https://www.openml.org/d/1145",
+      "source_label": "OpenML data_id=1145",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-kidney-1158",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Kidney_1158",
+      "title": "AP Breast Kidney 1158",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 604,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9834999999999999,
+          "sd": 0.0131
+        },
+        "balanced_accuracy": {
+          "mean": 0.9836,
+          "sd": 0.013300000000000001
+        },
+        "macro_f1": {
+          "mean": 0.9832,
+          "sd": 0.013300000000000001
+        },
+        "auroc": {
+          "mean": 0.9968,
+          "sd": 0.004699999999999999
+        }
+      },
+      "baseline": {
+        "name": "RandomForest",
+        "accuracy": {
+          "mean": 0.9868000000000001,
+          "sd": 0.0111
+        },
+        "auroc": {
+          "mean": 0.9978,
+          "sd": 0.0036
+        }
+      },
+      "source_url": "https://www.openml.org/d/1158",
+      "source_label": "OpenML data_id=1158",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-lung-1150",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Lung_1150",
+      "title": "AP Breast Lung 1150",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 470,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9553,
+          "sd": 0.024300000000000002
+        },
+        "balanced_accuracy": {
+          "mean": 0.9440999999999999,
+          "sd": 0.0298
+        },
+        "macro_f1": {
+          "mean": 0.943,
+          "sd": 0.0305
+        },
+        "auroc": {
+          "mean": 0.9601999999999999,
+          "sd": 0.037200000000000004
+        }
+      },
+      "baseline": {
+        "name": "RandomForest",
+        "accuracy": {
+          "mean": 0.9681000000000001,
+          "sd": 0.0075
+        },
+        "auroc": {
+          "mean": 0.9804999999999999,
+          "sd": 0.0217
+        }
+      },
+      "source_url": "https://www.openml.org/d/1150",
+      "source_label": "OpenML data_id=1150",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-omentum-1127",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Omentum_1127",
+      "title": "AP Breast Omentum 1127",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 421,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9718000000000001,
+          "sd": 0.0134
+        },
+        "balanced_accuracy": {
+          "mean": 0.9490000000000001,
+          "sd": 0.0161
+        },
+        "macro_f1": {
+          "mean": 0.9537,
+          "sd": 0.0207
+        },
+        "auroc": {
+          "mean": 0.9672,
+          "sd": 0.024
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9788,
+          "sd": 0.0174
+        },
+        "auroc": {
+          "mean": 0.9813,
+          "sd": 0.0235
+        }
+      },
+      "source_url": "https://www.openml.org/d/1127",
+      "source_label": "OpenML data_id=1127",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-ovary-1165",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Ovary_1165",
+      "title": "AP Breast Ovary 1165",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 542,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9578,
+          "sd": 0.0105
+        },
+        "balanced_accuracy": {
+          "mean": 0.9551000000000001,
+          "sd": 0.0115
+        },
+        "macro_f1": {
+          "mean": 0.9545999999999999,
+          "sd": 0.0113
+        },
+        "auroc": {
+          "mean": 0.9901000000000001,
+          "sd": 0.0031
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9670000000000001,
+          "sd": 0.005
+        },
+        "auroc": {
+          "mean": 0.9958,
+          "sd": 0.0017000000000000001
+        }
+      },
+      "source_url": "https://www.openml.org/d/1165",
+      "source_label": "OpenML data_id=1165",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-prostate-1122",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Prostate_1122",
+      "title": "AP Breast Prostate 1122",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 413,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.988,
+          "sd": 0.012
+        },
+        "balanced_accuracy": {
+          "mean": 0.97,
+          "sd": 0.0305
+        },
+        "macro_f1": {
+          "mean": 0.9779000000000001,
+          "sd": 0.0222
+        },
+        "auroc": {
+          "mean": 0.9795,
+          "sd": 0.0281
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.9928,
+          "sd": 0.0108
+        },
+        "auroc": {
+          "mean": 0.9987999999999999,
+          "sd": 0.0022
+        }
+      },
+      "source_url": "https://www.openml.org/d/1122",
+      "source_label": "OpenML data_id=1122",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-breast-uterus-1148",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Breast_Uterus_1148",
+      "title": "AP Breast Uterus 1148",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 468,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9362,
+          "sd": 0.0336
+        },
+        "balanced_accuracy": {
+          "mean": 0.9259000000000001,
+          "sd": 0.048799999999999996
+        },
+        "macro_f1": {
+          "mean": 0.9192,
+          "sd": 0.0433
+        },
+        "auroc": {
+          "mean": 0.9693,
+          "sd": 0.0288
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.966,
+          "sd": 0.024300000000000002
+        },
+        "auroc": {
+          "mean": 0.9781,
+          "sd": 0.0268
+        }
+      },
+      "source_url": "https://www.openml.org/d/1148",
+      "source_label": "OpenML data_id=1148",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-colon-kidney-1137",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Colon_Kidney_1137",
+      "title": "AP Colon Kidney 1137",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 546,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9782,
+          "sd": 0.012199999999999999
+        },
+        "balanced_accuracy": {
+          "mean": 0.9781,
+          "sd": 0.0123
+        },
+        "macro_f1": {
+          "mean": 0.9781,
+          "sd": 0.012199999999999999
+        },
+        "auroc": {
+          "mean": 0.9967,
+          "sd": 0.0045000000000000005
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.9891,
+          "sd": 0.01
+        },
+        "auroc": {
+          "mean": 0.9975,
+          "sd": 0.0024
+        }
+      },
+      "source_url": "https://www.openml.org/d/1137",
+      "source_label": "OpenML data_id=1137",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-colon-lung-1126",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Colon_Lung_1126",
+      "title": "AP Colon Lung 1126",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 412,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9205,
+          "sd": 0.0302
+        },
+        "balanced_accuracy": {
+          "mean": 0.909,
+          "sd": 0.029900000000000003
+        },
+        "macro_f1": {
+          "mean": 0.9065000000000001,
+          "sd": 0.0344
+        },
+        "auroc": {
+          "mean": 0.9712000000000001,
+          "sd": 0.016399999999999998
+        }
+      },
+      "baseline": {
+        "name": "RandomForest",
+        "accuracy": {
+          "mean": 0.9422,
+          "sd": 0.024700000000000003
+        },
+        "auroc": {
+          "mean": 0.9873999999999999,
+          "sd": 0.0089
+        }
+      },
+      "source_url": "https://www.openml.org/d/1126",
+      "source_label": "OpenML data_id=1126",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-colon-omentum-1143",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Colon_Omentum_1143",
+      "title": "AP Colon Omentum 1143",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 363,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9342,
+          "sd": 0.0203
+        },
+        "balanced_accuracy": {
+          "mean": 0.8944,
+          "sd": 0.025
+        },
+        "macro_f1": {
+          "mean": 0.8986,
+          "sd": 0.0296
+        },
+        "auroc": {
+          "mean": 0.9763,
+          "sd": 0.0123
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9562,
+          "sd": 0.0179
+        },
+        "auroc": {
+          "mean": 0.9851000000000001,
+          "sd": 0.0062
+        }
+      },
+      "source_url": "https://www.openml.org/d/1143",
+      "source_label": "OpenML data_id=1143",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-colon-ovary-1153",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Colon_Ovary_1153",
+      "title": "AP Colon Ovary 1153",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 484,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9464,
+          "sd": 0.019799999999999998
+        },
+        "balanced_accuracy": {
+          "mean": 0.9439,
+          "sd": 0.0248
+        },
+        "macro_f1": {
+          "mean": 0.9444,
+          "sd": 0.021099999999999997
+        },
+        "auroc": {
+          "mean": 0.9676,
+          "sd": 0.015700000000000002
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9649,
+          "sd": 0.0118
+        },
+        "auroc": {
+          "mean": 0.9754999999999999,
+          "sd": 0.009000000000000001
+        }
+      },
+      "source_url": "https://www.openml.org/d/1153",
+      "source_label": "OpenML data_id=1153",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-colon-prostate-1135",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Colon_Prostate_1135",
+      "title": "AP Colon Prostate 1135",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 355,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9775,
+          "sd": 0.0161
+        },
+        "balanced_accuracy": {
+          "mean": 0.9698,
+          "sd": 0.018500000000000003
+        },
+        "macro_f1": {
+          "mean": 0.9653,
+          "sd": 0.0239
+        },
+        "auroc": {
+          "mean": 0.9926,
+          "sd": 0.0085
+        }
+      },
+      "baseline": {
+        "name": "RandomForest",
+        "accuracy": {
+          "mean": 0.9915,
+          "sd": 0.0077
+        },
+        "auroc": {
+          "mean": 0.996,
+          "sd": 0.0055000000000000005
+        }
+      },
+      "source_url": "https://www.openml.org/d/1135",
+      "source_label": "OpenML data_id=1135",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-colon-uterus-1160",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Colon_Uterus_1160",
+      "title": "AP Colon Uterus 1160",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 410,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9439,
+          "sd": 0.0139
+        },
+        "balanced_accuracy": {
+          "mean": 0.9394,
+          "sd": 0.021
+        },
+        "macro_f1": {
+          "mean": 0.9345,
+          "sd": 0.0161
+        },
+        "auroc": {
+          "mean": 0.9806,
+          "sd": 0.0116
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9488,
+          "sd": 0.0218
+        },
+        "auroc": {
+          "mean": 0.9823000000000001,
+          "sd": 0.016399999999999998
+        }
+      },
+      "source_url": "https://www.openml.org/d/1160",
+      "source_label": "OpenML data_id=1160",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-breast-1123",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Breast_1123",
+      "title": "AP Endometrium Breast 1123",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 405,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9778,
+          "sd": 0.0055000000000000005
+        },
+        "balanced_accuracy": {
+          "mean": 0.9662999999999999,
+          "sd": 0.0321
+        },
+        "macro_f1": {
+          "mean": 0.9566,
+          "sd": 0.011399999999999999
+        },
+        "auroc": {
+          "mean": 0.9845,
+          "sd": 0.027200000000000002
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9901000000000001,
+          "sd": 0.0103
+        },
+        "auroc": {
+          "mean": 0.9923000000000001,
+          "sd": 0.0118
+        }
+      },
+      "source_url": "https://www.openml.org/d/1123",
+      "source_label": "OpenML data_id=1123",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-colon-1133",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Colon_1133",
+      "title": "AP Endometrium Colon 1133",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 347,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9571,
+          "sd": 0.0226
+        },
+        "balanced_accuracy": {
+          "mean": 0.9411,
+          "sd": 0.0361
+        },
+        "macro_f1": {
+          "mean": 0.9272,
+          "sd": 0.0378
+        },
+        "auroc": {
+          "mean": 0.9876,
+          "sd": 0.011699999999999999
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.98,
+          "sd": 0.0239
+        },
+        "auroc": {
+          "mean": 0.9937,
+          "sd": 0.0078000000000000005
+        }
+      },
+      "source_url": "https://www.openml.org/d/1133",
+      "source_label": "OpenML data_id=1133",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-kidney-1157",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Kidney_1157",
+      "title": "AP Endometrium Kidney 1157",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 321,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9784999999999999,
+          "sd": 0.0233
+        },
+        "balanced_accuracy": {
+          "mean": 0.9675,
+          "sd": 0.0281
+        },
+        "macro_f1": {
+          "mean": 0.9653,
+          "sd": 0.0361
+        },
+        "auroc": {
+          "mean": 0.9959,
+          "sd": 0.0062
+        }
+      },
+      "baseline": {
+        "name": "RandomForest",
+        "accuracy": {
+          "mean": 0.9937999999999999,
+          "sd": 0.0138
+        },
+        "auroc": {
+          "mean": 0.9997,
+          "sd": 0.0007000000000000001
+        }
+      },
+      "source_url": "https://www.openml.org/d/1157",
+      "source_label": "OpenML data_id=1157",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-lung-1154",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Lung_1154",
+      "title": "AP Endometrium Lung 1154",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 187,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9420999999999999,
+          "sd": 0.073
+        },
+        "balanced_accuracy": {
+          "mean": 0.9397,
+          "sd": 0.0823
+        },
+        "macro_f1": {
+          "mean": 0.9342,
+          "sd": 0.0827
+        },
+        "auroc": {
+          "mean": 0.9814,
+          "sd": 0.019
+        }
+      },
+      "baseline": {
+        "name": "SVM",
+        "accuracy": {
+          "mean": 0.9737,
+          "sd": 0.0322
+        },
+        "auroc": {
+          "mean": 0.9904000000000001,
+          "sd": 0.0132
+        }
+      },
+      "source_url": "https://www.openml.org/d/1154",
+      "source_label": "OpenML data_id=1154",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-omentum-1151",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Omentum_1151",
+      "title": "AP Endometrium Omentum 1151",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 138,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9070999999999999,
+          "sd": 0.0407
+        },
+        "balanced_accuracy": {
+          "mean": 0.8979,
+          "sd": 0.0518
+        },
+        "macro_f1": {
+          "mean": 0.9020999999999999,
+          "sd": 0.0453
+        },
+        "auroc": {
+          "mean": 0.9729000000000001,
+          "sd": 0.0296
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.95,
+          "sd": 0.0319
+        },
+        "auroc": {
+          "mean": 0.9895999999999999,
+          "sd": 0.0104
+        }
+      },
+      "source_url": "https://www.openml.org/d/1151",
+      "source_label": "OpenML data_id=1151",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-ovary-1159",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Ovary_1159",
+      "title": "AP Endometrium Ovary 1159",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 259,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9154000000000001,
+          "sd": 0.039900000000000005
+        },
+        "balanced_accuracy": {
+          "mean": 0.875,
+          "sd": 0.08810000000000001
+        },
+        "macro_f1": {
+          "mean": 0.8753,
+          "sd": 0.0652
+        },
+        "auroc": {
+          "mean": 0.9467,
+          "sd": 0.0437
+        }
+      },
+      "baseline": {
+        "name": "SVM",
+        "accuracy": {
+          "mean": 0.9192,
+          "sd": 0.0516
+        },
+        "auroc": {
+          "mean": 0.9721,
+          "sd": 0.0317
+        }
+      },
+      "source_url": "https://www.openml.org/d/1159",
+      "source_label": "OpenML data_id=1159",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-prostate-1141",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Prostate_1141",
+      "title": "AP Endometrium Prostate 1141",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 130,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9923000000000001,
+          "sd": 0.0172
+        },
+        "balanced_accuracy": {
+          "mean": 0.9929000000000001,
+          "sd": 0.016
+        },
+        "macro_f1": {
+          "mean": 0.9923000000000001,
+          "sd": 0.0172
+        },
+        "auroc": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 1.0,
+          "sd": 0.0
+        },
+        "auroc": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "source_url": "https://www.openml.org/d/1141",
+      "source_label": "OpenML data_id=1141",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-endometrium-uterus-1164",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Endometrium_Uterus_1164",
+      "title": "AP Endometrium Uterus 1164",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 185,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.7297,
+          "sd": 0.0604
+        },
+        "balanced_accuracy": {
+          "mean": 0.6743000000000001,
+          "sd": 0.0828
+        },
+        "macro_f1": {
+          "mean": 0.6733,
+          "sd": 0.0795
+        },
+        "auroc": {
+          "mean": 0.718,
+          "sd": 0.0663
+        }
+      },
+      "baseline": {
+        "name": "SVM",
+        "accuracy": {
+          "mean": 0.7568,
+          "sd": 0.0191
+        },
+        "auroc": {
+          "mean": 0.8027,
+          "sd": 0.021
+        }
+      },
+      "source_url": "https://www.openml.org/d/1164",
+      "source_label": "OpenML data_id=1164",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-omentum-ovary-1156",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Omentum_Ovary_1156",
+      "title": "AP Omentum Ovary 1156",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 275,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.7564,
+          "sd": 0.065
+        },
+        "balanced_accuracy": {
+          "mean": 0.6867,
+          "sd": 0.0412
+        },
+        "macro_f1": {
+          "mean": 0.6909000000000001,
+          "sd": 0.0591
+        },
+        "auroc": {
+          "mean": 0.8067,
+          "sd": 0.0943
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.8364,
+          "sd": 0.053
+        },
+        "auroc": {
+          "mean": 0.8626999999999999,
+          "sd": 0.0436
+        }
+      },
+      "source_url": "https://www.openml.org/d/1156",
+      "source_label": "OpenML data_id=1156",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-omentum-uterus-1124",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Omentum_Uterus_1124",
+      "title": "AP Omentum Uterus 1124",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 201,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.8976000000000001,
+          "sd": 0.0436
+        },
+        "balanced_accuracy": {
+          "mean": 0.8867,
+          "sd": 0.049
+        },
+        "macro_f1": {
+          "mean": 0.8905,
+          "sd": 0.04769999999999999
+        },
+        "auroc": {
+          "mean": 0.9415,
+          "sd": 0.024300000000000002
+        }
+      },
+      "baseline": {
+        "name": "SVM",
+        "accuracy": {
+          "mean": 0.9170999999999999,
+          "sd": 0.0327
+        },
+        "auroc": {
+          "mean": 0.9555,
+          "sd": 0.0348
+        }
+      },
+      "source_url": "https://www.openml.org/d/1124",
+      "source_label": "OpenML data_id=1124",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ap-ovary-uterus-1162",
+      "category": "benchmark",
+      "dataset": "OpenML_AP_Ovary_Uterus_1162",
+      "title": "AP Ovary Uterus 1162",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 322,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.88,
+          "sd": 0.0334
+        },
+        "balanced_accuracy": {
+          "mean": 0.88,
+          "sd": 0.032
+        },
+        "macro_f1": {
+          "mean": 0.8748999999999999,
+          "sd": 0.034300000000000004
+        },
+        "auroc": {
+          "mean": 0.9259999999999999,
+          "sd": 0.036699999999999997
+        }
+      },
+      "baseline": {
+        "name": "RandomForest",
+        "accuracy": {
+          "mean": 0.8954000000000001,
+          "sd": 0.0296
+        },
+        "auroc": {
+          "mean": 0.9637,
+          "sd": 0.0235
+        }
+      },
+      "source_url": "https://www.openml.org/d/1162",
+      "source_label": "OpenML data_id=1162",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-colon-45087",
+      "category": "benchmark",
+      "dataset": "OpenML_Colon_45087",
+      "title": "Colon 45087",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 62,
+      "n_features": 2000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.7692,
+          "sd": 0.10880000000000001
+        },
+        "balanced_accuracy": {
+          "mean": 0.76,
+          "sd": 0.1291
+        },
+        "macro_f1": {
+          "mean": 0.7537,
+          "sd": 0.12269999999999999
+        },
+        "auroc": {
+          "mean": 0.81,
+          "sd": 0.1232
+        }
+      },
+      "baseline": {
+        "name": "SVM",
+        "accuracy": {
+          "mean": 0.8923000000000001,
+          "sd": 0.0688
+        },
+        "auroc": {
+          "mean": 0.92,
+          "sd": 0.0818
+        }
+      },
+      "source_url": "https://www.openml.org/d/45087",
+      "source_label": "OpenML data_id=45087",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-uci-har-smartphone",
+      "category": "benchmark",
+      "dataset": "UCI_HAR_Smartphone",
+      "title": "HAR Smartphone",
+      "task": "classification",
+      "domain": "sensor tabular",
+      "n_samples": 10299,
+      "n_features": 561,
+      "n_classes": 6,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9876,
+          "sd": 0.0036
+        },
+        "balanced_accuracy": {
+          "mean": 0.9881,
+          "sd": 0.0036
+        },
+        "macro_f1": {
+          "mean": 0.9882,
+          "sd": 0.0034999999999999996
+        },
+        "auroc": {
+          "mean": 0.9997,
+          "sd": 0.0002
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.9817,
+          "sd": 0.0026
+        },
+        "auroc": {
+          "mean": 0.9991,
+          "sd": 0.0002
+        }
+      },
+      "source_url": "https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip",
+      "source_label": "https://archive.ics.uci.edu/static/public/240/human+activity+recognition+using+smartphones.zip",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-ova-ovary-1166",
+      "category": "benchmark",
+      "dataset": "OpenML_OVA_Ovary_1166",
+      "title": "OVA Ovary 1166",
+      "task": "classification",
+      "domain": "gene expression",
+      "n_samples": 1545,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.9178000000000001,
+          "sd": 0.0104
+        },
+        "balanced_accuracy": {
+          "mean": 0.8038,
+          "sd": 0.0341
+        },
+        "macro_f1": {
+          "mean": 0.8119,
+          "sd": 0.0245
+        },
+        "auroc": {
+          "mean": 0.9318000000000001,
+          "sd": 0.0344
+        }
+      },
+      "baseline": {
+        "name": "AdaBoost",
+        "accuracy": {
+          "mean": 0.9379000000000001,
+          "sd": 0.0101
+        },
+        "auroc": {
+          "mean": 0.9616,
+          "sd": 0.0063
+        }
+      },
+      "source_url": "https://www.openml.org/d/1166",
+      "source_label": "OpenML data_id=1166",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-uci-tcga-pancan-rnaseq",
+      "category": "benchmark",
+      "dataset": "UCI_TCGA_PANCAN_RNASeq",
+      "title": "TCGA PANCAN RNASeq",
+      "task": "classification",
+      "domain": "cancer transcriptomics",
+      "n_samples": 801,
+      "n_features": 4000,
+      "n_classes": 5,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.995,
+          "sd": 0.0052
+        },
+        "balanced_accuracy": {
+          "mean": 0.9942,
+          "sd": 0.006
+        },
+        "macro_f1": {
+          "mean": 0.9948,
+          "sd": 0.0051
+        },
+        "auroc": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.9975,
+          "sd": 0.005600000000000001
+        },
+        "auroc": {
+          "mean": 1.0,
+          "sd": 0.0
+        }
+      },
+      "source_url": "https://archive.ics.uci.edu/static/public/401/gene+expression+cancer+rna+seq.zip",
+      "source_label": "https://archive.ics.uci.edu/static/public/401/gene+expression+cancer+rna+seq.zip",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-arcene-1458",
+      "category": "benchmark",
+      "dataset": "OpenML_arcene_1458",
+      "title": "arcene 1458",
+      "task": "classification",
+      "domain": "mass spectrometry",
+      "n_samples": 200,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.85,
+          "sd": 0.053
+        },
+        "balanced_accuracy": {
+          "mean": 0.8484999999999999,
+          "sd": 0.0584
+        },
+        "macro_f1": {
+          "mean": 0.8476,
+          "sd": 0.0556
+        },
+        "auroc": {
+          "mean": 0.9364,
+          "sd": 0.0253
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.815,
+          "sd": 0.07200000000000001
+        },
+        "auroc": {
+          "mean": 0.9116,
+          "sd": 0.0462
+        }
+      },
+      "source_url": "https://www.openml.org/d/1458",
+      "source_label": "OpenML data_id=1458",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    },
+    {
+      "id": "benchmark-openml-arcene-41157",
+      "category": "benchmark",
+      "dataset": "OpenML_arcene_41157",
+      "title": "arcene 41157",
+      "task": "classification",
+      "domain": "mass spectrometry",
+      "n_samples": 100,
+      "n_features": 4000,
+      "n_classes": 2,
+      "protocol": "Saved held-out test performance across five independent seeds",
+      "metrics": {
+        "accuracy": {
+          "mean": 0.83,
+          "sd": 0.1151
+        },
+        "balanced_accuracy": {
+          "mean": 0.8253,
+          "sd": 0.1191
+        },
+        "macro_f1": {
+          "mean": 0.8254,
+          "sd": 0.1188
+        },
+        "auroc": {
+          "mean": 0.8889,
+          "sd": 0.1118
+        }
+      },
+      "baseline": {
+        "name": "LogisticRegression",
+        "accuracy": {
+          "mean": 0.82,
+          "sd": 0.10369999999999999
+        },
+        "auroc": {
+          "mean": 0.8948999999999999,
+          "sd": 0.0882
+        }
+      },
+      "source_url": "https://www.openml.org/d/41157",
+      "source_label": "OpenML data_id=41157",
+      "result_origin": "Existing Dynomap supplementary benchmark"
+    }
+  ]
+}
