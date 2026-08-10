@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Graph2Image transforms biological networks into aligned feature and structure images for scalable prediction and interpretation.">
+  <meta name="theme-color" content="#f5f3ee">
+  <meta property="og:title" content="Graph2Image · Islam Lab">
+  <meta property="og:description" content="Transform biological networks into aligned images for scalable prediction and interpretation.">
+  <meta property="og:image" content="public/assets/graph2image-cover.png">
+  <title>Graph2Image · Islam Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260809-responsive">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell nav-shell">
+      <a class="brand" href="https://islamlab.org/" aria-label="Islam Lab home">
+        <span class="glyph" aria-hidden="true"></span>Islam<b>Lab</b>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
+      <nav id="primary-nav" aria-label="Primary navigation">
+        <a href="#method">Watch</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#examples">Examples</a>
+        <a href="#paper">Paper</a>
+        <a class="nav-cta" href="https://app.islamlab.org/graph2image/">Analyze your data</a>
+        <a class="lab-link" href="https://islamlab.org/">Lab home <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell">
+        <figure class="project-cover reveal">
+          <img src="public/assets/graph2image-cover.png" alt="Graph2Image cover showing a biological network transformed into aligned feature and structure image channels">
+        </figure>
+        <div class="hero-callout reveal" data-delay="1">
+          <div>
+            <p class="eyebrow"><span></span> Graph2Image · biological network cartography</p>
+            <h1 id="hero-title">A spatial interface between biological graphs and vision models.</h1>
+          </div>
+          <div>
+            <p class="lede">Graph2Image builds a structural layout from network communities and a separate feature layout from correlations among node attributes, size-matches the two channels, and trains a vision model on the stacked representation.</p>
+            <div class="button-row">
+              <a class="button button-primary" href="#method">Watch the explanation <span aria-hidden="true">↓</span></a>
+              <a class="button button-quiet" href="#examples">Run an example <span aria-hidden="true">→</span></a>
+              <a class="button button-accent" href="https://app.islamlab.org/graph2image/">Analyze your data <span aria-hidden="true">→</span></a>
+            </div>
+            <p class="boundary-note"><span class="open-dot" aria-hidden="true"></span> This research page and its saved results are public. Uploading a graph opens a separate Google-authenticated workspace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="evidence-band" id="evidence" aria-labelledby="evidence-title">
+      <div class="shell">
+        <div class="section-intro inverse reveal">
+          <p class="eyebrow"><span></span> Held-out evidence</p>
+          <h2 id="evidence-title">Performance with the evaluation context left attached.</h2>
+          <p>Mean ± standard deviation over five stratified node-level folds; every node is held out once.</p>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card reveal" data-provenance="depmap-accuracy">
+            <p class="metric-label">DepMap genes · accuracy</p><p class="metric-value">82.9<span>%</span></p><p class="metric-uncertainty">± 1.2 percentage points</p><p class="metric-context">17,087 gene nodes · 4 dependency classes</p>
+          </article>
+          <article class="metric-card reveal" data-delay="1" data-provenance="tcga-accuracy">
+            <p class="metric-label">TCGA-BRCA WGCNA · accuracy</p><p class="metric-value blue-text">93.2<span>%</span></p><p class="metric-uncertainty">± 0.3 percentage points</p><p class="metric-context">6,000 gene nodes · 5 co-expression modules</p>
+          </article>
+          <article class="metric-card reveal" data-delay="2" data-provenance="corum-enrichment-or">
+            <p class="metric-label">DepMap network validation</p><p class="metric-value sand-text">31.2<span class="metric-multiplier">×</span></p><p class="metric-uncertainty">CORUM co-complex enrichment</p><p class="metric-context">1,274 of 206,150 graph edges are co-complex pairs</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="atlas section-rule" id="atlas" aria-labelledby="atlas-title">
+      <div class="shell">
+        <div class="atlas-heading reveal">
+          <div class="section-intro compact">
+            <p class="eyebrow"><span></span> Complete evidence map</p>
+            <h2 id="atlas-title">Five datasets, rendered from the result tables.</h2>
+            <p>Switch metrics to compare Graph2Image with the strongest matched baseline in every dataset discussed in the current manuscript. No saved chart image is used.</p>
+          </div>
+          <div class="segmented atlas-toggle" role="group" aria-label="Evidence metric">
+            <button class="active" type="button" data-atlas-metric="accuracy">Accuracy</button>
+            <button type="button" data-atlas-metric="f1">Macro-F1</button>
+          </div>
+        </div>
+        <div id="atlas-chart" class="atlas-chart reveal" aria-live="polite"></div>
+        <div class="evidence-ledger">
+          <article class="ledger-card reveal" data-provenance="structure-only-ablation">
+            <span>Structure carries signal</span><h3>29.4% <i>HuRI</i><br>25.7% <i>PP-Pathways</i></h3><p>Structure-only accuracy, compared with random baselines of 11.1% and 1.9%.</p>
+          </article>
+          <article class="ledger-card reveal" data-delay="1" data-provenance="pp-label-transfer">
+            <span>Independent label transfer</span><h3>67.3% <i>GO</i><br>73.0% <i>Reactome</i></h3><p>Macro-AUROC when expression-derived tissue labels are replaced by independently curated functions.</p>
+          </article>
+          <article class="ledger-card reveal" data-delay="2" data-provenance="pan-scaling">
+            <span>Dense-network scale</span><h3>69M <i>edges</i><br>constant <i>model memory</i></h3><p>Graph2Image used the complete Pan-Cancer network; baselines were down-sampled to 3.2M edges after exceeding 25 GB.</p>
+          </article>
+          <article class="ledger-card reveal" data-provenance="depmap-embedding-ari">
+            <span>Representation quality</span><h3>0.75 <i>ARI</i><br>vs 0.39 <i>best baseline</i></h3><p>DepMap embedding clusters show the largest reported label agreement margin.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="method section-rule" id="method" aria-labelledby="method-title">
+      <div class="shell">
+        <div class="section-intro reveal">
+          <p class="eyebrow"><span></span> Method, in motion</p>
+          <h2 id="method-title">Two layouts. One stacked representation.</h2>
+          <p>Network communities define the structural layout, while correlations among node attributes independently define the feature layout. The size-matched channels are stacked for the classifier.</p>
+        </div>
+        <div class="video-grid reveal">
+          <div class="video-frame">
+            <video controls preload="metadata" poster="public/assets/graph2image-process-poster.jpg?v=paper2">
+              <source src="public/assets/graph2image-process.mp4?v=paper2" type="video/mp4">
+              <track default kind="captions" srclang="en" label="English" src="public/assets/graph2image-process.vtt?v=paper2">
+              Your browser does not support embedded video. <a href="public/assets/graph2image-process.mp4?v=paper2">Download the narrated process video</a>.
+            </video>
+          </div>
+          <ol class="method-steps">
+            <li><span>01</span><div><h3>Start with a biological graph</h3><p>Edges encode relationships and each node carries measured attributes.</p></div></li>
+            <li><span>02</span><div><h3>Cluster graph communities</h3><p>Nodes are grouped and color-coded before the global layout is compressed.</p></div></li>
+            <li><span>03</span><div><h3>Stack size-matched channels</h3><p>The independently constructed structural and feature layouts become distinct channels of one image.</p></div></li>
+            <li><span>04</span><div><h3>Train the CNN</h3><p>The classifier trains on precomputed, fixed-size images.</p></div></li>
+            <li><span>05</span><div><h3>Return prediction and attribution</h3><p>Outputs remain tied to the aligned representation without implying causation.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="scalability section-rule" id="scalability" aria-labelledby="scalability-title" data-provenance="classifier-memory-scaling">
+      <div class="shell scale-grid">
+        <div class="section-intro compact reveal">
+          <p class="eyebrow"><span></span> Scalability, precisely stated</p>
+          <h2 id="scalability-title">Build the images once. Keep the full edge set out of the training loop.</h2>
+          <p>Graph2Image still pays a one-time graph construction and image-generation cost. After that conversion, the CNN trains on fixed-size node images, so classifier-stage memory does not grow with the retained edge set.</p>
+          <div class="scale-controls motion-controls" aria-label="Scalability animation controls">
+            <button id="scale-toggle" type="button" aria-pressed="false">Pause</button>
+            <button id="scale-restart" type="button">Restart</button>
+          </div>
+        </div>
+        <div class="scale-animation reveal" id="scale-animation" role="img" aria-label="Animated comparison: Graph2Image converts the network once and repeatedly trains on fixed-size images, while a message-passing GNN revisits retained edges at every layer and exceeds memory at dense Pan-Cancer scale">
+          <div class="scale-head"><span>Classifier-stage memory</span><b id="scale-phase">01 · Full network</b></div>
+          <div class="scale-pipeline g2i-pipeline">
+            <strong>Graph2Image</strong>
+            <div class="network-glyph coral-network"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="pipeline-arrow">→</span>
+            <div class="precompute-box"><small>one-time</small>graph → images</div>
+            <span class="pipeline-arrow">→</span>
+            <div class="image-deck"><i></i><i></i></div>
+            <span class="pipeline-arrow">→</span>
+            <div class="cnn-glyph"><i></i><i></i><i></i></div>
+          </div>
+          <div class="scale-pipeline gnn-pipeline">
+            <strong>Message-passing GNN</strong>
+            <div class="network-glyph blue-network"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="repeat-label">edges revisited every layer</span>
+            <div class="memory-meter"><i></i><b>&gt;25 GB</b></div>
+          </div>
+          <div class="scale-axis"><span>complete Graph2Image network<strong>69M edges</strong></span><span>down-sampled baseline graph<strong>3.2M edges</strong></span></div>
+        </div>
+        <div class="scale-facts reveal">
+          <article><strong>69M</strong><span>Pan-Cancer edges retained by Graph2Image</span></article>
+          <article><strong>3.2M</strong><span>edges retained after baseline down-sampling</span></article>
+          <article><strong>&gt;25 GB</strong><span>message-passing memory before down-sampling</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="biology section-rule" aria-labelledby="biology-title">
+      <div class="shell">
+        <div class="section-intro reveal">
+          <p class="eyebrow"><span></span> Biological findings</p>
+          <h2 id="biology-title">The representation retains signals with biological relevance.</h2>
+          <p>These are associations in the current analysis—not causal mechanisms or claims of clinical utility.</p>
+        </div>
+        <div class="story-grid">
+          <article class="story story-coral reveal" data-provenance="corum-enrichment-or">
+            <div class="story-copy">
+              <p class="story-index">01 · DepMap genes</p>
+              <h3>Graph edges are enriched for known protein-complex relationships.</h3>
+              <p>The DepMap graph shows a 31.2-fold enrichment for CORUM co-complex pairs. Four fully connected examples include the BRCA1–BARD1–BRCA2 DNA-damage complex III and the BRAF–MAP2K1–MAP2K2–YWHAE complex.</p>
+            </div>
+            <div class="complex-visual" aria-label="Four verified fully connected CORUM examples, including three three-node cliques and one four-node clique">
+              <div class="complex complex-wide"><b>PAR polarity complex</b><em>3-node clique</em><svg viewBox="0 0 200 150"><path d="M48 110L98 31L163 103Z"/><circle cx="48" cy="110" r="5"/><circle cx="98" cy="31" r="5"/><circle cx="163" cy="103" r="5"/></svg><span class="gene g1">PAR3</span><span class="gene g2">PAR6B</span><span class="gene g3">PRKCI</span></div>
+              <div class="complex complex-tall"><b>DNA-damage complex III</b><em>3-node clique</em><svg viewBox="0 0 200 150"><path d="M31 74L151 35L132 126Z"/><circle cx="31" cy="74" r="5"/><circle cx="151" cy="35" r="5"/><circle cx="132" cy="126" r="5"/></svg><span class="gene g1">BRCA1</span><span class="gene g2">BARD1</span><span class="gene g3">BRCA2</span></div>
+              <div class="complex complex-four"><b>BRAF signaling complex</b><em>4-node clique</em><svg viewBox="0 0 200 150"><path d="M41 42H158V116H41ZM41 42L158 116M158 42L41 116"/><circle cx="41" cy="42" r="5"/><circle cx="158" cy="42" r="5"/><circle cx="158" cy="116" r="5"/><circle cx="41" cy="116" r="5"/></svg><span class="gene g1">BRAF</span><span class="gene g2">MAP2K1</span><span class="gene g3">MAP2K2</span><span class="gene g4">YWHAE</span></div>
+              <div class="complex complex-low"><b>Integrin–CD151 complex</b><em>3-node clique</em><svg viewBox="0 0 200 150"><path d="M45 39L161 67L82 126Z"/><circle cx="45" cy="39" r="5"/><circle cx="161" cy="67" r="5"/><circle cx="82" cy="126" r="5"/></svg><span class="gene g1">ITGA3</span><span class="gene g2">ITGB1</span><span class="gene g3">CD151</span></div>
+            </div>
+          </article>
+          <article class="story story-blue reveal" data-provenance="tcga-gainsboro-associations">
+            <div class="story-copy">
+              <p class="story-index">02 · TCGA-BRCA WGCNA</p>
+              <h3>A gainsboro co-expression module tracks basal-like breast cancer traits.</h3>
+              <p>The module eigengene is positively associated with PAM50 Basal status (r = 0.678), independent Basal-like status (r = 0.517), and ER-negative status (r = 0.574), while showing an inverse association with Luminal A (r = −0.409).</p>
+            </div>
+            <div class="association-plot" role="img" aria-label="Selected correlations for the TCGA-BRCA gainsboro module" data-provenance="tcga-gainsboro-associations">
+              <div><span>PAM50 Basal</span><i style="--v:67.8%" class="positive"></i><b>+0.678</b></div>
+              <div><span>ER negative</span><i style="--v:57.4%" class="positive"></i><b>+0.574</b></div>
+              <div><span>Independent Basal</span><i style="--v:51.7%" class="positive"></i><b>+0.517</b></div>
+              <div><span>Luminal A</span><i style="--v:40.9%" class="negative"></i><b>−0.409</b></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="examples section-rule" id="examples" aria-labelledby="examples-title">
+      <div class="shell">
+        <div class="examples-heading reveal">
+          <div class="section-intro compact">
+            <p class="eyebrow"><span></span> Saved analyses</p>
+            <h2 id="examples-title">Open a real result—without waiting for a new run.</h2>
+            <p>Curated, precomputed artifacts load immediately. Opening an example does not retrain a model or consume analysis compute.</p>
+          </div>
+          <div class="carousel-controls" aria-label="Saved example controls"><button id="example-prev" type="button" aria-label="Previous saved example">←</button><span><b id="example-current">01</b> / <i id="example-total">05</i></span><button id="example-next" type="button" aria-label="Next saved example">→</button></div>
+        </div>
+        <div id="example-viewer" class="example-viewer reveal" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="channels section-rule" aria-labelledby="channels-title">
+      <div class="shell channel-grid">
+        <div class="section-intro compact reveal">
+          <p class="eyebrow"><span></span> Inspect the representation</p>
+          <h2 id="channels-title">Separate layouts, size-matched channels.</h2>
+          <p>Move between two real saved channels. Each retains its own learned spatial organization before the pair is stacked for the classifier.</p>
+          <div class="segmented" role="group" aria-label="Channel selection">
+            <button class="active" type="button" data-channel="feature">Feature channel</button>
+            <button type="button" data-channel="structure">Structure channel</button>
+          </div>
+          <p class="channel-note" id="channel-note">DepMap Common Essential sample 14352 · feature channel</p>
+        </div>
+        <figure class="channel-inspector reveal">
+          <div class="channel-glow"></div>
+          <img id="channel-image" src="public/assets/examples/depmap-feature.png" alt="Feature channel from the saved DepMap Common Essential example">
+          <figcaption><span>Real V2 artifact</span><span>35 × 35 grid</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="paper section-rule" id="paper" aria-labelledby="paper-title">
+      <div class="shell paper-grid">
+        <div class="paper-lead reveal">
+          <p class="eyebrow"><span></span> Paper</p>
+          <h2 id="paper-title">Transformation of Biological Networks into Images via Semantic Cartography for Visual Interpretation and Scalable Deep Analysis</h2>
+          <p class="authors">Sakib Mostafa, Maximilian Diehn, Ash A. Alizadeh, Lei Xing, and Md Tauhidul Islam</p>
+          <div class="button-row"><a class="button button-primary" href="https://arxiv.org/pdf/2512.07040" target="_blank" rel="noreferrer">Read arXiv PDF <span aria-hidden="true">↗</span></a><button class="button button-quiet" id="copy-bibtex" type="button">Copy BibTeX</button></div>
+          <p class="citation-note">The BibTeX entry follows arXiv v1, as requested. The current manuscript has an expanded author list shown above.</p>
+        </div>
+        <div class="paper-detail reveal">
+          <details>
+            <summary>Read the current manuscript abstract <span>+</span></summary>
+            <p>Complex biological networks are fundamental to biomedical science, capturing interactions among molecules, cells, genes, and tissues. Deciphering these networks is critical for understanding health and disease, yet their scale and complexity represent a daunting challenge for current computational methods. Traditional biological network analysis methods, including deep learning approaches, while powerful, face inherent challenges such as limited scalability, oversmoothing long-range dependencies, difficulty in multimodal integration, expressivity bounds, and poor interpretability. Here, we present Graph2Image, a framework that transforms large biological networks into sets of two-dimensional images by spatially arranging representative network nodes on a 2D grid. This transformation decouples the nodes as images, enabling the use of convolutional neural networks with global receptive fields and multi-scale pyramids, thus overcoming limitations of existing biological network analysis methods in scalability, memory efficiency, and long-range context capture. Graph2Image also facilitates seamless integration with other omics modalities and enhances interpretability through direct visualization of node-associated images. When applied to several large-scale biological network datasets, Graph2Image improved classification accuracy by up to 26.2% over the strongest graph neural network baseline. Beyond predictive performance, Graph2Image generated interpretable attributions that captured biologically and therapeutically relevant cancer dependencies, distinguishing cancer-differentiating genes from housekeeping genes. Applied to breast cancer networks, Graph2Image identified a co-expression module associated with basal-like breast cancer and linked it to genes currently being pursued as therapeutic targets. The proposed approach scales linearly with graph size, whereas conventional graph neural networks require iterative message passing over the graph, resulting in substantially higher computational costs for large networks. Graph2Image thus provides a scalable and interpretable approach to biological network analysis that enables the identification of disease-relevant targets and the mechanistic study of complex biological systems.</p>
+          </details>
+          <pre id="bibtex" tabindex="0"><code>@article{mostafa2025graph2image,
+  title = {Transformation of Biological Networks into Images via Semantic Cartography for Visual Interpretation and Scalable Deep Analysis},
+  author = {Mostafa, Sakib and Xing, Lei and Islam, Md. Tauhidul},
+  journal = {arXiv preprint arXiv:2512.07040},
+  year = {2025},
+  doi = {10.48550/arXiv.2512.07040},
+  url = {https://arxiv.org/abs/2512.07040}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="analyze" aria-labelledby="analyze-title">
+      <div class="shell analyze-grid reveal">
+        <div><p class="eyebrow"><span></span> Your data</p><h2 id="analyze-title">Run Graph2Image on your attributed network.</h2><p>The private workspace validates separate feature, label, and edge files; reports held-out node-classification performance; and computes Kernel SHAP as a separate explanation step. Google authentication is required.</p></div>
+        <a class="button button-light" href="https://app.islamlab.org/graph2image/">Open the analysis workspace <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="limitations section-rule" aria-labelledby="limitations-title">
+      <div class="shell limitations-grid">
+        <h2 id="limitations-title">Responsible interpretation</h2>
+        <div><p>Graph2Image is a research method. Results shown here are dataset-specific evaluations, not evidence of clinical validity, clinical utility, or external transportability.</p><p>Model attribution describes what influenced a prediction. It should not be interpreted as a biological mechanism or causal effect.</p></div>
+      </div>
+    </section>
+
+    <section class="team section-rule" id="team" aria-labelledby="team-title" data-provenance="current-team">
+      <div class="shell">
+        <div class="section-intro reveal">
+          <p class="eyebrow"><span></span> Current manuscript team</p>
+          <h2 id="team-title">Built across computational biology, oncology, and medical AI.</h2>
+          <p>The team below follows the author list and affiliations in the current manuscript.</p>
+        </div>
+        <div class="team-grid">
+          <article class="team-card reveal"><span>01</span><h3>Sakib Mostafa</h3><p>Department of Radiation Oncology<br>Stanford University</p><div class="team-links" role="group" aria-label="Sakib Mostafa profiles"><a href="https://sakibmostafa.com/" target="_blank" rel="noopener noreferrer">Personal website <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/sakib-mostafa/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://scholar.google.com/citations?user=iDKl2-AAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a></div></article>
+          <article class="team-card reveal" data-delay="1"><span>02</span><h3>Maximilian Diehn</h3><p>Radiation Oncology · Stanford Cancer Institute · Institute for Stem Cell Biology and Regenerative Medicine</p></article>
+          <article class="team-card reveal" data-delay="2"><span>03</span><h3>Ash A. Alizadeh</h3><p>Department of Medicine<br>Division of Oncology</p></article>
+          <article class="team-card reveal"><span>04</span><h3>Lei Xing <small>corresponding</small></h3><p>Radiation Oncology · ICME · Electrical Engineering</p><a href="mailto:lei@stanford.edu">lei@stanford.edu</a></article>
+          <article class="team-card reveal" data-delay="1"><span>05</span><h3>Md Tauhidul Islam <small>corresponding</small></h3><p>Department of Radiation Oncology<br>Islam Lab</p><a href="mailto:tauhid@stanford.edu">tauhid@stanford.edu</a></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid"><div><a class="brand footer-brand" href="https://islamlab.org/"><span class="glyph" aria-hidden="true"></span>Islam<b>Lab</b></a><p>Computational methods for understanding biological systems.</p></div><div><p class="footer-label">Graph2Image</p><a href="#method">Method</a><a href="#examples">Saved analyses</a><a href="#paper">Paper</a><a href="#team">Team</a></div><div><p class="footer-label">Contact</p><a href="mailto:tauhid@stanford.edu">tauhid@stanford.edu</a><a href="mailto:lei@stanford.edu">lei@stanford.edu</a></div></div>
+    <div class="shell footer-bottom"><span>© <span id="year">2026</span> Islam Lab</span><span>Stanford University</span></div>
+  </footer>
+
+</body>
+</html>

@@ -90,7 +90,7 @@ section.alt{background:var(--paper-2)}
 .project .meta{margin-top:18px;font-size:.82rem;color:var(--faint);display:flex;gap:16px;flex-wrap:wrap}
 @media(max-width:760px){.project{grid-template-columns:1fr}.project .thumb{border-right:none;border-bottom:1px solid var(--line-soft);min-height:0}}
 .soon{margin-top:20px;border:1px dashed var(--line);border-radius:0;padding:22px 26px;color:var(--muted);font-size:.95rem;display:flex;align-items:center;gap:12px}
-.soon .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-2);flex:none;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;color:#fff;font-size:1.3rem;flex:none;letter-spacing:.02em;grid-template-columns:auto 1fr;gap:26px;align-items:start;border:1px solid var(--line);border-radius:0;background:var(--paper);padding:30px 32px;margin-bottom:22px}
+.soon .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-2);flex:none}
 .pi .avatar{width:88px;height:88px;font-size:1.75rem}
 .pi h3{font-size:1.42rem;margin:0 0 3px}
 .pi .role{color:var(--muted);font-size:.92rem;margin:0 0 13px}

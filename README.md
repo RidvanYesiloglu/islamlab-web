@@ -8,6 +8,7 @@ Source for the **Islam Lab** website — a projects hub for the lab's open resea
 
 - **Home** — https://islamlab.org
 - **Dynomap** — https://islamlab.org/dynomap · task-adaptive spatial representations for biomedical tabular data
+- **Graph2Image** — https://islamlab.org/graph2image · semantic cartography for biological networks
 - **scVision** — https://islamlab.org/scvision · a vision foundation model for single-cell biology
 
 ## Structure
@@ -23,6 +24,11 @@ dynomap/            # Dynomap project page
   style.css
   interactive.js
   assets/
+graph2image/        # Graph2Image project page
+  index.html
+  styles.css
+  app.js
+  public/assets/
 CNAME               # Custom domain: islamlab.org
 .nojekyll           # Serve files as-is (no Jekyll)
 ```

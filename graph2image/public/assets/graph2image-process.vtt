@@ -1,0 +1,33 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:09.212
+Graph2Image starts with a biological network. Edges encode relationships, and every node carries a vector of measured attributes.
+
+2
+00:00:09.212 --> 00:00:15.866
+It partitions the nodes into communities, which summarize network connectivity before spatial mapping.
+
+3
+00:00:15.866 --> 00:00:24.566
+Distances among community centroids are arranged on a two-dimensional grid using optimal transport, producing the structural channel.
+
+4
+00:00:24.566 --> 00:00:35.826
+Separately, correlations among node attributes define a second optimal-transport layout. The structural and feature layouts are size-matched and stacked as distinct channels.
+
+5
+00:00:35.826 --> 00:00:45.550
+A convolutional neural network is trained on one multi-channel image per node and returns class probabilities for held-out nodes.
+
+6
+00:00:45.550 --> 00:00:58.857
+After model fitting, SHAP is computed as a separate explanation step. Feature-channel pixel attributions are mapped back to the original biological attributes and summarized by class.
+
+7
+00:00:58.857 --> 00:01:22.399
+After image construction, classifier memory no longer grows with the retained edge count. On Pan-Cancer, Graph2Image used all sixty-nine million edges; message-passing baselines exceeded twenty-five gigabytes and were down-sampled to three point two million edges. This is a memory and analyzable-scale result, not a training-speed claim.
+
+8
+00:01:22.399 --> 00:01:51.060
+In five-fold stratified cross-validation, Graph2Image reached eighty-two point nine percent accuracy and sixty-eight point six percent macro F one on DepMap genes, and ninety-three point two percent accuracy and eighty-six percent macro F one on T C G A breast cancer. Separately, co-complex gene pairs were enriched thirty-one point two fold among the DepMap network edges.

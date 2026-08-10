@@ -1,0 +1,231 @@
+{
+  "schema_version": 2,
+  "generated_for": "Graph2Image local public demo",
+  "examples": [
+    {
+      "id": "pp-pathways",
+      "name": "PP-Pathways + GTEx",
+      "subtitle": "Recover dominant tissue-of-expression programs from a pathway-derived human protein interactome.",
+      "saved_result": true,
+      "level": "node-level",
+      "task": "54-class node classification",
+      "nodes": "16,258 genes",
+      "features": "54 GTEx tissues",
+      "edges": "296,487 edge records",
+      "grid": "8 × 8 × 2",
+      "protocol": "Five stratified node-level cross-validation folds; values are fold mean ± standard deviation.",
+      "metrics": {
+        "accuracy": {"value": "83.2%", "uncertainty": "± 0.4 pp", "provenance": "pp-accuracy"},
+        "macro_f1": {"value": "65.3%", "uncertainty": "± 2.4 pp", "provenance": "pp-macro-f1"},
+        "baseline": {"name": "GraphGPS", "accuracy": "57.0% ± 2.7 pp", "provenance": "pp-graphgps-accuracy"}
+      },
+      "comparison_provenance": "pp-performance-matrix",
+      "comparison": [
+        {"model": "Graph2Image", "accuracy": 83.1747, "f1": 65.2876},
+        {"model": "GraphGPS", "accuracy": 56.9865, "f1": 30.1060},
+        {"model": "GraphSAGE", "accuracy": 45.2563, "f1": 16.2312},
+        {"model": "APPNP", "accuracy": 28.3231, "f1": 6.2007},
+        {"model": "GCN", "accuracy": 26.2649, "f1": 6.0416},
+        {"model": "GAT", "accuracy": 20.0123, "f1": 2.5372},
+        {"model": "DFLS", "accuracy": 17.2940, "f1": 1.7329},
+        {"model": "SLR", "accuracy": 17.2571, "f1": 1.8100},
+        {"model": "GIN", "accuracy": 16.0476, "f1": 0.6716}
+      ],
+      "channels": {"mode": "schematic", "size": 8, "caption": "Shared 8 × 8 semantic map"},
+      "biology": {
+        "type": "systems",
+        "title": "Tissue attributions organize into physiological systems",
+        "body": "Across 54 GTEx tissues, the reported attribution hierarchy groups brain regions, gastrointestinal tissues, arterial and cardiac tissues, and adipose/endocrine tissues into coherent branches.",
+        "groups": [
+          {"name": "Cardiovascular", "items": ["Aorta", "Coronary", "Tibial artery"]},
+          {"name": "Endocrine", "items": ["Adrenal", "Adipose", "Mammary"]},
+          {"name": "Gastrointestinal", "items": ["Stomach", "Ileum", "Colon"]}
+        ],
+        "provenance": "pp-tissue-systems"
+      },
+      "provenance": ["pp-node-count", "pp-feature-count", "pp-edge-records", "pp-grid", "pp-accuracy", "pp-macro-f1", "pp-graphgps-accuracy", "pp-tissue-systems"]
+    },
+    {
+      "id": "huri-gtex",
+      "name": "HuRI + GTEx",
+      "subtitle": "Recover tissue programs from a systematically mapped human reference interactome.",
+      "saved_result": true,
+      "level": "node-level",
+      "task": "9-class node classification",
+      "nodes": "4,450 genes",
+      "features": "54 GTEx tissues",
+      "edges": "14,015 edge records",
+      "grid": "8 × 8 × 2",
+      "protocol": "Five stratified node-level cross-validation folds; values are fold mean ± standard deviation.",
+      "metrics": {
+        "accuracy": {"value": "90.5%", "uncertainty": "± 0.9 pp", "provenance": "huri-accuracy"},
+        "macro_f1": {"value": "84.5%", "uncertainty": "± 1.7 pp", "provenance": "huri-macro-f1"},
+        "baseline": {"name": "GraphGPS", "accuracy": "83.3% ± 1.4 pp", "provenance": "huri-graphgps-accuracy"}
+      },
+      "comparison_provenance": "huri-performance-matrix",
+      "comparison": [
+        {"model": "Graph2Image", "accuracy": 90.4647, "f1": 84.5268},
+        {"model": "GraphGPS", "accuracy": 83.3084, "f1": 78.3297},
+        {"model": "GraphSAGE", "accuracy": 75.3823, "f1": 64.9542},
+        {"model": "GCN", "accuracy": 53.0885, "f1": 40.2164},
+        {"model": "APPNP", "accuracy": 42.5749, "f1": 24.2869},
+        {"model": "GAT", "accuracy": 35.7871, "f1": 17.5614},
+        {"model": "SLR", "accuracy": 29.5352, "f1": 5.5600},
+        {"model": "DFLS", "accuracy": 29.4303, "f1": 6.0238},
+        {"model": "GIN", "accuracy": 29.2054, "f1": 7.1166}
+      ],
+      "channels": {"mode": "schematic", "size": 8, "caption": "Shared 8 × 8 semantic map"},
+      "biology": {
+        "type": "systems",
+        "title": "Independent interactome construction recovers related tissue axes",
+        "body": "The reported attributions group blood and EBV-LCLs, the two cerebellar labels, reproductive tissues, skeletal muscle, thyroid, and fibroblasts into physiologically related programs.",
+        "groups": [
+          {"name": "Hematopoietic", "items": ["Whole blood", "EBV-LCL", "Spleen"]},
+          {"name": "Central nervous system", "items": ["Cerebellum", "Hemisphere", "Cortex"]},
+          {"name": "Reproductive / endocrine", "items": ["Ovary", "Testis", "Thyroid"]}
+        ],
+        "provenance": "huri-tissue-systems"
+      },
+      "provenance": ["huri-node-count", "huri-feature-count", "huri-edge-records", "huri-grid", "huri-accuracy", "huri-macro-f1", "huri-graphgps-accuracy", "huri-tissue-systems"]
+    },
+    {
+      "id": "depmap-genes",
+      "name": "DepMap genes",
+      "subtitle": "Predict gene-dependency classes from a co-essentiality network and cell-line dependency profiles.",
+      "saved_result": true,
+      "level": "node-level",
+      "task": "4-class node classification",
+      "nodes": "17,087 genes",
+      "features": "1,208 cell lines",
+      "edges": "206,150 edges",
+      "grid": "35 × 35 × 2",
+      "protocol": "Five stratified node-level folds. Every node is held out once; values are fold mean ± standard deviation.",
+      "metrics": {
+        "accuracy": {"value": "82.9%", "uncertainty": "± 1.2 pp", "provenance": "depmap-accuracy"},
+        "macro_f1": {"value": "68.6%", "uncertainty": "± 2.0 pp", "provenance": "depmap-macro-f1"},
+        "baseline": {"name": "GraphSAGE", "accuracy": "80.1% ± 0.5 pp", "provenance": "depmap-graphsage-accuracy"}
+      },
+      "comparison_provenance": "depmap-performance-matrix",
+      "comparison": [
+        {"model": "Graph2Image", "accuracy": 82.9471, "f1": 68.6339},
+        {"model": "GraphSAGE", "accuracy": 80.0901, "f1": 57.6235},
+        {"model": "GCN", "accuracy": 79.6454, "f1": 55.5556},
+        {"model": "APPNP", "accuracy": 79.1245, "f1": 49.5583},
+        {"model": "SLR", "accuracy": 78.2232, "f1": 48.6298},
+        {"model": "DFLS", "accuracy": 77.9013, "f1": 45.8449},
+        {"model": "GraphGPS", "accuracy": 77.8194, "f1": 44.7038},
+        {"model": "GAT", "accuracy": 76.4206, "f1": 45.1977},
+        {"model": "GIN", "accuracy": 74.6533, "f1": 37.0574}
+      ],
+      "channels": {
+        "mode": "artifact",
+        "feature": "public/assets/examples/depmap-feature.png",
+        "structure": "public/assets/examples/depmap-structure.png",
+        "caption": "Common Essential sample 14352"
+      },
+      "biology": {
+        "type": "corum",
+        "title": "Known protein-complex structure is retained",
+        "body": "The graph is enriched 31.2-fold for CORUM co-complex pairs. Four fully connected examples are present; this is structural validation, not a causal claim.",
+        "odds_ratio": 31.2343,
+        "observed_edges": 1274,
+        "total_edges": 206150,
+        "complexes": ["PAR-3 · PAR-6B · PRKCI", "BRCA1 · BARD1 · BRCA2", "BRAF · MAP2K1 · MAP2K2 · YWHAE", "ITGA3 · ITGB1 · CD151"],
+        "provenance": "corum-enrichment-or"
+      },
+      "provenance": ["depmap-node-count", "depmap-feature-count", "depmap-edge-count", "depmap-grid", "depmap-accuracy", "depmap-macro-f1", "depmap-graphsage-accuracy", "corum-enrichment-or"]
+    },
+    {
+      "id": "tcga-brca-wgcna",
+      "name": "TCGA-BRCA WGCNA",
+      "subtitle": "Classify breast-cancer gene co-expression modules from tumor expression profiles and a WGCNA graph.",
+      "saved_result": true,
+      "level": "node-level",
+      "task": "5-class node classification",
+      "nodes": "6,000 genes",
+      "features": "1,106 tumors",
+      "edges": "84,072 edges",
+      "grid": "34 × 34 × 2",
+      "protocol": "Five stratified node-level folds. Every node is held out once; values are fold mean ± standard deviation.",
+      "metrics": {
+        "accuracy": {"value": "93.2%", "uncertainty": "± 0.3 pp", "provenance": "tcga-accuracy"},
+        "macro_f1": {"value": "86.0%", "uncertainty": "± 1.5 pp", "provenance": "tcga-macro-f1"},
+        "baseline": {"name": "GraphSAGE", "accuracy": "92.0% ± 0.5 pp", "provenance": "tcga-graphsage-accuracy"}
+      },
+      "comparison_provenance": "tcga-performance-matrix",
+      "comparison": [
+        {"model": "Graph2Image", "accuracy": 93.1833, "f1": 85.9951},
+        {"model": "GraphSAGE", "accuracy": 92.0500, "f1": 85.3010},
+        {"model": "GCN", "accuracy": 91.1833, "f1": 84.3183},
+        {"model": "APPNP", "accuracy": 90.3500, "f1": 84.1352},
+        {"model": "SLR", "accuracy": 89.8500, "f1": 82.7406},
+        {"model": "DFLS", "accuracy": 89.3667, "f1": 82.3897},
+        {"model": "GraphGPS", "accuracy": 86.9167, "f1": 68.7741},
+        {"model": "GAT", "accuracy": 57.9000, "f1": 29.9716},
+        {"model": "GIN", "accuracy": 57.0000, "f1": 25.4428}
+      ],
+      "channels": {
+        "mode": "artifact",
+        "feature": "public/assets/examples/tcga-feature.png",
+        "structure": "public/assets/examples/tcga-structure.png",
+        "caption": "Gainsboro module sample 4364"
+      },
+      "biology": {
+        "type": "correlations",
+        "title": "A module tracks basal-like traits",
+        "body": "The gainsboro module eigengene is positively associated with basal-like and receptor-negative traits and inversely associated with Luminal A.",
+        "values": [
+          {"label": "PAM50 Basal", "value": 0.678034},
+          {"label": "ER negative", "value": 0.574021},
+          {"label": "Independent Basal", "value": 0.517179},
+          {"label": "PR negative", "value": 0.437034},
+          {"label": "Luminal A", "value": -0.409179}
+        ],
+        "provenance": "tcga-gainsboro-associations"
+      },
+      "provenance": ["tcga-node-count", "tcga-feature-count", "tcga-edge-count", "tcga-grid", "tcga-accuracy", "tcga-macro-f1", "tcga-graphsage-accuracy", "tcga-gainsboro-associations"]
+    },
+    {
+      "id": "pan-cancer",
+      "name": "TCGA Pan-Cancer",
+      "subtitle": "Integrate expression, copy-number variation, and DNA methylation to classify tumor samples.",
+      "saved_result": true,
+      "level": "sample-level",
+      "task": "32-class sample classification",
+      "nodes": "8,314 tumors",
+      "features": "3,105 genes × 3 omics",
+      "edges": "69M complete graph",
+      "grid": "3 molecular channels",
+      "protocol": "Ten stratified sample-level runs with 70% train, 15% validation, and 15% held-out test samples; values are run mean ± standard deviation.",
+      "metrics": {
+        "accuracy": {"value": "96.9%", "uncertainty": "± 0.8 pp", "provenance": "pan-accuracy"},
+        "macro_f1": {"value": "91.7%", "uncertainty": "± 2.0 pp", "provenance": "pan-macro-f1"},
+        "baseline": {"name": "GraphSAGE", "accuracy": "94.1% ± 0.4 pp", "provenance": "pan-graphsage-accuracy"}
+      },
+      "comparison_provenance": "pan-performance-matrix",
+      "comparison": [
+        {"model": "Graph2Image", "accuracy": 96.9000, "f1": 91.7172},
+        {"model": "GraphSAGE", "accuracy": 94.0658, "f1": 88.7778},
+        {"model": "APPNP", "accuracy": 93.3494, "f1": 86.2922},
+        {"model": "GraphGPS", "accuracy": 92.5401, "f1": 84.5481},
+        {"model": "GCN", "accuracy": 91.5076, "f1": 86.6888},
+        {"model": "SLR", "accuracy": 72.1010, "f1": 62.6364},
+        {"model": "DFLS", "accuracy": 71.5798, "f1": 61.2367},
+        {"model": "GAT", "accuracy": 67.5541, "f1": 46.0287},
+        {"model": "GIN", "accuracy": 50.7538, "f1": 32.2138}
+      ],
+      "channels": {"mode": "multiomic", "size": 12, "caption": "Expression · CNV · methylation"},
+      "biology": {
+        "type": "multiomic",
+        "title": "Attribution shifts with cancer biology",
+        "body": "The manuscript reports expression-led attribution for lineage-defined liver and prostate cancers, copy-number emphasis in ovarian carcinoma, and substantial methylation contribution in low-grade glioma.",
+        "layers": ["Gene expression", "Copy-number variation", "DNA methylation"],
+        "complete_edges_millions": 69,
+        "baseline_edges_millions": 3.2,
+        "baseline_memory_gb": 25,
+        "provenance": "pan-multiomic-scaling"
+      },
+      "provenance": ["pan-sample-count", "pan-feature-count", "pan-class-count", "pan-complete-edges", "pan-accuracy", "pan-macro-f1", "pan-graphsage-accuracy", "pan-multiomic-scaling"]
+    }
+  ]
+}
