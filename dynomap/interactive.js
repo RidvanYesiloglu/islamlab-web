@@ -78,6 +78,52 @@
     });
   }
 
+  var explainerVideo = document.getElementById("dynomapExplainerVideo");
+  var captionToggle = document.getElementById("videoCcToggle");
+  if (explainerVideo && captionToggle) {
+    var captionState = captionToggle.querySelector(".video-cc-state");
+
+    function activeCaptionTrack() {
+      return explainerVideo.textTracks && explainerVideo.textTracks.length
+        ? explainerVideo.textTracks[0]
+        : null;
+    }
+
+    function syncCaptionToggle() {
+      var track = activeCaptionTrack();
+      var captionsOn = Boolean(track && track.mode === "showing");
+      captionToggle.setAttribute("aria-pressed", captionsOn ? "true" : "false");
+      captionToggle.setAttribute(
+        "aria-label",
+        captionsOn ? "Turn captions off" : "Turn captions on"
+      );
+      captionToggle.setAttribute(
+        "title",
+        captionsOn ? "Turn captions off" : "Turn captions on"
+      );
+      captionState.textContent = captionsOn ? "On" : "Off";
+    }
+
+    function setCaptions(show) {
+      var track = activeCaptionTrack();
+      if (!track) return;
+      track.mode = show ? "showing" : "hidden";
+      syncCaptionToggle();
+    }
+
+    setCaptions(false);
+    explainerVideo.addEventListener("loadedmetadata", function () {
+      setCaptions(false);
+    }, {once:true});
+    if (explainerVideo.textTracks && explainerVideo.textTracks.addEventListener) {
+      explainerVideo.textTracks.addEventListener("change", syncCaptionToggle);
+    }
+    captionToggle.addEventListener("click", function () {
+      var track = activeCaptionTrack();
+      setCaptions(!track || track.mode !== "showing");
+    });
+  }
+
   var attributionCanvas = document.getElementById("attributionCanvas");
   var attributionButtons = Array.prototype.slice.call(document.querySelectorAll(".attribution-tab"));
   var attributionPayload = null;

@@ -28,3 +28,15 @@
 @media(max-width:800px){.cover-callout{grid-template-columns:1fr}.cover-callout .hero-actions{justify-content:flex-start}.pipeline-controls{grid-template-columns:auto auto minmax(80px,1fr)}.pipeline-controls output{grid-column:1/-1;max-width:none;text-align:left}}
 @media(max-width:620px){.cover-primary-actions{display:grid;grid-template-columns:1fr 1fr}.cover-callout .button{text-align:center}.paper-documents{grid-template-columns:1fr}.pipeline-controls{grid-template-columns:1fr 1fr}.pipeline-progress,.pipeline-controls output{grid-column:1/-1;width:100%;text-align:left}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.finding-visual img{transition:none}}
+
+/* Caption control: captions start off and can be enabled without opening a browser menu. */
+.video-frame{position:relative}
+.video-cc-toggle{position:absolute;right:14px;bottom:70px;z-index:3;display:inline-grid;place-items:center;width:38px;height:32px;padding:0;border:1px solid rgba(255,255,255,.45);border-radius:3px;background:rgba(16,23,33,.82);color:#fff;font:600 .72rem/1 var(--sans);cursor:pointer;backdrop-filter:blur(7px);opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease,background-color .16s ease}
+.video-frame:hover .video-cc-toggle,.video-frame:focus-within .video-cc-toggle{opacity:1;pointer-events:auto;transform:translateY(0)}
+.video-cc-toggle:hover,.video-cc-toggle:focus-visible{background:rgba(16,23,33,.96);border-color:#fff}
+.video-cc-toggle:focus-visible{outline:3px solid rgba(255,255,255,.72);outline-offset:2px}
+.video-cc-toggle[aria-pressed="true"]{background:var(--accent);border-color:var(--accent)}
+.video-cc-mark{display:inline-grid;place-items:center;min-width:24px;height:17px;border:1px solid currentColor;border-radius:2px;font:700 .62rem/1 var(--sans);letter-spacing:.02em}
+.video-cc-state{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(hover:none),(pointer:coarse){.video-cc-toggle{opacity:1;pointer-events:auto;transform:none}}
+@media(max-width:620px){.video-cc-toggle{right:9px;bottom:64px;width:36px;height:30px}}
