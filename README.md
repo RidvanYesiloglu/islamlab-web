@@ -9,6 +9,7 @@ Source for the **Islam Lab** website — a projects hub for the lab's open resea
 - **Home** — https://islamlab.org
 - **Dynomap** — https://islamlab.org/dynomap · task-adaptive spatial representations for biomedical tabular data
 - **Graph2Image** — https://islamlab.org/graph2image · semantic cartography for biological networks
+- **Graph Foundation Model** — https://islamlab.org/graph-foundation-model · transferable structural representations across heterogeneous graphs
 - **scVision** — https://islamlab.org/scvision · a vision foundation model for single-cell biology
 
 ## Structure
@@ -29,6 +30,7 @@ graph2image/        # Graph2Image project page
   styles.css
   app.js
   public/assets/
+graph-foundation-model/ # Graph Foundation Model app, served separately at this path
 CNAME               # Custom domain: islamlab.org
 .nojekyll           # Serve files as-is (no Jekyll)
 ```

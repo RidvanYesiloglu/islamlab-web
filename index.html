@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Islam Lab · Stanford University School of Medicine</title>
-<meta name="description" content="The Islam Lab at Stanford University School of Medicine works at the intersection of artificial intelligence, statistics, and cancer research — building computational tools for cancer detection, diagnosis, and treatment. Explore open projects including Dynomap and scVision.">
+<meta name="description" content="The Islam Lab at Stanford University School of Medicine develops artificial intelligence and statistical methods for biomedical research. Explore Dynomap, Graph2Image, Graph Foundation Model, and scVision.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Islam Lab · Stanford University School of Medicine">
-<meta property="og:description" content="AI, statistics, and cancer research at Stanford. Explore open research projects including Dynomap and scVision.">
+<meta property="og:description" content="AI, statistics, and biomedical research at Stanford. Explore Dynomap, Graph2Image, Graph Foundation Model, and scVision.">
 <meta property="og:image" content="https://islamlab.org/assets/lab-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -49,8 +49,9 @@
   <div class="wrap">
     <div class="eyebrow">Projects</div>
     <h2>Open research from the lab</h2>
-    <p class="sub">Models, tools, and methods we develop and share, from task-adaptive biomedical tables to foundation models for single-cell biology.</p>
+    <p class="sub">Models, tools, and methods we develop and share across biomedical tables, networks, and single-cell biology.</p>
 
+    <div class="project-grid">
     <article class="project">
       <div class="thumb"><a href="/dynomap/"><img src="dynomap/assets/og.png" alt="Dynomap cover: biomedical tables flowing into a learned spatial feature map."></a></div>
       <div class="body">
@@ -74,6 +75,17 @@
     </article>
 
     <article class="project">
+      <div class="thumb"><a href="/graph-foundation-model/"><img src="assets/gfm-cover.jpg" alt="Graph Foundation Model cover: a network and the question of transferring structural knowledge to unseen graphs."></a></div>
+      <div class="body">
+        <span class="ptag">Foundation model &middot; Cross-graph transfer</span>
+        <h3>Graph Foundation Model</h3>
+        <p>A topology-first foundation model that describes each node by its structural role, aligns that description with a graph representation, and transfers the resulting knowledge to unseen biological and non-biological networks.</p>
+        <a class="plink" href="/graph-foundation-model/">Explore Graph Foundation Model <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2604.06391" target="_blank" rel="noopener">arXiv:2604.06391</a></span><span>Structural language &middot; Transfer learning</span></div>
+      </div>
+    </article>
+
+    <article class="project">
       <div class="thumb"><a href="/scvision/"><img src="scvision/assets/fig1.png" alt="scVision overview: cells rendered as continuous images, a masked-autoencoder vision transformer, and the downstream tasks its frozen encoder supports."></a></div>
       <div class="body">
         <span class="ptag">Foundation model &middot; Single-cell biology</span>
@@ -83,6 +95,7 @@
         <div class="meta"><span>2026 &middot; <a href="https://arxiv.org/abs/2607.14163" target="_blank" rel="noopener">arXiv:2607.14163</a></span><span>Vision transformer &middot; Masked autoencoder</span></div>
       </div>
     </article>
+    </div>
 
     <div class="soon"><span class="dot"></span>More projects from the lab are on the way.</div>
   </div>
@@ -155,6 +168,7 @@
       <a href="/publications/">Publications</a>
       <a href="/dynomap/">Dynomap</a>
       <a href="/graph2image/">Graph2Image</a>
+      <a href="/graph-foundation-model/">Graph Foundation Model</a>
       <a href="/scvision/">scVision</a>
     </div>
     <div class="col">
