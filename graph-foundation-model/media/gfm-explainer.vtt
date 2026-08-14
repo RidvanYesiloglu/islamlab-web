@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:17.092
+Graphs describe relationships in biology, science, and society. Yet most graph models are trained for one network at a time. This work asks whether a single model can learn structural knowledge that transfers to entirely new graphs.
+
+2
+00:00:17.242 --> 00:00:27.598
+A protein network, a citation graph, and a social network may have incompatible features and labels. That makes direct transfer difficult.
+
+3
+00:00:27.748 --> 00:00:37.984
+GFM describes each node by structural role: degree, centrality, communities, local neighborhoods, and diffusion patterns.
+
+4
+00:00:38.134 --> 00:00:46.762
+A compact language model embeds each structural description, while a graph neural network learns from the node's relational neighborhood.
+
+5
+00:00:46.912 --> 00:00:54.676
+Contrastive pretraining pulls corresponding text and graph views together across nine heterogeneous networks.
+
+6
+00:00:54.826 --> 00:01:02.206
+For a new graph, a lightweight adapter learns from topology without changing the reusable pretrained backbone.
+
+7
+00:01:02.356 --> 00:01:15.304
+For an unseen graph, GFM supports two simple options. Without labels, use the pretrained model directly. When labels are available, fine-tune the model for the new task.
+
+8
+00:01:15.454 --> 00:01:24.946
+The study evaluates twenty-four held-out graphs and thirty-seven downstream tasks, including biological networks never used for pretraining.
+
+9
+00:01:25.096 --> 00:01:36.460
+On SagePPI, GFM reaches ninety-five point five percent mean R O C A U C, twenty-one point eight points above the strongest supervised baseline.

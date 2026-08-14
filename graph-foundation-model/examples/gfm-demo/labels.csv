@@ -1,0 +1,11 @@
+node,label,split
+0,0,train
+1,0,train
+2,0,train
+3,0,val
+4,0,test
+5,1,train
+6,1,train
+7,1,train
+8,1,val
+9,1,test
